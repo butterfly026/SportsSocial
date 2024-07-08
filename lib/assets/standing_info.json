@@ -1,0 +1,47 @@
+[
+    {
+        "name": "English Premier League",
+        "seasons": [
+            {
+                "id": "english_premier_league_2024_main",
+                "yearTitle": "2024/25",
+                "year": 2024
+            },
+            {
+                "id": "english_premier_league_2023_main",
+                "yearTitle": "2023/24",
+                "year": 2023
+            }
+        ]
+    },
+    {
+        "name": "Euro Cup Qualification",
+        "seasons": [
+            {
+                "id": "euro_cup_2024_qualification_groupa",
+                "yearTitle": "2024",
+                "year": 2024
+            },
+            {
+                "id": "euro_cup_2020_qualification_groupb", //  TODO: review
+                "yearTitle": "2021",
+                "year": 2020
+            }
+        ]
+    },
+    {
+        "name": "Euro Cup Finals",
+        "seasons": [
+            {
+                "id": "euro_cup_2024_finals_groupa",
+                "yearTitle": "2024",
+                "year": 2024
+            },
+            {
+                "id": "euro_cup_2020_finals_groupb", // TODO: review
+                "yearTitle": "2021",
+                "year": 2020
+            }
+        ]
+    }
+]

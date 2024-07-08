@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:sport_social_mobile_mock/services/service_locator.dart';
 
 void main() {
+  ServiceLocator.setup();
   runApp(const MyApp());
 }
 
