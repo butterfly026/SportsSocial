@@ -20,12 +20,12 @@ class MatchModel {
   final dynamic startTime; // timestamp
   final String displayNameHome;
   final String displayNameAway;
-  final String? scoreHome;
-  final String? scoreAway;
+  final int? scoreHome;
+  final int? scoreAway;
   final String? teamHomeShieldUrl;
   final String? teamAwayShieldUrl;
-  final String? round;
-  final Winner winner;
+  final String round;
+  final Winner? winner;
 
   const MatchModel({
     required this.id,
@@ -38,8 +38,8 @@ class MatchModel {
     this.scoreAway,
     this.teamHomeShieldUrl,
     this.teamAwayShieldUrl,
-    this.round,
-    required this.winner,
+    required this.round,
+    this.winner,
   });
 
   MatchModel.fromJson(Map<String, dynamic> json)
@@ -55,6 +55,25 @@ class MatchModel {
           teamHomeShieldUrl: json['teamHomeShieldUrl'],
           teamAwayShieldUrl: json['teamAwayShieldUrl'],
           round: json['round'],
-          winner: Winner.values.byName(json['winner']),
+          winner: json['winner'] != null
+              ? Winner.values.byName(json['winner'])
+              : null,
         );
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'tournamentCode': tournamentCode,
+      'status': status.name,
+      'startTime': startTime,
+      'displayNameHome': displayNameHome,
+      'displayNameAway': displayNameAway,
+      'scoreHome': scoreHome,
+      'scoreAway': scoreAway,
+      'teamHomeShieldUrl': teamHomeShieldUrl,
+      'teamAwayShieldUrl': teamAwayShieldUrl,
+      'round': round,
+      'winner': winner?.name,
+    };
+  }
 }

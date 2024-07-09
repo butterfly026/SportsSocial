@@ -29,14 +29,18 @@ class DataMockService {
 
   // Use this method to populate the news list
   Future<void> _loadNews() async {
-    final String jsonString =
-        await rootBundle.loadString('lib/assets/news.json');
-    final jsonResponse = jsonDecode(jsonString);
+    try {
+      final String jsonString =
+          await rootBundle.loadString('lib/assets/news.json');
+      final jsonResponse = jsonDecode(jsonString);
 
-    final List<NewsModel> newsList = List<NewsModel>.from(
-        jsonResponse.map((newsJson) => NewsModel.fromJson(newsJson)));
+      final List<NewsModel> newsList = List<NewsModel>.from(
+          jsonResponse.map((newsJson) => NewsModel.fromJson(newsJson)));
 
-    newsNotifier.value = newsList;
+      newsNotifier.value = newsList;
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future<void> _loadMatches() async {
@@ -57,26 +61,34 @@ class DataMockService {
   }
 
   Future<void> _loadStandingsInfo() async {
-    final String jsonString =
-        await rootBundle.loadString('lib/assets/standing_info.json');
-    final jsonResponse = jsonDecode(jsonString);
+    try {
+      final String jsonString =
+          await rootBundle.loadString('lib/assets/standing_info.json');
+      final jsonResponse = jsonDecode(jsonString);
 
-    final standingsInfoList = List<StandingInfoModel>.from(jsonResponse.map(
-        (standingInfoJson) => StandingInfoModel.fromJson(standingInfoJson)));
+      final standingsInfoList = List<StandingInfoModel>.from(jsonResponse.map(
+          (standingInfoJson) => StandingInfoModel.fromJson(standingInfoJson)));
 
-    standingsInfoNotifier.value = standingsInfoList;
+      standingsInfoNotifier.value = standingsInfoList;
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future<void> _loadStandings() async {
-    final String jsonString =
-        await rootBundle.loadString('lib/assets/standings.json');
-    final jsonResponse = jsonDecode(jsonString);
+    try {
+      final String jsonString =
+          await rootBundle.loadString('lib/assets/standings.json');
+      final jsonResponse = jsonDecode(jsonString);
 
-    final List<StandingModel> standingList = List<StandingModel>.from(
-        jsonResponse
-            .map((standingJson) => StandingModel.fromJson(standingJson)));
+      final List<StandingModel> standingList = List<StandingModel>.from(
+          jsonResponse
+              .map((standingJson) => StandingModel.fromJson(standingJson)));
 
-    standingsNotifier.value = standingList;
+      standingsNotifier.value = standingList;
+    } catch (e) {
+      print(e);
+    }
   }
 
   // Use this method to populate the standing table after select the tournament and season

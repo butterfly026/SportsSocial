@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class StandingSeasonInfoModel {
   final String id;
   final String yearTitle;
-  final String year;
+  final int year;
 
   const StandingSeasonInfoModel({
     required this.id,
@@ -52,7 +52,7 @@ class StandingRowModel {
   final int goalsFor;
   final int goalsAgainst;
   final int points;
-  final int form;
+  final String form;
 
   const StandingRowModel({
     required this.teamDisplayName,
@@ -80,6 +80,21 @@ class StandingRowModel {
           points: json['points'],
           form: json['form'],
         );
+
+  Map<String, dynamic> toJson() {
+    return {
+      'teamDisplayName': teamDisplayName,
+      'teamHomeShieldUrl': teamHomeShieldUrl,
+      'matchesPlayed': matchesPlayed,
+      'wins': wins,
+      'draws': draws,
+      'losses': losses,
+      'goalsFor': goalsFor,
+      'goalsAgainst': goalsAgainst,
+      'points': points,
+      'form': form,
+    };
+  }
 }
 
 @immutable
@@ -108,4 +123,14 @@ class StandingModel {
               .map((e) => StandingRowModel.fromJson(e))
               .toList(),
         );
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'group': group,
+      'seasonShieldUrl': seasonShieldUrl,
+      'rows': rows.map((e) => e.toJson()).toList(),
+    };
+  }
 }

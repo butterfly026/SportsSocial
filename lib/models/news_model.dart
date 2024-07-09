@@ -27,4 +27,15 @@ class NewsModel {
           publishedAt: json['publishedAt'],
           readTime: json['readTime'],
         );
+
+  Map<String, dynamic> toJson() {
+    return {
+      'title': title,
+      'providerDisplayName': providerDisplayName,
+      'url': url,
+      'imageUrl': imageUrl,
+      'publishedAt': publishedAt,
+      'readTime': readTime,
+    };
+  }
 }
