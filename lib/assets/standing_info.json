@@ -18,12 +18,12 @@
         "name": "Euro Cup Qualification",
         "seasons": [
             {
-                "id": "euro_cup_2024_qualification_groupa",
+                "id": "euro_cup_2024_qualification_group_b",
                 "yearTitle": "2024",
                 "year": 2024
             },
             {
-                "id": "euro_cup_2020_qualification_groupb", //  TODO: review
+                "id": "euro_cup_2020_qualification_group_c",
                 "yearTitle": "2021",
                 "year": 2020
             }
@@ -33,12 +33,12 @@
         "name": "Euro Cup Finals",
         "seasons": [
             {
-                "id": "euro_cup_2024_finals_groupa",
+                "id": "euro_cup_2024_final_group_a",
                 "yearTitle": "2024",
                 "year": 2024
             },
             {
-                "id": "euro_cup_2020_finals_groupb", // TODO: review
+                "id": "euro_cup_2020_final_group_c",
                 "yearTitle": "2021",
                 "year": 2020
             }

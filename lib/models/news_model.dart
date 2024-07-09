@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class NewsModel {
   final String title;
   final String providerDisplayName;
+  final String url;
   final String imageUrl;
   final dynamic publishedAt; // timestamp
   final String? readTime;
@@ -11,6 +12,7 @@ class NewsModel {
   const NewsModel({
     required this.title,
     required this.providerDisplayName,
+    required this.url,
     required this.imageUrl,
     required this.publishedAt,
     this.readTime,
@@ -20,6 +22,7 @@ class NewsModel {
     return NewsModel(
       title: json['title'],
       providerDisplayName: json['providerDisplayName'],
+      url: json['url'],
       imageUrl: json['imageUrl'],
       publishedAt: json['publishedAt'],
       readTime: json['readTime'],

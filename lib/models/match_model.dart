@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 enum MatchStatus {
-  pending,
+  scheduled,
   inProgress,
   finished,
 }
@@ -14,9 +14,10 @@ enum Winner {
 
 @immutable
 class MatchModel {
+  final String id;
   final String tournamentCode;
   final MatchStatus status;
-  final dynamic matchDate; // timestamp
+  final dynamic startTime; // timestamp
   final String teamHome; // team name
   final String teamHomeScode;
   final String? teamHomeShieldUrl;
@@ -27,9 +28,10 @@ class MatchModel {
   final Winner winnder;
 
   const MatchModel({
+    required this.id,
     required this.tournamentCode,
     required this.status,
-    required this.matchDate,
+    required this.startTime,
     required this.teamHome,
     required this.teamHomeScode,
     this.teamHomeShieldUrl,
@@ -42,9 +44,10 @@ class MatchModel {
 
   factory MatchModel.fromJson(Map<String, dynamic> json) {
     return MatchModel(
+      id: json['id'],
       tournamentCode: json['tournamentCode'],
       status: MatchStatus.values.byName(json['status']),
-      matchDate: json['matchDate'],
+      startTime: json['startTime'],
       teamHome: json['teamHome'],
       teamHomeScode: json['teamHomeScode'],
       teamHomeShieldUrl: json['teamHomeShieldUrl'],

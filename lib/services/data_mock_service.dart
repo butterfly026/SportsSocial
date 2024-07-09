@@ -14,9 +14,8 @@ class DataMockService {
     final String jsonString = await rootBundle.loadString('assets/news.json');
     final jsonResponse = jsonDecode(jsonString);
 
-    final List<NewsModel> newsList = jsonResponse
-        .map((standingJson) => NewsModel.fromJson(standingJson))
-        .toList();
+    final List<NewsModel> newsList =
+        jsonResponse.map((newsJson) => NewsModel.fromJson(newsJson)).toList();
 
     return newsList;
   }
@@ -30,8 +29,10 @@ class DataMockService {
     final jsonResponse = jsonDecode(jsonString);
 
     final List<MatchModel> matchesList = jsonResponse
-        .map((standingJson) => MatchModel.fromJson(standingJson))
+        .map((matchJson) => MatchModel.fromJson(matchJson))
         .toList();
+
+    matchesList.sort((a, b) => a.startTime.compareTo(b.startTime));
 
     return matchesList;
   }
@@ -44,20 +45,26 @@ class DataMockService {
     final jsonResponse = jsonDecode(jsonString);
 
     final List<StandingInfoModel> standingsInfoList = jsonResponse
-        .map((standingJson) => StandingInfoModel.fromJson(standingJson))
+        .map((standingInfoJson) => StandingInfoModel.fromJson(standingInfoJson))
         .toList();
 
     return standingsInfoList;
   }
 
   // Use this method to populate the standing table after select the tournament and season
-  Future<StandingModel> getStandingById(String id) async {
+  Future<StandingModel> getStandingBySeasonId(String seasonId) async {
     final String jsonString =
-        await rootBundle.loadString('assets/standings_info.json');
+        await rootBundle.loadString('assets/standings.json');
     final jsonResponse = jsonDecode(jsonString);
 
-    final StandingModel standingModel = StandingModel.fromJson(
-        jsonResponse.firstWhere((element) => element['id'] == id));
+    final List<StandingModel> standingList = jsonResponse
+        .map((standingJson) => StandingModel.fromJson(standingJson))
+        .toList();
+
+    final StandingModel standingModel = standingList.firstWhere(
+      (element) => element.id == seasonId,
+      orElse: () => standingList.first,
+    );
 
     return standingModel;
   }

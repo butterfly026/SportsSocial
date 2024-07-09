@@ -43,7 +43,7 @@ class StandingInfoModel {
 
 @immutable
 class StandingRowModel {
-  final String teamName;
+  final String teamDisplayName;
   final String? teamHomeShieldUrl;
   final int matchesPlayed;
   final int wins;
@@ -55,7 +55,7 @@ class StandingRowModel {
   final int form;
 
   const StandingRowModel({
-    required this.teamName,
+    required this.teamDisplayName,
     this.teamHomeShieldUrl,
     required this.matchesPlayed,
     required this.wins,
@@ -69,7 +69,7 @@ class StandingRowModel {
 
   factory StandingRowModel.fromJson(Map<String, dynamic> json) {
     return StandingRowModel(
-      teamName: json['teamName'],
+      teamDisplayName: json['teamDisplayName'],
       teamHomeShieldUrl: json['teamHomeShieldUrl'],
       matchesPlayed: json['matchesPlayed'],
       wins: json['wins'],
@@ -88,7 +88,6 @@ class StandingModel {
   final String id;
   final String name;
   final String? group;
-  final dynamic updatedAt; // timestamp
   final String? seasonShieldUrl;
   final List<StandingRowModel> rows;
 
@@ -96,7 +95,6 @@ class StandingModel {
     required this.id,
     required this.name,
     this.group,
-    required this.updatedAt,
     this.seasonShieldUrl,
     required this.rows,
   });
@@ -106,7 +104,6 @@ class StandingModel {
       id: json['id'],
       name: json['name'],
       group: json['group'],
-      updatedAt: json['updatedAt'],
       seasonShieldUrl: json['seasonShieldUrl'],
       rows: (json['rows'] as List)
           .map((e) => StandingRowModel.fromJson(e))

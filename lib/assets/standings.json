@@ -1,0 +1,2185 @@
+[
+  {
+    "id": "euro_cup_2020_qualification_group_a",
+    "name": "Euro Cup Qualification",
+    "group": "Group A",
+    "rows": [
+      {
+        "teamDisplayName": "England",
+        "matchesPlayed": 8,
+        "wins": 7,
+        "draws": 0,
+        "losses": 1,
+        "goalsFor": 37,
+        "goalsAgainst": 6,
+        "points": 21,
+        "form": "WLWWW"
+      },
+      {
+        "teamDisplayName": "Czech Republic",
+        "matchesPlayed": 8,
+        "wins": 5,
+        "draws": 0,
+        "losses": 3,
+        "goalsFor": 13,
+        "goalsAgainst": 11,
+        "points": 15,
+        "form": "LWWWL"
+      },
+      {
+        "teamDisplayName": "Kosovo",
+        "matchesPlayed": 8,
+        "wins": 3,
+        "draws": 2,
+        "losses": 3,
+        "goalsFor": 13,
+        "goalsAgainst": 16,
+        "points": 11,
+        "form": "WLWLL"
+      },
+      {
+        "teamDisplayName": "Bulgaria",
+        "matchesPlayed": 8,
+        "wins": 1,
+        "draws": 3,
+        "losses": 4,
+        "goalsFor": 6,
+        "goalsAgainst": 17,
+        "points": 6,
+        "form": "LLDLW"
+      },
+      {
+        "teamDisplayName": "Montenegro",
+        "matchesPlayed": 8,
+        "wins": 0,
+        "draws": 3,
+        "losses": 5,
+        "goalsFor": 3,
+        "goalsAgainst": 22,
+        "points": 3,
+        "form": "LLDLL"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2020_qualification_group_b",
+    "name": "Euro Cup Qualification",
+    "group": "Group B",
+    "rows": [
+      {
+        "teamDisplayName": "Portugal",
+        "matchesPlayed": 8,
+        "wins": 5,
+        "draws": 2,
+        "losses": 1,
+        "goalsFor": 22,
+        "goalsAgainst": 6,
+        "points": 17,
+        "form": "WWLWW"
+      },
+      {
+        "teamDisplayName": "Ukraine",
+        "matchesPlayed": 8,
+        "wins": 6,
+        "draws": 2,
+        "losses": 0,
+        "goalsFor": 17,
+        "goalsAgainst": 4,
+        "points": 20,
+        "form": "WWWWD"
+      },
+      {
+        "teamDisplayName": "Serbia",
+        "matchesPlayed": 8,
+        "wins": 4,
+        "draws": 2,
+        "losses": 2,
+        "goalsFor": 17,
+        "goalsAgainst": 17,
+        "points": 14,
+        "form": "LWWWD"
+      },
+      {
+        "teamDisplayName": "Luxembourg",
+        "matchesPlayed": 8,
+        "wins": 1,
+        "draws": 1,
+        "losses": 6,
+        "goalsFor": 7,
+        "goalsAgainst": 16,
+        "points": 4,
+        "form": "LLLLL"
+      },
+      {
+        "teamDisplayName": "Lithuania",
+        "matchesPlayed": 8,
+        "wins": 0,
+        "draws": 1,
+        "losses": 7,
+        "goalsFor": 5,
+        "goalsAgainst": 25,
+        "points": 1,
+        "form": "LLLLL"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2020_qualification_group_c",
+    "name": "Euro Cup Qualification",
+    "group": "Group C",
+    "rows": [
+      {
+        "teamDisplayName": "Germany",
+        "matchesPlayed": 8,
+        "wins": 7,
+        "draws": 0,
+        "losses": 1,
+        "goalsFor": 30,
+        "goalsAgainst": 7,
+        "points": 21,
+        "form": "LWWWW"
+      },
+      {
+        "teamDisplayName": "Netherlands",
+        "matchesPlayed": 8,
+        "wins": 6,
+        "draws": 1,
+        "losses": 1,
+        "goalsFor": 24,
+        "goalsAgainst": 7,
+        "points": 19,
+        "form": "WWWDW"
+      },
+      {
+        "teamDisplayName": "Northern Ireland",
+        "matchesPlayed": 8,
+        "wins": 4,
+        "draws": 1,
+        "losses": 3,
+        "goalsFor": 9,
+        "goalsAgainst": 13,
+        "points": 13,
+        "form": "WLLDL"
+      },
+      {
+        "teamDisplayName": "Belarus",
+        "matchesPlayed": 8,
+        "wins": 1,
+        "draws": 1,
+        "losses": 6,
+        "goalsFor": 4,
+        "goalsAgainst": 16,
+        "points": 4,
+        "form": "LWDLL"
+      },
+      {
+        "teamDisplayName": "Estonia",
+        "matchesPlayed": 8,
+        "wins": 0,
+        "draws": 1,
+        "losses": 7,
+        "goalsFor": 2,
+        "goalsAgainst": 26,
+        "points": 1,
+        "form": "LLDLL"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2020_qualification_group_d",
+    "name": "Euro Cup Qualification",
+    "group": "Group D",
+    "rows": [
+      {
+        "teamDisplayName": "Denmark",
+        "matchesPlayed": 8,
+        "wins": 4,
+        "draws": 4,
+        "losses": 0,
+        "goalsFor": 23,
+        "goalsAgainst": 6,
+        "points": 16,
+        "form": "WDWWD"
+      },
+      {
+        "teamDisplayName": "Switzerland",
+        "matchesPlayed": 8,
+        "wins": 5,
+        "draws": 2,
+        "losses": 1,
+        "goalsFor": 19,
+        "goalsAgainst": 6,
+        "points": 17,
+        "form": "WLWWW"
+      },
+      {
+        "teamDisplayName": "Ireland",
+        "matchesPlayed": 8,
+        "wins": 3,
+        "draws": 4,
+        "losses": 1,
+        "goalsFor": 7,
+        "goalsAgainst": 5,
+        "points": 13,
+        "form": "WDDLD"
+      },
+      {
+        "teamDisplayName": "Georgia",
+        "matchesPlayed": 8,
+        "wins": 2,
+        "draws": 2,
+        "losses": 4,
+        "goalsFor": 7,
+        "goalsAgainst": 11,
+        "points": 8,
+        "form": "LDDWL"
+      },
+      {
+        "teamDisplayName": "Gibraltar",
+        "matchesPlayed": 8,
+        "wins": 0,
+        "draws": 0,
+        "losses": 8,
+        "goalsFor": 3,
+        "goalsAgainst": 31,
+        "points": 0,
+        "form": "LLLLL"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2020_qualification_group_e",
+    "name": "Euro Cup Qualification",
+    "group": "Group E",
+    "rows": [
+      {
+        "teamDisplayName": "Croatia",
+        "matchesPlayed": 8,
+        "wins": 5,
+        "draws": 2,
+        "losses": 1,
+        "goalsFor": 17,
+        "goalsAgainst": 7,
+        "points": 17,
+        "form": "WDWDW"
+      },
+      {
+        "teamDisplayName": "Wales",
+        "matchesPlayed": 8,
+        "wins": 4,
+        "draws": 2,
+        "losses": 2,
+        "goalsFor": 10,
+        "goalsAgainst": 6,
+        "points": 14,
+        "form": "WDDWW"
+      },
+      {
+        "teamDisplayName": "Hungary",
+        "matchesPlayed": 8,
+        "wins": 4,
+        "draws": 0,
+        "losses": 4,
+        "goalsFor": 8,
+        "goalsAgainst": 11,
+        "points": 12,
+        "form": "WLLWL"
+      },
+      {
+        "teamDisplayName": "Slovakia",
+        "matchesPlayed": 8,
+        "wins": 4,
+        "draws": 1,
+        "losses": 3,
+        "goalsFor": 13,
+        "goalsAgainst": 11,
+        "points": 13,
+        "form": "LWDLW"
+      },
+      {
+        "teamDisplayName": "Azerbaijan",
+        "matchesPlayed": 8,
+        "wins": 0,
+        "draws": 1,
+        "losses": 7,
+        "goalsFor": 5,
+        "goalsAgainst": 18,
+        "points": 1,
+        "form": "LDLLL"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2020_qualification_group_f",
+    "name": "Euro Cup Qualification",
+    "group": "Group F",
+    "rows": [
+      {
+        "teamDisplayName": "Spain",
+        "matchesPlayed": 10,
+        "wins": 8,
+        "draws": 2,
+        "losses": 0,
+        "goalsFor": 31,
+        "goalsAgainst": 5,
+        "points": 26,
+        "form": "WDDWW"
+      },
+      {
+        "teamDisplayName": "Sweden",
+        "matchesPlayed": 10,
+        "wins": 6,
+        "draws": 3,
+        "losses": 1,
+        "goalsFor": 23,
+        "goalsAgainst": 9,
+        "points": 21,
+        "form": "DWDWW"
+      },
+      {
+        "teamDisplayName": "Romania",
+        "matchesPlayed": 10,
+        "wins": 4,
+        "draws": 2,
+        "losses": 4,
+        "goalsFor": 17,
+        "goalsAgainst": 15,
+        "points": 14,
+        "form": "WWDLL"
+      },
+      {
+        "teamDisplayName": "Norway",
+        "matchesPlayed": 10,
+        "wins": 4,
+        "draws": 5,
+        "losses": 1,
+        "goalsFor": 19,
+        "goalsAgainst": 11,
+        "points": 17,
+        "form": "DDDWW"
+      },
+      {
+        "teamDisplayName": "Faroe Islands",
+        "matchesPlayed": 10,
+        "wins": 1,
+        "draws": 0,
+        "losses": 9,
+        "goalsFor": 4,
+        "goalsAgainst": 30,
+        "points": 3,
+        "form": "LLWLL"
+      },
+      {
+        "teamDisplayName": "Malta",
+        "matchesPlayed": 10,
+        "wins": 1,
+        "draws": 0,
+        "losses": 9,
+        "goalsFor": 3,
+        "goalsAgainst": 27,
+        "points": 3,
+        "form": "LLLLL"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2020_qualification_group_g",
+    "name": "Euro Cup Qualification",
+    "group": "Group G",
+    "rows": [
+      {
+        "teamDisplayName": "Austria",
+        "matchesPlayed": 10,
+        "wins": 6,
+        "draws": 1,
+        "losses": 3,
+        "goalsFor": 19,
+        "goalsAgainst": 9,
+        "points": 19,
+        "form": "DWWWL"
+      },
+      {
+        "teamDisplayName": "Poland",
+        "matchesPlayed": 10,
+        "wins": 8,
+        "draws": 1,
+        "losses": 1,
+        "goalsFor": 18,
+        "goalsAgainst": 5,
+        "points": 25,
+        "form": "DWWWW"
+      },
+      {
+        "teamDisplayName": "North Macedonia",
+        "matchesPlayed": 10,
+        "wins": 4,
+        "draws": 2,
+        "losses": 4,
+        "goalsFor": 12,
+        "goalsAgainst": 13,
+        "points": 14,
+        "form": "WWLLW"
+      },
+      {
+        "teamDisplayName": "Slovenia",
+        "matchesPlayed": 10,
+        "wins": 4,
+        "draws": 2,
+        "losses": 4,
+        "goalsFor": 16,
+        "goalsAgainst": 11,
+        "points": 14,
+        "form": "WLLWL"
+      },
+      {
+        "teamDisplayName": "Israel",
+        "matchesPlayed": 10,
+        "wins": 3,
+        "draws": 2,
+        "losses": 5,
+        "goalsFor": 16,
+        "goalsAgainst": 18,
+        "points": 11,
+        "form": "LLWLL"
+      },
+      {
+        "teamDisplayName": "Latvia",
+        "matchesPlayed": 10,
+        "wins": 1,
+        "draws": 0,
+        "losses": 9,
+        "goalsFor": 3,
+        "goalsAgainst": 28,
+        "points": 3,
+        "form": "LLLLW"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2020_qualification_group_h",
+    "name": "Euro Cup Qualification",
+    "group": "Group H",
+    "rows": [
+      {
+        "teamDisplayName": "France",
+        "matchesPlayed": 10,
+        "wins": 8,
+        "draws": 1,
+        "losses": 1,
+        "goalsFor": 25,
+        "goalsAgainst": 6,
+        "points": 25,
+        "form": "WWDWW"
+      },
+      {
+        "teamDisplayName": "Turkey",
+        "matchesPlayed": 10,
+        "wins": 7,
+        "draws": 2,
+        "losses": 1,
+        "goalsFor": 18,
+        "goalsAgainst": 3,
+        "points": 23,
+        "form": "WWDDW"
+      },
+      {
+        "teamDisplayName": "Iceland",
+        "matchesPlayed": 10,
+        "wins": 6,
+        "draws": 1,
+        "losses": 3,
+        "goalsFor": 14,
+        "goalsAgainst": 11,
+        "points": 19,
+        "form": "LLWDW"
+      },
+      {
+        "teamDisplayName": "Albania",
+        "matchesPlayed": 10,
+        "wins": 4,
+        "draws": 1,
+        "losses": 5,
+        "goalsFor": 16,
+        "goalsAgainst": 14,
+        "points": 13,
+        "form": "WLWDL"
+      },
+      {
+        "teamDisplayName": "Andorra",
+        "matchesPlayed": 10,
+        "wins": 1,
+        "draws": 1,
+        "losses": 8,
+        "goalsFor": 3,
+        "goalsAgainst": 20,
+        "points": 4,
+        "form": "LWLDL"
+      },
+      {
+        "teamDisplayName": "Moldova",
+        "matchesPlayed": 10,
+        "wins": 1,
+        "draws": 0,
+        "losses": 9,
+        "goalsFor": 4,
+        "goalsAgainst": 26,
+        "points": 3,
+        "form": "LLLLL"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2020_qualification_group_i",
+    "name": "Euro Cup Qualification",
+    "group": "Group I",
+    "rows": [
+      {
+        "teamDisplayName": "Belgium",
+        "matchesPlayed": 10,
+        "wins": 10,
+        "draws": 0,
+        "losses": 0,
+        "goalsFor": 40,
+        "goalsAgainst": 3,
+        "points": 30,
+        "form": "WWWWW"
+      },
+      {
+        "teamDisplayName": "Scotland",
+        "matchesPlayed": 10,
+        "wins": 5,
+        "draws": 0,
+        "losses": 5,
+        "goalsFor": 16,
+        "goalsAgainst": 19,
+        "points": 15,
+        "form": "LLWWW"
+      },
+      {
+        "teamDisplayName": "Russia",
+        "matchesPlayed": 10,
+        "wins": 8,
+        "draws": 0,
+        "losses": 2,
+        "goalsFor": 33,
+        "goalsAgainst": 8,
+        "points": 24,
+        "form": "WWWLW"
+      },
+      {
+        "teamDisplayName": "Cyprus",
+        "matchesPlayed": 10,
+        "wins": 3,
+        "draws": 1,
+        "losses": 6,
+        "goalsFor": 15,
+        "goalsAgainst": 20,
+        "points": 10,
+        "form": "WWLLL"
+      },
+      {
+        "teamDisplayName": "Kazakhstan",
+        "matchesPlayed": 10,
+        "wins": 3,
+        "draws": 1,
+        "losses": 6,
+        "goalsFor": 13,
+        "goalsAgainst": 17,
+        "points": 10,
+        "form": "LLLWL"
+      },
+      {
+        "teamDisplayName": "San Marino",
+        "matchesPlayed": 10,
+        "wins": 0,
+        "draws": 0,
+        "losses": 10,
+        "goalsFor": 1,
+        "goalsAgainst": 51,
+        "points": 0,
+        "form": "LLLLL"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2020_qualification_group_j",
+    "name": "Euro Cup Qualification",
+    "group": "Group J",
+    "rows": [
+      {
+        "teamDisplayName": "Italy",
+        "matchesPlayed": 10,
+        "wins": 10,
+        "draws": 0,
+        "losses": 0,
+        "goalsFor": 37,
+        "goalsAgainst": 4,
+        "points": 30,
+        "form": "WWWWW"
+      },
+      {
+        "teamDisplayName": "Finland",
+        "matchesPlayed": 10,
+        "wins": 6,
+        "draws": 0,
+        "losses": 4,
+        "goalsFor": 16,
+        "goalsAgainst": 10,
+        "points": 18,
+        "form": "LLWWL"
+      },
+      {
+        "teamDisplayName": "Bosnia & Herzegovina",
+        "matchesPlayed": 10,
+        "wins": 4,
+        "draws": 1,
+        "losses": 5,
+        "goalsFor": 20,
+        "goalsAgainst": 17,
+        "points": 13,
+        "form": "LWLLW"
+      },
+      {
+        "teamDisplayName": "Greece",
+        "matchesPlayed": 10,
+        "wins": 4,
+        "draws": 2,
+        "losses": 4,
+        "goalsFor": 12,
+        "goalsAgainst": 14,
+        "points": 14,
+        "form": "DLWWW"
+      },
+      {
+        "teamDisplayName": "Armenia",
+        "matchesPlayed": 10,
+        "wins": 3,
+        "draws": 1,
+        "losses": 6,
+        "goalsFor": 14,
+        "goalsAgainst": 25,
+        "points": 10,
+        "form": "WDLLL"
+      },
+      {
+        "teamDisplayName": "Liechtenstein",
+        "matchesPlayed": 10,
+        "wins": 0,
+        "draws": 2,
+        "losses": 8,
+        "goalsFor": 2,
+        "goalsAgainst": 31,
+        "points": 2,
+        "form": "DDLLL"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2020_final_group_a",
+    "name": "Euro Cup Final",
+    "group": "Group A",
+    "rows": [
+      {
+        "teamDisplayName": "Italy",
+        "matchesPlayed": 3,
+        "wins": 3,
+        "draws": 0,
+        "losses": 0,
+        "goalsFor": 7,
+        "goalsAgainst": 0,
+        "points": 9,
+        "form": "WWW"
+      },
+      {
+        "teamDisplayName": "Switzerland",
+        "matchesPlayed": 3,
+        "wins": 1,
+        "draws": 1,
+        "losses": 1,
+        "goalsFor": 4,
+        "goalsAgainst": 5,
+        "points": 4,
+        "form": "DLW"
+      },
+      {
+        "teamDisplayName": "Turkey",
+        "matchesPlayed": 3,
+        "wins": 0,
+        "draws": 0,
+        "losses": 3,
+        "goalsFor": 1,
+        "goalsAgainst": 8,
+        "points": 0,
+        "form": "LLL"
+      },
+      {
+        "teamDisplayName": "Wales",
+        "matchesPlayed": 3,
+        "wins": 1,
+        "draws": 1,
+        "losses": 1,
+        "goalsFor": 3,
+        "goalsAgainst": 2,
+        "points": 4,
+        "form": "DWL"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2020_final_group_b",
+    "name": "Euro Cup Final",
+    "group": "Group B",
+    "rows": [
+      {
+        "teamDisplayName": "Belgium",
+        "matchesPlayed": 3,
+        "wins": 3,
+        "draws": 0,
+        "losses": 0,
+        "goalsFor": 7,
+        "goalsAgainst": 1,
+        "points": 9,
+        "form": "WWW"
+      },
+      {
+        "teamDisplayName": "Denmark",
+        "matchesPlayed": 3,
+        "wins": 1,
+        "draws": 0,
+        "losses": 2,
+        "goalsFor": 5,
+        "goalsAgainst": 4,
+        "points": 3,
+        "form": "LLW"
+      },
+      {
+        "teamDisplayName": "Finland",
+        "matchesPlayed": 3,
+        "wins": 1,
+        "draws": 0,
+        "losses": 2,
+        "goalsFor": 1,
+        "goalsAgainst": 3,
+        "points": 3,
+        "form": "WLL"
+      },
+      {
+        "teamDisplayName": "Russia",
+        "matchesPlayed": 3,
+        "wins": 1,
+        "draws": 0,
+        "losses": 2,
+        "goalsFor": 2,
+        "goalsAgainst": 7,
+        "points": 3,
+        "form": "LWL"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2020_final_group_c",
+    "name": "Euro Cup Final",
+    "group": "Group C",
+    "rows": [
+      {
+        "teamDisplayName": "Netherlands",
+        "matchesPlayed": 3,
+        "wins": 3,
+        "draws": 0,
+        "losses": 0,
+        "goalsFor": 8,
+        "goalsAgainst": 2,
+        "points": 9,
+        "form": "WWW"
+      },
+      {
+        "teamDisplayName": "Austria",
+        "matchesPlayed": 3,
+        "wins": 2,
+        "draws": 0,
+        "losses": 1,
+        "goalsFor": 4,
+        "goalsAgainst": 3,
+        "points": 6,
+        "form": "WLW"
+      },
+      {
+        "teamDisplayName": "Ukraine",
+        "matchesPlayed": 3,
+        "wins": 1,
+        "draws": 0,
+        "losses": 2,
+        "goalsFor": 4,
+        "goalsAgainst": 5,
+        "points": 3,
+        "form": "LWL"
+      },
+      {
+        "teamDisplayName": "North Macedonia",
+        "matchesPlayed": 3,
+        "wins": 0,
+        "draws": 0,
+        "losses": 3,
+        "goalsFor": 2,
+        "goalsAgainst": 8,
+        "points": 0,
+        "form": "LLL"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2020_final_group_d",
+    "name": "Euro Cup Final",
+    "group": "Group D",
+    "rows": [
+      {
+        "teamDisplayName": "England",
+        "matchesPlayed": 3,
+        "wins": 2,
+        "draws": 1,
+        "losses": 0,
+        "goalsFor": 2,
+        "goalsAgainst": 0,
+        "points": 7,
+        "form": "WDW"
+      },
+      {
+        "teamDisplayName": "Croatia",
+        "matchesPlayed": 3,
+        "wins": 1,
+        "draws": 1,
+        "losses": 1,
+        "goalsFor": 4,
+        "goalsAgainst": 3,
+        "points": 4,
+        "form": "LDW"
+      },
+      {
+        "teamDisplayName": "Czech Republic",
+        "matchesPlayed": 3,
+        "wins": 1,
+        "draws": 1,
+        "losses": 1,
+        "goalsFor": 3,
+        "goalsAgainst": 2,
+        "points": 4,
+        "form": "WDL"
+      },
+      {
+        "teamDisplayName": "Scotland",
+        "matchesPlayed": 3,
+        "wins": 0,
+        "draws": 1,
+        "losses": 2,
+        "goalsFor": 1,
+        "goalsAgainst": 5,
+        "points": 1,
+        "form": "LDL"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2020_final_group_e",
+    "name": "Euro Cup Final",
+    "group": "Group E",
+    "rows": [
+      {
+        "teamDisplayName": "Spain",
+        "matchesPlayed": 3,
+        "wins": 1,
+        "draws": 2,
+        "losses": 0,
+        "goalsFor": 6,
+        "goalsAgainst": 1,
+        "points": 5,
+        "form": "DDW"
+      },
+      {
+        "teamDisplayName": "Sweden",
+        "matchesPlayed": 3,
+        "wins": 2,
+        "draws": 1,
+        "losses": 0,
+        "goalsFor": 4,
+        "goalsAgainst": 2,
+        "points": 7,
+        "form": "DWW"
+      },
+      {
+        "teamDisplayName": "Poland",
+        "matchesPlayed": 3,
+        "wins": 0,
+        "draws": 1,
+        "losses": 2,
+        "goalsFor": 4,
+        "goalsAgainst": 6,
+        "points": 1,
+        "form": "LDL"
+      },
+      {
+        "teamDisplayName": "Slovakia",
+        "matchesPlayed": 3,
+        "wins": 1,
+        "draws": 0,
+        "losses": 2,
+        "goalsFor": 2,
+        "goalsAgainst": 7,
+        "points": 3,
+        "form": "WLL"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2020_final_group_f",
+    "name": "Euro Cup Final",
+    "group": "Group F",
+    "rows": [
+      {
+        "teamDisplayName": "France",
+        "matchesPlayed": 3,
+        "wins": 1,
+        "draws": 2,
+        "losses": 0,
+        "goalsFor": 4,
+        "goalsAgainst": 3,
+        "points": 5,
+        "form": "WDD"
+      },
+      {
+        "teamDisplayName": "Germany",
+        "matchesPlayed": 3,
+        "wins": 1,
+        "draws": 1,
+        "losses": 1,
+        "goalsFor": 6,
+        "goalsAgainst": 5,
+        "points": 4,
+        "form": "LWD"
+      },
+      {
+        "teamDisplayName": "Portugal",
+        "matchesPlayed": 3,
+        "wins": 1,
+        "draws": 1,
+        "losses": 1,
+        "goalsFor": 7,
+        "goalsAgainst": 6,
+        "points": 4,
+        "form": "WLD"
+      },
+      {
+        "teamDisplayName": "Hungary",
+        "matchesPlayed": 3,
+        "wins": 0,
+        "draws": 2,
+        "losses": 1,
+        "goalsFor": 3,
+        "goalsAgainst": 6,
+        "points": 2,
+        "form": "LDD"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2020_final_ranking_of third-placed teams",
+    "name": "Euro Cup Final",
+    "group": "Ranking of third-placed teams",
+    "rows": []
+  },
+  {
+    "id": "euro_cup_2024_qualification_group_a",
+    "name": "Euro Cup Qualification",
+    "group": "Group A",
+    "rows": [
+      {
+        "teamDisplayName": "Spain",
+        "matchesPlayed": 8,
+        "wins": 7,
+        "draws": 0,
+        "losses": 1,
+        "goalsFor": 25,
+        "goalsAgainst": 5,
+        "points": 21,
+        "form": "WWWWW"
+      },
+      {
+        "teamDisplayName": "Scotland",
+        "matchesPlayed": 8,
+        "wins": 5,
+        "draws": 2,
+        "losses": 1,
+        "goalsFor": 17,
+        "goalsAgainst": 8,
+        "points": 17,
+        "form": "WWLDD"
+      },
+      {
+        "teamDisplayName": "Georgia",
+        "matchesPlayed": 8,
+        "wins": 2,
+        "draws": 2,
+        "losses": 4,
+        "goalsFor": 12,
+        "goalsAgainst": 18,
+        "points": 8,
+        "form": "LLWDL"
+      },
+      {
+        "teamDisplayName": "Norway",
+        "matchesPlayed": 8,
+        "wins": 3,
+        "draws": 2,
+        "losses": 3,
+        "goalsFor": 14,
+        "goalsAgainst": 12,
+        "points": 11,
+        "form": "WWWLD"
+      },
+      {
+        "teamDisplayName": "Cyprus",
+        "matchesPlayed": 8,
+        "wins": 0,
+        "draws": 0,
+        "losses": 8,
+        "goalsFor": 3,
+        "goalsAgainst": 28,
+        "points": 0,
+        "form": "LLLLL"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2024_qualification_group_b",
+    "name": "Euro Cup Qualification",
+    "group": "Group B",
+    "rows": [
+      {
+        "teamDisplayName": "France",
+        "matchesPlayed": 8,
+        "wins": 7,
+        "draws": 1,
+        "losses": 0,
+        "goalsFor": 29,
+        "goalsAgainst": 3,
+        "points": 22,
+        "form": "WWWWD"
+      },
+      {
+        "teamDisplayName": "Netherlands",
+        "matchesPlayed": 8,
+        "wins": 6,
+        "draws": 0,
+        "losses": 2,
+        "goalsFor": 17,
+        "goalsAgainst": 7,
+        "points": 18,
+        "form": "WLWWW"
+      },
+      {
+        "teamDisplayName": "Ireland",
+        "matchesPlayed": 8,
+        "wins": 2,
+        "draws": 0,
+        "losses": 6,
+        "goalsFor": 9,
+        "goalsAgainst": 10,
+        "points": 6,
+        "form": "LLLWL"
+      },
+      {
+        "teamDisplayName": "Gibraltar",
+        "matchesPlayed": 8,
+        "wins": 0,
+        "draws": 0,
+        "losses": 8,
+        "goalsFor": 0,
+        "goalsAgainst": 41,
+        "points": 0,
+        "form": "LLLLL"
+      },
+      {
+        "teamDisplayName": "Greece",
+        "matchesPlayed": 8,
+        "wins": 4,
+        "draws": 1,
+        "losses": 3,
+        "goalsFor": 14,
+        "goalsAgainst": 8,
+        "points": 13,
+        "form": "LWWLD"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2024_qualification_group_c",
+    "name": "Euro Cup Qualification",
+    "group": "Group C",
+    "rows": [
+      {
+        "teamDisplayName": "Italy",
+        "matchesPlayed": 8,
+        "wins": 4,
+        "draws": 2,
+        "losses": 2,
+        "goalsFor": 16,
+        "goalsAgainst": 9,
+        "points": 14,
+        "form": "WWLWD"
+      },
+      {
+        "teamDisplayName": "England",
+        "matchesPlayed": 8,
+        "wins": 6,
+        "draws": 2,
+        "losses": 0,
+        "goalsFor": 22,
+        "goalsAgainst": 4,
+        "points": 20,
+        "form": "WDWWD"
+      },
+      {
+        "teamDisplayName": "Ukraine",
+        "matchesPlayed": 8,
+        "wins": 4,
+        "draws": 2,
+        "losses": 2,
+        "goalsFor": 11,
+        "goalsAgainst": 8,
+        "points": 14,
+        "form": "DLWWD"
+      },
+      {
+        "teamDisplayName": "Malta",
+        "matchesPlayed": 8,
+        "wins": 0,
+        "draws": 0,
+        "losses": 8,
+        "goalsFor": 2,
+        "goalsAgainst": 20,
+        "points": 0,
+        "form": "LLLLL"
+      },
+      {
+        "teamDisplayName": "North Macedonia",
+        "matchesPlayed": 8,
+        "wins": 2,
+        "draws": 2,
+        "losses": 4,
+        "goalsFor": 10,
+        "goalsAgainst": 20,
+        "points": 8,
+        "form": "DWLLD"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2024_qualification_group_d",
+    "name": "Euro Cup Qualification",
+    "group": "Group D",
+    "rows": [
+      {
+        "teamDisplayName": "Croatia",
+        "matchesPlayed": 8,
+        "wins": 5,
+        "draws": 1,
+        "losses": 2,
+        "goalsFor": 13,
+        "goalsAgainst": 4,
+        "points": 16,
+        "form": "WLLWW"
+      },
+      {
+        "teamDisplayName": "Turkey",
+        "matchesPlayed": 8,
+        "wins": 5,
+        "draws": 2,
+        "losses": 1,
+        "goalsFor": 14,
+        "goalsAgainst": 7,
+        "points": 17,
+        "form": "WDWWD"
+      },
+      {
+        "teamDisplayName": "Wales",
+        "matchesPlayed": 8,
+        "wins": 3,
+        "draws": 3,
+        "losses": 2,
+        "goalsFor": 10,
+        "goalsAgainst": 10,
+        "points": 12,
+        "form": "LWWDD"
+      },
+      {
+        "teamDisplayName": "Latvia",
+        "matchesPlayed": 8,
+        "wins": 1,
+        "draws": 0,
+        "losses": 7,
+        "goalsFor": 5,
+        "goalsAgainst": 19,
+        "points": 3,
+        "form": "LLWLL"
+      },
+      {
+        "teamDisplayName": "Armenia",
+        "matchesPlayed": 8,
+        "wins": 2,
+        "draws": 2,
+        "losses": 4,
+        "goalsFor": 9,
+        "goalsAgainst": 11,
+        "points": 8,
+        "form": "DLLDL"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2024_qualification_group_e",
+    "name": "Euro Cup Qualification",
+    "group": "Group E",
+    "rows": [
+      {
+        "teamDisplayName": "Poland",
+        "matchesPlayed": 8,
+        "wins": 3,
+        "draws": 2,
+        "losses": 3,
+        "goalsFor": 10,
+        "goalsAgainst": 10,
+        "points": 11,
+        "form": "WLWDD"
+      },
+      {
+        "teamDisplayName": "Czech Republic",
+        "matchesPlayed": 8,
+        "wins": 4,
+        "draws": 3,
+        "losses": 1,
+        "goalsFor": 12,
+        "goalsAgainst": 6,
+        "points": 15,
+        "form": "DLWDW"
+      },
+      {
+        "teamDisplayName": "Faroe Islands",
+        "matchesPlayed": 8,
+        "wins": 0,
+        "draws": 2,
+        "losses": 6,
+        "goalsFor": 2,
+        "goalsAgainst": 13,
+        "points": 2,
+        "form": "LLLLD"
+      },
+      {
+        "teamDisplayName": "Albania",
+        "matchesPlayed": 8,
+        "wins": 4,
+        "draws": 3,
+        "losses": 1,
+        "goalsFor": 12,
+        "goalsAgainst": 4,
+        "points": 15,
+        "form": "DWWDD"
+      },
+      {
+        "teamDisplayName": "Moldova",
+        "matchesPlayed": 8,
+        "wins": 2,
+        "draws": 4,
+        "losses": 2,
+        "goalsFor": 7,
+        "goalsAgainst": 10,
+        "points": 10,
+        "form": "WWDDL"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2024_qualification_group_f",
+    "name": "Euro Cup Qualification",
+    "group": "Group F",
+    "rows": [
+      {
+        "teamDisplayName": "Belgium",
+        "matchesPlayed": 8,
+        "wins": 6,
+        "draws": 2,
+        "losses": 0,
+        "goalsFor": 22,
+        "goalsAgainst": 4,
+        "points": 20,
+        "form": "WWWDW"
+      },
+      {
+        "teamDisplayName": "Austria",
+        "matchesPlayed": 8,
+        "wins": 6,
+        "draws": 1,
+        "losses": 1,
+        "goalsFor": 17,
+        "goalsAgainst": 7,
+        "points": 19,
+        "form": "WWLWW"
+      },
+      {
+        "teamDisplayName": "Sweden",
+        "matchesPlayed": 8,
+        "wins": 3,
+        "draws": 1,
+        "losses": 4,
+        "goalsFor": 14,
+        "goalsAgainst": 12,
+        "points": 10,
+        "form": "WLDLW"
+      },
+      {
+        "teamDisplayName": "Estonia",
+        "matchesPlayed": 8,
+        "wins": 0,
+        "draws": 1,
+        "losses": 7,
+        "goalsFor": 2,
+        "goalsAgainst": 22,
+        "points": 1,
+        "form": "LLLLL"
+      },
+      {
+        "teamDisplayName": "Azerbaijan",
+        "matchesPlayed": 8,
+        "wins": 2,
+        "draws": 1,
+        "losses": 5,
+        "goalsFor": 7,
+        "goalsAgainst": 17,
+        "points": 7,
+        "form": "LWLWL"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2024_qualification_group_g",
+    "name": "Euro Cup Qualification",
+    "group": "Group G",
+    "rows": [
+      {
+        "teamDisplayName": "Hungary",
+        "matchesPlayed": 8,
+        "wins": 5,
+        "draws": 3,
+        "losses": 0,
+        "goalsFor": 16,
+        "goalsAgainst": 7,
+        "points": 18,
+        "form": "WWDDW"
+      },
+      {
+        "teamDisplayName": "Serbia",
+        "matchesPlayed": 8,
+        "wins": 4,
+        "draws": 2,
+        "losses": 2,
+        "goalsFor": 15,
+        "goalsAgainst": 9,
+        "points": 14,
+        "form": "LWLWD"
+      },
+      {
+        "teamDisplayName": "Bulgaria",
+        "matchesPlayed": 8,
+        "wins": 0,
+        "draws": 4,
+        "losses": 4,
+        "goalsFor": 7,
+        "goalsAgainst": 14,
+        "points": 4,
+        "form": "DLLDD"
+      },
+      {
+        "teamDisplayName": "Montenegro",
+        "matchesPlayed": 8,
+        "wins": 3,
+        "draws": 2,
+        "losses": 3,
+        "goalsFor": 9,
+        "goalsAgainst": 11,
+        "points": 11,
+        "form": "DWLWL"
+      },
+      {
+        "teamDisplayName": "Lithuania",
+        "matchesPlayed": 8,
+        "wins": 1,
+        "draws": 3,
+        "losses": 4,
+        "goalsFor": 8,
+        "goalsAgainst": 14,
+        "points": 6,
+        "form": "DLWDL"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2024_qualification_group_h",
+    "name": "Euro Cup Qualification",
+    "group": "Group H",
+    "rows": [
+      {
+        "teamDisplayName": "Denmark",
+        "matchesPlayed": 10,
+        "wins": 7,
+        "draws": 1,
+        "losses": 2,
+        "goalsFor": 19,
+        "goalsAgainst": 10,
+        "points": 22,
+        "form": "WWWWL"
+      },
+      {
+        "teamDisplayName": "Finland",
+        "matchesPlayed": 10,
+        "wins": 6,
+        "draws": 0,
+        "losses": 4,
+        "goalsFor": 18,
+        "goalsAgainst": 10,
+        "points": 18,
+        "form": "LLLWW"
+      },
+      {
+        "teamDisplayName": "Northern Ireland",
+        "matchesPlayed": 10,
+        "wins": 3,
+        "draws": 0,
+        "losses": 7,
+        "goalsFor": 9,
+        "goalsAgainst": 13,
+        "points": 9,
+        "form": "LWLLW"
+      },
+      {
+        "teamDisplayName": "Slovenia",
+        "matchesPlayed": 10,
+        "wins": 7,
+        "draws": 1,
+        "losses": 2,
+        "goalsFor": 20,
+        "goalsAgainst": 9,
+        "points": 22,
+        "form": "WWWLW"
+      },
+      {
+        "teamDisplayName": "Kazakhstan",
+        "matchesPlayed": 10,
+        "wins": 6,
+        "draws": 0,
+        "losses": 4,
+        "goalsFor": 16,
+        "goalsAgainst": 12,
+        "points": 18,
+        "form": "WLWWL"
+      },
+      {
+        "teamDisplayName": "San Marino",
+        "matchesPlayed": 10,
+        "wins": 0,
+        "draws": 0,
+        "losses": 10,
+        "goalsFor": 3,
+        "goalsAgainst": 31,
+        "points": 0,
+        "form": "LLLLL"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2024_qualification_group_i",
+    "name": "Euro Cup Qualification",
+    "group": "Group I",
+    "rows": [
+      {
+        "teamDisplayName": "Switzerland",
+        "matchesPlayed": 10,
+        "wins": 4,
+        "draws": 5,
+        "losses": 1,
+        "goalsFor": 22,
+        "goalsAgainst": 11,
+        "points": 17,
+        "form": "WDDDL"
+      },
+      {
+        "teamDisplayName": "Romania",
+        "matchesPlayed": 10,
+        "wins": 6,
+        "draws": 4,
+        "losses": 0,
+        "goalsFor": 16,
+        "goalsAgainst": 5,
+        "points": 22,
+        "form": "WDWWW"
+      },
+      {
+        "teamDisplayName": "Kosovo",
+        "matchesPlayed": 10,
+        "wins": 2,
+        "draws": 5,
+        "losses": 3,
+        "goalsFor": 10,
+        "goalsAgainst": 10,
+        "points": 11,
+        "form": "LWWDL"
+      },
+      {
+        "teamDisplayName": "Belarus",
+        "matchesPlayed": 10,
+        "wins": 3,
+        "draws": 3,
+        "losses": 4,
+        "goalsFor": 9,
+        "goalsAgainst": 14,
+        "points": 12,
+        "form": "LDDWW"
+      },
+      {
+        "teamDisplayName": "Israel",
+        "matchesPlayed": 10,
+        "wins": 4,
+        "draws": 3,
+        "losses": 3,
+        "goalsFor": 11,
+        "goalsAgainst": 11,
+        "points": 15,
+        "form": "WLDLW"
+      },
+      {
+        "teamDisplayName": "Andorra",
+        "matchesPlayed": 10,
+        "wins": 0,
+        "draws": 2,
+        "losses": 8,
+        "goalsFor": 3,
+        "goalsAgainst": 20,
+        "points": 2,
+        "form": "LLLLL"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2024_qualification_group_j",
+    "name": "Euro Cup Qualification",
+    "group": "Group J",
+    "rows": [
+      {
+        "teamDisplayName": "Portugal",
+        "matchesPlayed": 10,
+        "wins": 10,
+        "draws": 0,
+        "losses": 0,
+        "goalsFor": 36,
+        "goalsAgainst": 2,
+        "points": 30,
+        "form": "WWWWW"
+      },
+      {
+        "teamDisplayName": "Slovakia",
+        "matchesPlayed": 10,
+        "wins": 7,
+        "draws": 1,
+        "losses": 2,
+        "goalsFor": 17,
+        "goalsAgainst": 8,
+        "points": 22,
+        "form": "WLWWW"
+      },
+      {
+        "teamDisplayName": "Bosnia & Herzegovina",
+        "matchesPlayed": 10,
+        "wins": 3,
+        "draws": 0,
+        "losses": 7,
+        "goalsFor": 9,
+        "goalsAgainst": 20,
+        "points": 9,
+        "form": "LWLLL"
+      },
+      {
+        "teamDisplayName": "Luxembourg",
+        "matchesPlayed": 10,
+        "wins": 5,
+        "draws": 2,
+        "losses": 3,
+        "goalsFor": 13,
+        "goalsAgainst": 19,
+        "points": 17,
+        "form": "LDLWW"
+      },
+      {
+        "teamDisplayName": "Iceland",
+        "matchesPlayed": 10,
+        "wins": 3,
+        "draws": 1,
+        "losses": 6,
+        "goalsFor": 17,
+        "goalsAgainst": 16,
+        "points": 10,
+        "form": "WDWLL"
+      },
+      {
+        "teamDisplayName": "Liechtenstein",
+        "matchesPlayed": 10,
+        "wins": 0,
+        "draws": 0,
+        "losses": 10,
+        "goalsFor": 1,
+        "goalsAgainst": 28,
+        "points": 0,
+        "form": "LLLLL"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2024_final_group_a",
+    "name": "Euro Cup Final",
+    "group": "Group A",
+    "rows": [
+      {
+        "teamDisplayName": "Germany",
+        "matchesPlayed": 3,
+        "wins": 2,
+        "draws": 1,
+        "losses": 0,
+        "goalsFor": 8,
+        "goalsAgainst": 2,
+        "points": 7,
+        "form": "WWD"
+      },
+      {
+        "teamDisplayName": "Switzerland",
+        "matchesPlayed": 3,
+        "wins": 1,
+        "draws": 2,
+        "losses": 0,
+        "goalsFor": 5,
+        "goalsAgainst": 3,
+        "points": 5,
+        "form": "WDD"
+      },
+      {
+        "teamDisplayName": "Hungary",
+        "matchesPlayed": 3,
+        "wins": 1,
+        "draws": 0,
+        "losses": 2,
+        "goalsFor": 2,
+        "goalsAgainst": 5,
+        "points": 3,
+        "form": "LLW"
+      },
+      {
+        "teamDisplayName": "Scotland",
+        "matchesPlayed": 3,
+        "wins": 0,
+        "draws": 1,
+        "losses": 2,
+        "goalsFor": 2,
+        "goalsAgainst": 7,
+        "points": 1,
+        "form": "LDL"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2024_final_group_b",
+    "name": "Euro Cup Final",
+    "group": "Group B",
+    "rows": [
+      {
+        "teamDisplayName": "Spain",
+        "matchesPlayed": 3,
+        "wins": 3,
+        "draws": 0,
+        "losses": 0,
+        "goalsFor": 5,
+        "goalsAgainst": 0,
+        "points": 9,
+        "form": "WWW"
+      },
+      {
+        "teamDisplayName": "Italy",
+        "matchesPlayed": 3,
+        "wins": 1,
+        "draws": 1,
+        "losses": 1,
+        "goalsFor": 3,
+        "goalsAgainst": 3,
+        "points": 4,
+        "form": "WLD"
+      },
+      {
+        "teamDisplayName": "Croatia",
+        "matchesPlayed": 3,
+        "wins": 0,
+        "draws": 2,
+        "losses": 1,
+        "goalsFor": 3,
+        "goalsAgainst": 6,
+        "points": 2,
+        "form": "LDD"
+      },
+      {
+        "teamDisplayName": "Albania",
+        "matchesPlayed": 3,
+        "wins": 0,
+        "draws": 1,
+        "losses": 2,
+        "goalsFor": 3,
+        "goalsAgainst": 5,
+        "points": 1,
+        "form": "LDL"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2024_final_group_c",
+    "name": "Euro Cup Final",
+    "group": "Group C",
+    "rows": [
+      {
+        "teamDisplayName": "England",
+        "matchesPlayed": 3,
+        "wins": 1,
+        "draws": 2,
+        "losses": 0,
+        "goalsFor": 2,
+        "goalsAgainst": 1,
+        "points": 5,
+        "form": "WDD"
+      },
+      {
+        "teamDisplayName": "Denmark",
+        "matchesPlayed": 3,
+        "wins": 0,
+        "draws": 3,
+        "losses": 0,
+        "goalsFor": 2,
+        "goalsAgainst": 2,
+        "points": 3,
+        "form": "DDD"
+      },
+      {
+        "teamDisplayName": "Serbia",
+        "matchesPlayed": 3,
+        "wins": 0,
+        "draws": 2,
+        "losses": 1,
+        "goalsFor": 1,
+        "goalsAgainst": 2,
+        "points": 2,
+        "form": "LDD"
+      },
+      {
+        "teamDisplayName": "Slovenia",
+        "matchesPlayed": 3,
+        "wins": 0,
+        "draws": 3,
+        "losses": 0,
+        "goalsFor": 2,
+        "goalsAgainst": 2,
+        "points": 3,
+        "form": "DDD"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2024_final_group_d",
+    "name": "Euro Cup Final",
+    "group": "Group D",
+    "rows": [
+      {
+        "teamDisplayName": "France",
+        "matchesPlayed": 3,
+        "wins": 1,
+        "draws": 2,
+        "losses": 0,
+        "goalsFor": 2,
+        "goalsAgainst": 1,
+        "points": 5,
+        "form": "WDD"
+      },
+      {
+        "teamDisplayName": "Netherlands",
+        "matchesPlayed": 3,
+        "wins": 1,
+        "draws": 1,
+        "losses": 1,
+        "goalsFor": 4,
+        "goalsAgainst": 4,
+        "points": 4,
+        "form": "WDL"
+      },
+      {
+        "teamDisplayName": "Austria",
+        "matchesPlayed": 3,
+        "wins": 2,
+        "draws": 0,
+        "losses": 1,
+        "goalsFor": 6,
+        "goalsAgainst": 4,
+        "points": 6,
+        "form": "LWW"
+      },
+      {
+        "teamDisplayName": "Poland",
+        "matchesPlayed": 3,
+        "wins": 0,
+        "draws": 1,
+        "losses": 2,
+        "goalsFor": 3,
+        "goalsAgainst": 6,
+        "points": 1,
+        "form": "LLD"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2024_final_group_e",
+    "name": "Euro Cup Final",
+    "group": "Group E",
+    "rows": [
+      {
+        "teamDisplayName": "Belgium",
+        "matchesPlayed": 3,
+        "wins": 1,
+        "draws": 1,
+        "losses": 1,
+        "goalsFor": 2,
+        "goalsAgainst": 1,
+        "points": 4,
+        "form": "LWD"
+      },
+      {
+        "teamDisplayName": "Ukraine",
+        "matchesPlayed": 3,
+        "wins": 1,
+        "draws": 1,
+        "losses": 1,
+        "goalsFor": 2,
+        "goalsAgainst": 4,
+        "points": 4,
+        "form": "LWD"
+      },
+      {
+        "teamDisplayName": "Slovakia",
+        "matchesPlayed": 3,
+        "wins": 1,
+        "draws": 1,
+        "losses": 1,
+        "goalsFor": 3,
+        "goalsAgainst": 3,
+        "points": 4,
+        "form": "WLD"
+      },
+      {
+        "teamDisplayName": "Romania",
+        "matchesPlayed": 3,
+        "wins": 1,
+        "draws": 1,
+        "losses": 1,
+        "goalsFor": 4,
+        "goalsAgainst": 3,
+        "points": 4,
+        "form": "WLD"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2024_final_group_f",
+    "name": "Euro Cup Final",
+    "group": "Group F",
+    "rows": [
+      {
+        "teamDisplayName": "Portugal",
+        "matchesPlayed": 3,
+        "wins": 2,
+        "draws": 0,
+        "losses": 1,
+        "goalsFor": 5,
+        "goalsAgainst": 3,
+        "points": 6,
+        "form": "WWL"
+      },
+      {
+        "teamDisplayName": "Czech Republic",
+        "matchesPlayed": 3,
+        "wins": 0,
+        "draws": 1,
+        "losses": 2,
+        "goalsFor": 3,
+        "goalsAgainst": 5,
+        "points": 1,
+        "form": "LDL"
+      },
+      {
+        "teamDisplayName": "Turkey",
+        "matchesPlayed": 3,
+        "wins": 2,
+        "draws": 0,
+        "losses": 1,
+        "goalsFor": 5,
+        "goalsAgainst": 5,
+        "points": 6,
+        "form": "WLW"
+      },
+      {
+        "teamDisplayName": "Georgia",
+        "matchesPlayed": 3,
+        "wins": 1,
+        "draws": 1,
+        "losses": 1,
+        "goalsFor": 4,
+        "goalsAgainst": 4,
+        "points": 4,
+        "form": "LDW"
+      }
+    ]
+  },
+  {
+    "id": "euro_cup_2024_final_ranking_of third-placed teams",
+    "name": "Euro Cup Final",
+    "group": "Ranking of third-placed teams",
+    "rows": []
+  },
+  {
+    "id": "english_premier_league_2023_main",
+    "name": "English Premier League",
+    "rows": [
+      {
+        "teamDisplayName": "Luton Town",
+        "matchesPlayed": 38,
+        "wins": 6,
+        "draws": 8,
+        "losses": 24,
+        "goalsFor": 52,
+        "goalsAgainst": 85,
+        "points": 26,
+        "form": "LLDLL"
+      },
+      {
+        "teamDisplayName": "Burnley",
+        "matchesPlayed": 38,
+        "wins": 5,
+        "draws": 9,
+        "losses": 24,
+        "goalsFor": 41,
+        "goalsAgainst": 78,
+        "points": 24,
+        "form": "WDLLL"
+      },
+      {
+        "teamDisplayName": "Sheffield United",
+        "matchesPlayed": 38,
+        "wins": 3,
+        "draws": 7,
+        "losses": 28,
+        "goalsFor": 35,
+        "goalsAgainst": 104,
+        "points": 16,
+        "form": "LLLLL"
+      },
+      {
+        "teamDisplayName": "Manchester United",
+        "matchesPlayed": 38,
+        "wins": 18,
+        "draws": 6,
+        "losses": 14,
+        "goalsFor": 57,
+        "goalsAgainst": 58,
+        "points": 60,
+        "form": "DLLWW"
+      },
+      {
+        "teamDisplayName": "Liverpool",
+        "matchesPlayed": 38,
+        "wins": 24,
+        "draws": 10,
+        "losses": 4,
+        "goalsFor": 86,
+        "goalsAgainst": 41,
+        "points": 82,
+        "form": "LDWDW"
+      },
+      {
+        "teamDisplayName": "Chelsea",
+        "matchesPlayed": 38,
+        "wins": 18,
+        "draws": 9,
+        "losses": 11,
+        "goalsFor": 77,
+        "goalsAgainst": 63,
+        "points": 63,
+        "form": "WWWWW"
+      },
+      {
+        "teamDisplayName": "Manchester City",
+        "matchesPlayed": 38,
+        "wins": 28,
+        "draws": 7,
+        "losses": 3,
+        "goalsFor": 96,
+        "goalsAgainst": 34,
+        "points": 91,
+        "form": "WWWWW"
+      },
+      {
+        "teamDisplayName": "Arsenal",
+        "matchesPlayed": 38,
+        "wins": 28,
+        "draws": 5,
+        "losses": 5,
+        "goalsFor": 91,
+        "goalsAgainst": 29,
+        "points": 89,
+        "form": "WWWWW"
+      },
+      {
+        "teamDisplayName": "Tottenham Hotspur",
+        "matchesPlayed": 38,
+        "wins": 20,
+        "draws": 6,
+        "losses": 12,
+        "goalsFor": 74,
+        "goalsAgainst": 61,
+        "points": 66,
+        "form": "LLWLW"
+      },
+      {
+        "teamDisplayName": "Newcastle",
+        "matchesPlayed": 38,
+        "wins": 18,
+        "draws": 6,
+        "losses": 14,
+        "goalsFor": 85,
+        "goalsAgainst": 62,
+        "points": 60,
+        "form": "WWDLW"
+      },
+      {
+        "teamDisplayName": "Brighton",
+        "matchesPlayed": 38,
+        "wins": 12,
+        "draws": 12,
+        "losses": 14,
+        "goalsFor": 55,
+        "goalsAgainst": 62,
+        "points": 48,
+        "form": "LWDLL"
+      },
+      {
+        "teamDisplayName": "Aston Villa",
+        "matchesPlayed": 38,
+        "wins": 20,
+        "draws": 8,
+        "losses": 10,
+        "goalsFor": 76,
+        "goalsAgainst": 61,
+        "points": 68,
+        "form": "WDLDL"
+      },
+      {
+        "teamDisplayName": "Brentford",
+        "matchesPlayed": 38,
+        "wins": 10,
+        "draws": 9,
+        "losses": 19,
+        "goalsFor": 56,
+        "goalsAgainst": 65,
+        "points": 39,
+        "form": "WLDWL"
+      },
+      {
+        "teamDisplayName": "Fulham",
+        "matchesPlayed": 38,
+        "wins": 13,
+        "draws": 8,
+        "losses": 17,
+        "goalsFor": 55,
+        "goalsAgainst": 61,
+        "points": 47,
+        "form": "LDDLW"
+      },
+      {
+        "teamDisplayName": "Crystal Palace",
+        "matchesPlayed": 38,
+        "wins": 13,
+        "draws": 10,
+        "losses": 15,
+        "goalsFor": 57,
+        "goalsAgainst": 58,
+        "points": 49,
+        "form": "WDWWW"
+      },
+      {
+        "teamDisplayName": "Wolves",
+        "matchesPlayed": 38,
+        "wins": 13,
+        "draws": 7,
+        "losses": 18,
+        "goalsFor": 50,
+        "goalsAgainst": 65,
+        "points": 46,
+        "form": "LWLLL"
+      },
+      {
+        "teamDisplayName": "West Ham",
+        "matchesPlayed": 38,
+        "wins": 14,
+        "draws": 10,
+        "losses": 14,
+        "goalsFor": 60,
+        "goalsAgainst": 74,
+        "points": 52,
+        "form": "LDLWL"
+      },
+      {
+        "teamDisplayName": "Bournemouth",
+        "matchesPlayed": 38,
+        "wins": 13,
+        "draws": 9,
+        "losses": 16,
+        "goalsFor": 54,
+        "goalsAgainst": 67,
+        "points": 48,
+        "form": "WWLLL"
+      },
+      {
+        "teamDisplayName": "Nottingham",
+        "matchesPlayed": 38,
+        "wins": 9,
+        "draws": 9,
+        "losses": 20,
+        "goalsFor": 49,
+        "goalsAgainst": 67,
+        "points": 36,
+        "form": "LLWLW"
+      },
+      {
+        "teamDisplayName": "Everton",
+        "matchesPlayed": 38,
+        "wins": 13,
+        "draws": 9,
+        "losses": 16,
+        "goalsFor": 40,
+        "goalsAgainst": 51,
+        "points": 48,
+        "form": "WWDWL"
+      }
+    ]
+  },
+  {
+    "id": "english_premier_league_2024_main",
+    "name": "English Premier League",
+    "rows": []
+  }
+]
