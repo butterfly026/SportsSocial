@@ -18,44 +18,43 @@ class MatchModel {
   final String tournamentCode;
   final MatchStatus status;
   final dynamic startTime; // timestamp
-  final String teamHome; // team name
-  final String teamHomeScode;
+  final String displayNameHome;
+  final String displayNameAway;
+  final String? scoreHome;
+  final String? scoreAway;
   final String? teamHomeShieldUrl;
-  final String teamAway; // team name
-  final String teamAwayScode;
   final String? teamAwayShieldUrl;
-  final String round;
-  final Winner winnder;
+  final String? round;
+  final Winner winner;
 
   const MatchModel({
     required this.id,
     required this.tournamentCode,
     required this.status,
     required this.startTime,
-    required this.teamHome,
-    required this.teamHomeScode,
+    required this.displayNameHome,
+    required this.displayNameAway,
+    this.scoreHome,
+    this.scoreAway,
     this.teamHomeShieldUrl,
-    required this.teamAway,
-    required this.teamAwayScode,
     this.teamAwayShieldUrl,
-    required this.round,
-    required this.winnder,
+    this.round,
+    required this.winner,
   });
 
-  factory MatchModel.fromJson(Map<String, dynamic> json) {
-    return MatchModel(
-      id: json['id'],
-      tournamentCode: json['tournamentCode'],
-      status: MatchStatus.values.byName(json['status']),
-      startTime: json['startTime'],
-      teamHome: json['teamHome'],
-      teamHomeScode: json['teamHomeScode'],
-      teamHomeShieldUrl: json['teamHomeShieldUrl'],
-      teamAway: json['teamAway'],
-      teamAwayScode: json['teamAwayScode'],
-      teamAwayShieldUrl: json['teamAwayShieldUrl'],
-      round: json['round'],
-      winnder: Winner.values.byName(json['winnder']),
-    );
-  }
+  MatchModel.fromJson(Map<String, dynamic> json)
+      : this(
+          id: json['id'],
+          tournamentCode: json['tournamentCode'],
+          status: MatchStatus.values.byName(json['status']),
+          startTime: json['startTime'],
+          displayNameHome: json['displayNameHome'],
+          displayNameAway: json['displayNameAway'],
+          scoreHome: json['scoreHome'],
+          scoreAway: json['scoreAway'],
+          teamHomeShieldUrl: json['teamHomeShieldUrl'],
+          teamAwayShieldUrl: json['teamAwayShieldUrl'],
+          round: json['round'],
+          winner: Winner.values.byName(json['winner']),
+        );
 }

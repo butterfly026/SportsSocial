@@ -67,20 +67,19 @@ class StandingRowModel {
     required this.form,
   });
 
-  factory StandingRowModel.fromJson(Map<String, dynamic> json) {
-    return StandingRowModel(
-      teamDisplayName: json['teamDisplayName'],
-      teamHomeShieldUrl: json['teamHomeShieldUrl'],
-      matchesPlayed: json['matchesPlayed'],
-      wins: json['wins'],
-      draws: json['draws'],
-      losses: json['losses'],
-      goalsFor: json['goalsFor'],
-      goalsAgainst: json['goalsAgainst'],
-      points: json['points'],
-      form: json['form'],
-    );
-  }
+  StandingRowModel.fromJson(Map<String, dynamic> json)
+      : this(
+          teamDisplayName: json['teamDisplayName'],
+          teamHomeShieldUrl: json['teamHomeShieldUrl'],
+          matchesPlayed: json['matchesPlayed'],
+          wins: json['wins'],
+          draws: json['draws'],
+          losses: json['losses'],
+          goalsFor: json['goalsFor'],
+          goalsAgainst: json['goalsAgainst'],
+          points: json['points'],
+          form: json['form'],
+        );
 }
 
 @immutable
@@ -99,15 +98,14 @@ class StandingModel {
     required this.rows,
   });
 
-  factory StandingModel.fromJson(Map<String, dynamic> json) {
-    return StandingModel(
-      id: json['id'],
-      name: json['name'],
-      group: json['group'],
-      seasonShieldUrl: json['seasonShieldUrl'],
-      rows: (json['rows'] as List)
-          .map((e) => StandingRowModel.fromJson(e))
-          .toList(),
-    );
-  }
+  StandingModel.fromJson(Map<String, dynamic> json)
+      : this(
+          id: json['id'],
+          name: json['name'],
+          group: json['group'],
+          seasonShieldUrl: json['seasonShieldUrl'],
+          rows: (json['rows'] as List)
+              .map((e) => StandingRowModel.fromJson(e))
+              .toList(),
+        );
 }
