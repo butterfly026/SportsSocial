@@ -10,6 +10,7 @@ class MatchesWidget extends StatelessWidget {
   MatchesWidget({super.key});
 
   final dataMockService = ServiceLocator.get<DataMockService>();
+  final String favTeamName = 'Italy';
   final TextStyle txtStyleBody2 =
       const TextStyle(fontSize: 12, letterSpacing: 0.2, color: Colors.white);
 
@@ -170,7 +171,7 @@ class MatchesWidget extends StatelessWidget {
     );
   }
 
-  Widget _getMatchTimeOrResult(MatchModel match, String favTeamName) {
+  Widget _getMatchTimeOrResult(MatchModel match) {
     String formattedTime =
         date_utils.formatTime(date_utils.dateFromMilisecond(match.startTime));
     List<Color> favColors = [
@@ -233,7 +234,7 @@ class MatchesWidget extends StatelessWidget {
             _matchDate(match),
             _tournamentCode(match),
             _getMatchTeamInfo(match),
-            _getMatchTimeOrResult(match, 'Italy'),
+            _getMatchTimeOrResult(match),
           ],
         ),
         const SizedBox(height: 24),
@@ -248,6 +249,7 @@ class MatchesWidget extends StatelessWidget {
         child: ValueListenableBuilder(
           valueListenable: dataMockService.matchesNotifier,
           builder: (context, matches, child) {
+
             return ListView.builder(
               itemCount: matches.length,
               itemBuilder: (context, index) {
