@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sport_social_mobile_mock/services/data_mock_service.dart';
 import 'package:sport_social_mobile_mock/services/service_locator.dart';
+import 'package:sport_social_mobile_mock/views/components/matches_component.dart';
 import 'package:sport_social_mobile_mock/views/components/news_component.dart';
 
 class DataMockPage extends StatefulWidget {
@@ -23,7 +24,7 @@ class DataMockPageState extends State<DataMockPage>
 
   Widget _getTabItem(String tabTitle) {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 13.0),
         child: Tab(text: tabTitle));
   }
 
@@ -64,7 +65,7 @@ class DataMockPageState extends State<DataMockPage>
     return Expanded(
       child: TabBarView(controller: _tabController, children: [
         NewsWidget(),
-        Container(),
+        MatchesWidget(),
         Container(),
         Container(),
       ]),
