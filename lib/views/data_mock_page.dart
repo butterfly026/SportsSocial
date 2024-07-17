@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:sport_social_mobile_mock/services/data_mock_service.dart';
 import 'package:sport_social_mobile_mock/services/service_locator.dart';
+import 'package:sport_social_mobile_mock/views/components/news_widget.dart';
 
 class DataMockPage extends StatefulWidget {
   const DataMockPage({super.key});
@@ -104,7 +105,7 @@ class _DataMockPageState extends State<DataMockPage>
           SizedBox(height: 8.0),
           Expanded(
             child: TabBarView(controller: _tabController, children: [
-              Container(),
+              NewsWidget(),
               Container(),
               Container(),
               Container(),
