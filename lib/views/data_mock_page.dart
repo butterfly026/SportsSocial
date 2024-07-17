@@ -108,7 +108,7 @@ class _DataMockPageState extends State<DataMockPage>
                       ),
                       SizedBox(height: 6.0),
                       Text(
-                        '${humanizeTimeDifference(newsItem.publishedAt)}, ${newsItem.providerDisplayName}, ${newsItem.readTime == null ? '' : '${newsItem.readTime} min read'}',
+                        '${humanizeTimeDifference(newsItem.publishedAt)}, ${newsItem.providerDisplayName} ${newsItem.readTime == null ? '' : ', ${newsItem.readTime} min read'}',
                         style:
                             TextStyle(fontSize: 14.0, color: Color(0xFFD0D0D0)),
                       ),
