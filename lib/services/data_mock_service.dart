@@ -17,6 +17,7 @@ class DataMockService {
   // Use the first element as default on load
   final standingsInfoNotifier = ValueNotifier<List<StandingInfoModel>>([]);
   final standingsNotifier = ValueNotifier<List<StandingModel>>([]);
+  final filteredStandingsNotifier = ValueNotifier<List<StandingModel>>([]);
 
   Future<DataMockService> initialize() async {
     await _loadNews();
@@ -51,9 +52,13 @@ class DataMockService {
           await rootBundle.loadString('lib/assets/matches.json');
       final jsonResponse = jsonDecode(jsonString);
 
-      final List<MatchModel> matchesList = List<MatchModel>.from(
+      List<MatchModel> matchesList = List<MatchModel>.from(
           jsonResponse.map((matchJson) => MatchModel.fromJson(matchJson)));
-
+      matchesList = matchesList
+          .where((match) =>
+              match.displayNameAway == 'Italy' ||
+              match.displayNameHome == 'Italy')
+          .toList();
       // matchesList.sort((a, b) => a.startTime.compareTo(b.startTime));
       matchesList.sort((a, b) {
         if (a.startTime == null && b.startTime == null) return 0;
@@ -105,12 +110,16 @@ class DataMockService {
   }
 
   // Use this method to populate the standing table after select the tournament and season
-  Future<StandingModel> getStandingBySeasonId(String seasonId) async {
-    final StandingModel standingModel = standingsNotifier.value.firstWhere(
-      (element) => element.id == seasonId,
-      orElse: () => standingsNotifier.value.first,
-    );
-
-    return standingModel;
+  void getStandingBySeasonId(String seasonId) {
+    if (seasonId.isEmpty) {
+      filteredStandingsNotifier.value = [];
+    } else {
+      List<StandingModel> filteredStandings = standingsNotifier.value
+          .where(
+            (element) => element.id == seasonId,
+          )
+          .toList();
+      filteredStandingsNotifier.value = filteredStandings;
+    }
   }
 }

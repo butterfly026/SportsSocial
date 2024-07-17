@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:sport_social_mobile_mock/models/match_model.dart';
@@ -11,7 +9,6 @@ import 'package:sport_social_mobile_mock/views/components/circle_painter.dart';
 class MatchesWidget extends StatelessWidget {
   MatchesWidget({super.key});
 
-  final random = Random();
   final dataMockService = ServiceLocator.get<DataMockService>();
   final TextStyle txtStyleBody2 =
       const TextStyle(fontSize: 12, letterSpacing: 0.2, color: Colors.white);
@@ -173,7 +170,7 @@ class MatchesWidget extends StatelessWidget {
     );
   }
 
-  Widget _getMatchTimeOrResult(MatchModel match) {
+  Widget _getMatchTimeOrResult(MatchModel match, String favTeamName) {
     String formattedTime =
         date_utils.formatTime(date_utils.dateFromMilisecond(match.startTime));
     List<Color> favColors = [
@@ -188,9 +185,22 @@ class MatchesWidget extends StatelessWidget {
       favColor = favColors[2];
       favStr = favStrs[2];
     } else {
-      int randomNumber = random.nextInt(2);
-      favColor = favColors[randomNumber];
-      favStr = favStrs[randomNumber];
+      int nFavIdx = 0;
+      if(match.displayNameHome == favTeamName) {
+        if(match.scoreHome! > match.scoreAway!) {
+          nFavIdx = 0;
+        } else if (match.scoreHome! < match.scoreAway!) {
+          nFavIdx = 1;
+        }
+      } else if(match.displayNameAway == favTeamName) {
+        if(match.scoreAway! > match.scoreHome!) {
+          nFavIdx = 0;
+        } else if (match.scoreAway! < match.scoreHome!) {
+          nFavIdx = 1;
+        }
+      }
+      favColor = favColors[nFavIdx];
+      favStr = favStrs[nFavIdx];
     }
     return Row(
       children: [
@@ -223,7 +233,7 @@ class MatchesWidget extends StatelessWidget {
             _matchDate(match),
             _tournamentCode(match),
             _getMatchTeamInfo(match),
-            _getMatchTimeOrResult(match),
+            _getMatchTimeOrResult(match, 'Italy'),
           ],
         ),
         const SizedBox(height: 24),
