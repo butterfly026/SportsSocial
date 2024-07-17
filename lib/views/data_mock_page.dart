@@ -3,6 +3,7 @@ import 'package:sport_social_mobile_mock/services/data_mock_service.dart';
 import 'package:sport_social_mobile_mock/services/service_locator.dart';
 import 'package:sport_social_mobile_mock/views/components/matches_component.dart';
 import 'package:sport_social_mobile_mock/views/components/news_component.dart';
+import 'package:sport_social_mobile_mock/views/components/standings_component.dart';
 
 class DataMockPage extends StatefulWidget {
   const DataMockPage({super.key});
@@ -66,7 +67,7 @@ class DataMockPageState extends State<DataMockPage>
       child: TabBarView(controller: _tabController, children: [
         NewsWidget(),
         MatchesWidget(),
-        Container(),
+        const StandingsWidget(),
         Container(),
       ]),
     );

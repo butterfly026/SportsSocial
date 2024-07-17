@@ -19,6 +19,19 @@ class StandingSeasonInfoModel {
       year: json['year'],
     );
   }
+
+  dynamic getField(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return id;
+      case 'yearTitle':
+        return yearTitle;
+      case 'year':
+        return year;
+      default:
+        return null;
+    }
+  }
 }
 
 @immutable
@@ -38,6 +51,17 @@ class StandingInfoModel {
           .map((e) => StandingSeasonInfoModel.fromJson(e))
           .toList(),
     );
+  }
+
+  dynamic getField(String fieldName) {
+    switch (fieldName) {
+      case 'name':
+        return name;
+      case 'seasons':
+        return seasons;
+      default:
+        return null;
+    }
   }
 }
 
@@ -95,6 +119,33 @@ class StandingRowModel {
       'form': form,
     };
   }
+
+  dynamic getField(String fieldName) {
+    switch (fieldName) {
+      case 'teamDisplayName':
+        return teamDisplayName;
+      case 'teamHomeShieldUrl':
+        return teamHomeShieldUrl;
+      case 'matchesPlayed':
+        return matchesPlayed;
+      case 'wins':
+        return wins;
+      case 'draws':
+        return draws;
+      case 'losses':
+        return losses;
+      case 'goalsFor':
+        return goalsFor;
+      case 'goalsAgainst':
+        return goalsAgainst;
+      case 'points':
+        return points;
+      case 'form':
+        return form;
+      default:
+        return null;
+    }
+  }
 }
 
 @immutable
@@ -132,5 +183,94 @@ class StandingModel {
       'seasonShieldUrl': seasonShieldUrl,
       'rows': rows.map((e) => e.toJson()).toList(),
     };
+  }
+
+  dynamic getField(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return id;
+      case 'name':
+        return name;
+      case 'group':
+        return group;
+      case 'seasonShieldUrl':
+        return seasonShieldUrl;
+      case 'rows':
+        return rows;
+      default:
+        return null;
+    }
+  }
+}
+
+class StandingInfoRowHeader {
+  final String label;
+  final String? valueName;
+  final int flex;
+  const StandingInfoRowHeader({required this.label, required this.flex, this.valueName});
+  StandingInfoRowHeader.fromJson(Map<String, dynamic> json)
+      : this(
+          label: json['label'],
+          flex: json['flex'],
+          valueName: json['valueName']
+        );
+  static List<StandingInfoRowHeader> getStandingRowHeaders() {
+    return [
+      const StandingInfoRowHeader(
+        label: '#',
+        valueName: 'id',
+        flex: 1,
+      ),
+      const StandingInfoRowHeader(
+        label: 'Teams',
+        valueName: 'teamDisplayName',
+        flex: 3,
+      ),
+      const StandingInfoRowHeader(
+        label: 'MP',
+        valueName: 'matchesPlayed',
+        flex: 1,
+      ),
+      const StandingInfoRowHeader(
+        label: 'W',
+        valueName: 'wins',
+        flex: 1,
+      ),
+      const StandingInfoRowHeader(
+        label: 'D',
+        valueName: 'draws',
+        flex: 1,
+      ),
+      const StandingInfoRowHeader(
+        label: 'L',
+        valueName: 'losses',
+        flex: 1,
+      ),
+      const StandingInfoRowHeader(
+        label: 'GF',
+        valueName: 'goalsFor',
+        flex: 1,
+      ),
+      const StandingInfoRowHeader(
+        label: 'GA',
+        valueName: 'goalsAgainst',
+        flex: 1,
+      ),
+      const StandingInfoRowHeader(
+        label: 'GD',
+        valueName: 'goalsAgainst',
+        flex: 1,
+      ),
+      const StandingInfoRowHeader(
+        label: 'Pts',
+        valueName: 'points',
+        flex: 1,
+      ),
+      const StandingInfoRowHeader(
+        label: 'FORM',
+        valueName: 'form',
+        flex: 2,
+      ),
+    ];
   }
 }
