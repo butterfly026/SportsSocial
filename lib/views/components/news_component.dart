@@ -58,9 +58,9 @@ class NewsWidget extends StatelessWidget {
             fontSize: 14.0, fontWeight: FontWeight.bold, color: Colors.white));
   }
 
-  Widget _descriptionText(String description) {
+  Widget _descriptionText(NewsModel newsItem) {
     return Text(
-      description,
+      '${humanizeTimeDifference(newsItem.publishedAt)}, ${newsItem.providerDisplayName} ${newsItem.readTime == null ? '' : ', ${newsItem.readTime} min read'}',
       style: const TextStyle(fontSize: 14.0, color: Color(0xFFD0D0D0)),
     );
   }
@@ -94,8 +94,7 @@ class NewsWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 6.0),
-          _descriptionText(
-              '${humanizeTimeDifference(newsItem.publishedAt)}, ${newsItem.providerDisplayName} ${newsItem.readTime == null ? '' : ', ${newsItem.readTime} min read'}'),
+          _descriptionText(newsItem),
           const SizedBox(height: 16.0),
         ],
       ),
