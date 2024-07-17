@@ -29,7 +29,7 @@ class MatchesWidget extends StatelessWidget {
     }
     if (isDispMonth) {
       return Container(
-        padding: const EdgeInsets.symmetric(vertical: 12),
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 6),
         child: Text(eventMonthName,
             style: const TextStyle(
                 fontSize: 15.0,
@@ -37,7 +37,7 @@ class MatchesWidget extends StatelessWidget {
                 color: Colors.white)),
       );
     } else {
-      return Container();
+      return const SizedBox(height: 12);
     }
   }
 
@@ -62,7 +62,7 @@ class MatchesWidget extends StatelessWidget {
 
   Widget _tournamentCode(MatchModel match) {
     return SizedBox(
-      width: 64,
+      width: 78,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -187,14 +187,14 @@ class MatchesWidget extends StatelessWidget {
       favStr = favStrs[2];
     } else {
       int nFavIdx = 0;
-      if(match.displayNameHome == favTeamName) {
-        if(match.scoreHome! > match.scoreAway!) {
+      if (match.displayNameHome == favTeamName) {
+        if (match.scoreHome! > match.scoreAway!) {
           nFavIdx = 0;
         } else if (match.scoreHome! < match.scoreAway!) {
           nFavIdx = 1;
         }
-      } else if(match.displayNameAway == favTeamName) {
-        if(match.scoreAway! > match.scoreHome!) {
+      } else if (match.displayNameAway == favTeamName) {
+        if (match.scoreAway! > match.scoreHome!) {
           nFavIdx = 0;
         } else if (match.scoreAway! < match.scoreHome!) {
           nFavIdx = 1;
@@ -213,9 +213,7 @@ class MatchesWidget extends StatelessWidget {
             width: 60,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(formattedTime, style: txtStyleBody2)
-              ],
+              children: [Text(formattedTime, style: txtStyleBody2)],
             ),
           ),
       ],
@@ -237,7 +235,6 @@ class MatchesWidget extends StatelessWidget {
             _getMatchTimeOrResult(match),
           ],
         ),
-        const SizedBox(height: 24),
       ],
     );
   }
@@ -249,7 +246,6 @@ class MatchesWidget extends StatelessWidget {
         child: ValueListenableBuilder(
           valueListenable: dataMockService.matchesNotifier,
           builder: (context, matches, child) {
-
             return ListView.builder(
               itemCount: matches.length,
               itemBuilder: (context, index) {
