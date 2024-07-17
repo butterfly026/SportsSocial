@@ -55,7 +55,12 @@ class DataMockService {
           jsonResponse.map((matchJson) => MatchModel.fromJson(matchJson)));
 
       // matchesList.sort((a, b) => a.startTime.compareTo(b.startTime));
-
+      matchesList.sort((a, b) {
+        if (a.startTime == null && b.startTime == null) return 0;
+        if (a.startTime == null) return 1;
+        if (b.startTime == null) return -1;
+        return b.startTime.compareTo(a.startTime);
+      });
       matchesNotifier.value = matchesList;
     } catch (e) {
       if (kDebugMode) {
