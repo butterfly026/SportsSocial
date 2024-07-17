@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:sport_social_mobile_mock/models/match_model.dart';
 import 'package:sport_social_mobile_mock/models/news_model.dart';
 import 'dart:convert';
@@ -31,7 +31,7 @@ class DataMockService {
   Future<void> _loadNews() async {
     try {
       final String jsonString =
-          await rootBundle.loadString('lib/assets/news.json');
+          await rootBundle.loadString('lib/assets/news_smaller.json');
       final jsonResponse = jsonDecode(jsonString);
 
       final List<NewsModel> newsList = List<NewsModel>.from(
@@ -39,7 +39,9 @@ class DataMockService {
 
       newsNotifier.value = newsList;
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 
@@ -56,7 +58,9 @@ class DataMockService {
 
       matchesNotifier.value = matchesList;
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 
@@ -71,7 +75,9 @@ class DataMockService {
 
       standingsInfoNotifier.value = standingsInfoList;
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 
@@ -87,7 +93,9 @@ class DataMockService {
 
       standingsNotifier.value = standingList;
     } catch (e) {
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 

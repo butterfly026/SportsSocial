@@ -1,37 +1,98 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:sport_social_mobile_mock/services/data_mock_service.dart';
 import 'package:sport_social_mobile_mock/services/service_locator.dart';
+import 'package:sport_social_mobile_mock/views/components/news_component.dart';
 
-class DataMockPage extends StatelessWidget {
+class DataMockPage extends StatefulWidget {
+  const DataMockPage({super.key});
+
+  @override
+  DataMockPageState createState() => DataMockPageState();
+}
+
+class DataMockPageState extends State<DataMockPage>
+    with TickerProviderStateMixin {
   final dataMockService = ServiceLocator.get<DataMockService>();
+  late TabController _tabController;
 
-  DataMockPage({super.key});
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 4, vsync: this);
+  }
 
-  Widget _showNewsJson() {
-    return ValueListenableBuilder(
-        valueListenable: dataMockService.newsNotifier,
-        builder: (context, news, child) {
-          String prettyJson = jsonEncode(news);
-          return SingleChildScrollView(
-            child: Text(
-              prettyJson,
-              style: const TextStyle(
-                fontFamily: 'Monospace',
-              ),
-            ),
-          );
-        });
+  Widget _getTabItem(String tabTitle) {
+    return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Tab(text: tabTitle));
+  }
+
+  Widget _showTabBar() {
+    return TabBar(
+      controller: _tabController,
+      isScrollable: true,
+      physics: const ClampingScrollPhysics(),
+      padding: const EdgeInsets.only(left: 8.0),
+      indicator: BoxDecoration(
+        border: Border.all(
+          width: 1.0,
+          color: Colors.white,
+          style: BorderStyle.solid,
+        ),
+        borderRadius:
+            BorderRadius.circular(16), // Radius for the active tab border
+      ),
+      unselectedLabelColor: Colors.white, // Inactive tab text color
+      labelColor: Colors.white, // Active tab text color
+      indicatorColor: Colors.transparent,
+      dividerColor: Colors.transparent,
+      splashBorderRadius: const BorderRadius.all(Radius.circular(8.0)),
+      tabAlignment: TabAlignment.start,
+      indicatorSize: TabBarIndicatorSize.label,
+      indicatorPadding: EdgeInsets.zero,
+      labelPadding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 0),
+      splashFactory: NoSplash.splashFactory, // No splash effect
+
+      tabs: [
+        for(var tabTitle in ['News', 'Matches', 'Standings', 'Stats'])
+          _getTabItem(tabTitle)
+      ],
+    );
+  }
+
+  Widget _showTabWidgets() {
+    return Expanded(
+      child: TabBarView(controller: _tabController, children: [
+        NewsWidget(),
+        Container(),
+        Container(),
+        Container(),
+      ]),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFF15182C),
       appBar: AppBar(
-        title: const Text('Data Mock View'),
+        backgroundColor: const Color(0xFF15182c),
+        title: const Text(
+          'Data Mock View',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
-      body: Center(child: _showNewsJson()),
+      body: Column(
+        children: [
+          Row(
+            children: [
+              Expanded(child: SizedBox(height: 35, child: _showTabBar()))
+            ],
+          ),
+          const SizedBox(height: 8.0),
+          _showTabWidgets(),
+        ],
+      ),
     );
   }
 }

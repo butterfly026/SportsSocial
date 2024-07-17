@@ -10,12 +10,12 @@ GoRouter appRouter() {
       GoRoute(
         name: 'home',
         path: '/home',
-        builder: (context, state) => HomePage(),
+        builder: (context, state) => const HomePage(),
       ),
       GoRoute(
         name: 'data_mock',
         path: '/data_mock',
-        builder: (context, state) => DataMockPage(),
+        builder: (context, state) => const DataMockPage(),
       ),
     ],
   );
