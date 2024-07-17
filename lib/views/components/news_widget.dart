@@ -30,7 +30,6 @@ class NewsWidget extends StatelessWidget {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -63,23 +62,22 @@ class NewsWidget extends StatelessWidget {
                             Center(
                               child: Container(
                                 child: CachedNetworkImage(
-                                  imageUrl: newsItem.imageUrl ?? '',
-                                  placeholder: (context, url) => Container(
-                                    width: 100.0,
-                                    height: 100.0,
-                                    child: Center(
-                                      child: CircularProgressIndicator(),
-                                    ),
-                                  ),
-                                  errorWidget: (context, url, error) =>
-                                      Container(
-                                    width: 100.0,
-                                    height: 100.0,
-                                    child: Center(
-                                      child: Icon(Icons.error),
-                                    ),
-                                  ),
-                                ),
+                                    imageUrl: newsItem.imageUrl ?? '',
+                                    placeholder: (context, url) => Container(
+                                          width: 150.0,
+                                          height: 150.0,
+                                          child: Center(
+                                            child: CircularProgressIndicator(),
+                                          ),
+                                        ),
+                                    errorWidget: (context, url, error) {
+                                      return Container(
+                                          width: 100.0,
+                                          height: 100.0,
+                                          child: Center(
+                                            child: Icon(Icons.error, color: Colors.grey),
+                                          ));
+                                    }),
                               ),
                             ),
                             SizedBox(height: 6.0),

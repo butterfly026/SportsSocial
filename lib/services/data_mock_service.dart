@@ -31,7 +31,7 @@ class DataMockService {
   Future<void> _loadNews() async {
     try {
       final String jsonString =
-          await rootBundle.loadString('lib/assets/news.json');
+          await rootBundle.loadString('lib/assets/news_smaller.json');
       final jsonResponse = jsonDecode(jsonString);
 
       final List<NewsModel> newsList = List<NewsModel>.from(
