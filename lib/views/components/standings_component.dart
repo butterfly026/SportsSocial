@@ -1,3 +1,4 @@
+import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:sport_social_mobile_mock/models/standings_model.dart';
 import 'package:sport_social_mobile_mock/services/data_mock_service.dart';
@@ -68,34 +69,24 @@ class StandingsWidgetState extends State<StandingsWidget> {
   }
 
   Widget _getStandingInfoRowHeaderItem(StandingRowHeader item) {
-    return Expanded(
-      flex: item.flex,
-      child: Column(
-        children: [
-          Text(item.label,
-              textAlign: TextAlign.center,
-              style: txtStyleBody2.copyWith(
-                  color: Colors.white, fontWeight: FontWeight.bold)),
-        ],
-      ),
+    return Column(
+      children: [
+        Text(item.label,
+            textAlign: TextAlign.center,
+            style: txtStyleBody2.copyWith(
+                color: Colors.white, fontWeight: FontWeight.bold)),
+      ],
     );
   }
 
-  Widget _getStandingRowHeader() {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 2.0),
-      decoration: BoxDecoration(
-          color: const Color(0xFF3B3C41),
-          border: Border.all(color: const Color(0xFF686E76))),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          for (var item in StandingRowHeader.getHeaders())
-            _getStandingInfoRowHeaderItem(item),
-        ],
-      ),
-    );
+  List<DataColumn2> _getStandingColumns() {
+    List<DataColumn2> lstCols = [];
+    for (var item in StandingRowHeader.getHeaders()) {
+      lstCols.add(DataColumn2(
+          size: item.flex == 1 ? ColumnSize.S : ColumnSize.L,
+          label: _getStandingInfoRowHeaderItem(item)));
+    }
+    return lstCols;
   }
 
   Widget _getStandingCellItem(
@@ -117,52 +108,58 @@ class StandingsWidgetState extends State<StandingsWidget> {
     );
   }
 
-  List<TableRow> _getStandingRows(List<StandingRowModel> standingRows) {
-    var spaceRow = TableRow(
-      children: StandingRowHeader.getHeaders().map((header) {
-        return const SizedBox(height: 8.0);
+  List<DataRow2> _getStandingRows(List<StandingRowModel> standingRows) {
+    var spaceRow = DataRow2(
+      specificRowHeight: 6,
+      cells: StandingRowHeader.getHeaders().map((header) {
+        return const DataCell(SizedBox(height: 8.0));
       }).toList(),
     );
 
-    List<TableRow> rows = [];
+    List<DataRow2> rows = [];
 
     for (var standingRow in standingRows) {
       int idx = standingRows.indexOf(standingRow);
 
       rows.add(spaceRow);
 
-      rows.add(TableRow(
+      rows.add(DataRow2(
         decoration: BoxDecoration(
           border: Border.all(
             color: const Color(0xFF686E76),
             width: 1.0,
           ),
         ),
-        children: [
+        cells: [
           for (var rowHeader in StandingRowHeader.getHeaders())
-            _getStandingCellItem(rowHeader, idx, standingRow),
+            DataCell(_getStandingCellItem(rowHeader, idx, standingRow)),
         ],
       ));
     }
     return rows;
   }
 
-  Map<int, TableColumnWidth> _getColumnWidths() {
-    Map<int, TableColumnWidth> map = {};
-    for (var header in StandingRowHeader.getHeaders().asMap().entries) {
-      map[header.key] = FlexColumnWidth(header.value.flex.toDouble());
-    }
-    return map;
-  }
-
   Widget _getStandingTable(List<StandingRowModel> rows) {
-    return Table(
-      columnWidths: _getColumnWidths(),
-      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-      children: [
-        ..._getStandingRows(rows),
-      ],
-    );
+    return DataTable2(
+        columnSpacing: 0,
+        fixedTopRows: 1,
+        horizontalMargin: 6,
+        headingRowHeight: 18,
+        dividerThickness: 0,
+        dataRowHeight: null,
+        headingRowDecoration: BoxDecoration(
+            color: const Color(0xFF3B3C41),
+            border: Border.all(color: const Color(0xFF686E76))),
+        minWidth: 300,
+        columns: _getStandingColumns(),
+        rows: _getStandingRows(rows));
+    // return Table(
+    //   columnWidths: _getColumnWidths(),
+    //   defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+    //   children: [
+    //     ..._getStandingRows(rows),
+    //   ],
+    // );
   }
 
   @override
@@ -183,7 +180,6 @@ class StandingsWidgetState extends State<StandingsWidget> {
                 );
               }),
           const SizedBox(height: 12.0),
-          _getStandingRowHeader(),
           Expanded(
             child: ValueListenableBuilder(
               valueListenable: dataMockService.filteredStandingsNotifier,
@@ -192,9 +188,8 @@ class StandingsWidgetState extends State<StandingsWidget> {
                 for (var standing in standings) {
                   rows.addAll(standing.rows);
                 }
-                return SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: _getStandingTable(rows));
+                return Flexible(
+                    fit: FlexFit.tight, child: _getStandingTable(rows));
               },
             ),
           ),
