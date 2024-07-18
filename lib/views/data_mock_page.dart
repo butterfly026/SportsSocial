@@ -20,7 +20,7 @@ class DataMockPageState extends State<DataMockPage>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 4, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
   }
 
   Widget _getTabItem(String tabTitle) {
@@ -56,7 +56,7 @@ class DataMockPageState extends State<DataMockPage>
       splashFactory: NoSplash.splashFactory, // No splash effect
 
       tabs: [
-        for(var tabTitle in ['News', 'Matches', 'Standings', 'Stats'])
+        for(var tabTitle in ['News', 'Matches', 'Standings'])
           _getTabItem(tabTitle)
       ],
     );
@@ -68,7 +68,6 @@ class DataMockPageState extends State<DataMockPage>
         NewsWidget(),
         MatchesWidget(),
         const StandingsWidget(),
-        Container(),
       ]),
     );
   }
