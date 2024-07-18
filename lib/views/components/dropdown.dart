@@ -4,7 +4,6 @@ class CustomDropdownMenu extends StatefulWidget {
   final List<dynamic> items;
   final dynamic selectedItem;
   final ValueChanged<dynamic> onChanged;
-  final String? valueFieldName;
   final String? labelFieldName;
   final double? height;
   final double? width;
@@ -18,7 +17,6 @@ class CustomDropdownMenu extends StatefulWidget {
     this.width,
     this.borderRadius,
     this.labelFieldName,
-    this.valueFieldName,
     required this.onChanged,
   });
 
@@ -29,14 +27,12 @@ class CustomDropdownMenu extends StatefulWidget {
 class _CustomDropdownMenuState extends State<CustomDropdownMenu> {
   final TextEditingController dropdownController = TextEditingController();
   dynamic _selectedItem;
-  String? valueFieldName;
   String? labelFieldName;
 
   @override
   void initState() {
     super.initState();
     _selectedItem = widget.selectedItem;
-    valueFieldName = widget.valueFieldName;
     labelFieldName = widget.labelFieldName;
   }
 
@@ -71,11 +67,7 @@ class _CustomDropdownMenuState extends State<CustomDropdownMenu> {
         dropdownColor: const Color(0xFF15182C),
         items: widget.items.map((dynamic item) {
           item.toJson();
-          var value = item is String
-              ? item
-              : valueFieldName != null
-                  ? item.toJson()[valueFieldName!]
-                  : item;
+          var value = item;
           var label = item is String ? item : item.toJson()[labelFieldName!];
           return DropdownMenuItem<dynamic>(
             value: value,
