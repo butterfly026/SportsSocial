@@ -70,12 +70,13 @@ class _CustomDropdownMenuState extends State<CustomDropdownMenu> {
         icon: const Icon(Icons.arrow_drop_down, size: 28.0),
         dropdownColor: const Color(0xFF15182C),
         items: widget.items.map((dynamic item) {
+          item.toJson();
           var value = item is String
               ? item
               : valueFieldName != null
-                  ? item.getField(valueFieldName!)
+                  ? item.toJson()[valueFieldName!]
                   : item;
-          var label = item is String ? item : item.getField(labelFieldName!);
+          var label = item is String ? item : item.toJson()[labelFieldName!];
           return DropdownMenuItem<dynamic>(
             value: value,
             child: Container(

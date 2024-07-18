@@ -95,7 +95,7 @@ class StandingsWidgetState extends State<StandingsWidget> {
         ? (rankNum + 1).toString()
         : item.label == 'GD'
             ? (cellValue.goalsFor - cellValue.goalsAgainst).toString()
-            : cellValue.getField(item.valueName!).toString();
+            : cellValue.toJson()[item.valueName!].toString();
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Column(

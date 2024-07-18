@@ -20,17 +20,12 @@ class StandingSeasonInfoModel {
     );
   }
 
-  dynamic getField(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return id;
-      case 'yearTitle':
-        return yearTitle;
-      case 'year':
-        return year;
-      default:
-        return null;
-    }
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'yearTitle': yearTitle,
+      'year': year,
+    };
   }
 }
 
@@ -53,15 +48,11 @@ class StandingInfoModel {
     );
   }
 
-  dynamic getField(String fieldName) {
-    switch (fieldName) {
-      case 'name':
-        return name;
-      case 'seasons':
-        return seasons;
-      default:
-        return null;
-    }
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'seasons': seasons,
+    };
   }
 }
 
@@ -119,33 +110,6 @@ class StandingRowModel {
       'form': form,
     };
   }
-
-  dynamic getField(String fieldName) {
-    switch (fieldName) {
-      case 'teamDisplayName':
-        return teamDisplayName;
-      case 'teamHomeShieldUrl':
-        return teamHomeShieldUrl;
-      case 'matchesPlayed':
-        return matchesPlayed;
-      case 'wins':
-        return wins;
-      case 'draws':
-        return draws;
-      case 'losses':
-        return losses;
-      case 'goalsFor':
-        return goalsFor;
-      case 'goalsAgainst':
-        return goalsAgainst;
-      case 'points':
-        return points;
-      case 'form':
-        return form;
-      default:
-        return null;
-    }
-  }
 }
 
 @immutable
@@ -183,22 +147,5 @@ class StandingModel {
       'seasonShieldUrl': seasonShieldUrl,
       'rows': rows.map((e) => e.toJson()).toList(),
     };
-  }
-
-  dynamic getField(String fieldName) {
-    switch (fieldName) {
-      case 'id':
-        return id;
-      case 'name':
-        return name;
-      case 'group':
-        return group;
-      case 'seasonShieldUrl':
-        return seasonShieldUrl;
-      case 'rows':
-        return rows;
-      default:
-        return null;
-    }
   }
 }
