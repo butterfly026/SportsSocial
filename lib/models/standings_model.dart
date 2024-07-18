@@ -19,6 +19,14 @@ class StandingSeasonInfoModel {
       year: json['year'],
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'yearTitle': yearTitle,
+      'year': year,
+    };
+  }
 }
 
 @immutable
@@ -38,6 +46,13 @@ class StandingInfoModel {
           .map((e) => StandingSeasonInfoModel.fromJson(e))
           .toList(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'seasons': seasons,
+    };
   }
 }
 

@@ -3,6 +3,7 @@ import 'package:sport_social_mobile_mock/services/data_mock_service.dart';
 import 'package:sport_social_mobile_mock/services/service_locator.dart';
 import 'package:sport_social_mobile_mock/views/components/matches_component.dart';
 import 'package:sport_social_mobile_mock/views/components/news_component.dart';
+import 'package:sport_social_mobile_mock/views/components/standings_component.dart';
 
 class DataMockPage extends StatefulWidget {
   const DataMockPage({super.key});
@@ -19,7 +20,7 @@ class DataMockPageState extends State<DataMockPage>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 4, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
   }
 
   Widget _getTabItem(String tabTitle) {
@@ -55,7 +56,7 @@ class DataMockPageState extends State<DataMockPage>
       splashFactory: NoSplash.splashFactory, // No splash effect
 
       tabs: [
-        for(var tabTitle in ['News', 'Matches', 'Standings', 'Stats'])
+        for(var tabTitle in ['News', 'Matches', 'Standings'])
           _getTabItem(tabTitle)
       ],
     );
@@ -66,8 +67,7 @@ class DataMockPageState extends State<DataMockPage>
       child: TabBarView(controller: _tabController, children: [
         NewsWidget(),
         MatchesWidget(),
-        Container(),
-        Container(),
+        const StandingsWidget(),
       ]),
     );
   }
