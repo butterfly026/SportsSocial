@@ -21,9 +21,10 @@ class StandingsWidgetState extends State<StandingsWidget> {
   @override
   void initState() {
     super.initState();
-    StandingInfoModel? initialInfo = dataMockService.standingsInfoNotifier.value.isNotEmpty
-        ? dataMockService.standingsInfoNotifier.value[0]
-        : null;
+    StandingInfoModel? initialInfo =
+        dataMockService.standingsInfoNotifier.value.isNotEmpty
+            ? dataMockService.standingsInfoNotifier.value[0]
+            : null;
     if (initialInfo != null) {
       seasons = initialInfo.seasons;
       _selectedSeason = seasons.isNotEmpty ? seasons[0] : null;
@@ -66,7 +67,7 @@ class StandingsWidgetState extends State<StandingsWidget> {
     );
   }
 
-  Widget _getStandingInfoRowHeaderItem(StandingInfoRowHeader item) {
+  Widget _getStandingInfoRowHeaderItem(StandingRowHeader item) {
     return Expanded(
       flex: item.flex,
       child: Column(
@@ -82,7 +83,7 @@ class StandingsWidgetState extends State<StandingsWidget> {
 
   Widget _getStandingRowHeader() {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
+      padding: const EdgeInsets.symmetric(vertical: 2.0),
       decoration: BoxDecoration(
           color: const Color(0xFF3B3C41),
           border: Border.all(color: const Color(0xFF686E76))),
@@ -90,7 +91,7 @@ class StandingsWidgetState extends State<StandingsWidget> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          for (var item in StandingInfoRowHeader.getStandingRowHeaders())
+          for (var item in StandingRowHeader.getHeaders())
             _getStandingInfoRowHeaderItem(item),
         ],
       ),
@@ -98,56 +99,68 @@ class StandingsWidgetState extends State<StandingsWidget> {
   }
 
   Widget _getStandingCellItem(
-      StandingInfoRowHeader item, int rankNum, StandingRowModel cellValue) {
+      StandingRowHeader item, int rankNum, StandingRowModel cellValue) {
     String cellText = item.label == '#'
         ? (rankNum + 1).toString()
         : item.label == 'GD'
             ? (cellValue.goalsFor - cellValue.goalsAgainst).toString()
             : cellValue.getField(item.valueName!).toString();
-    return Expanded(
-      flex: item.flex,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Column(
         children: [
           Text(cellText,
               textAlign: TextAlign.center,
-              style: txtStyleBody2.copyWith(
-                  color: Colors.white)),
+              style: txtStyleBody2.copyWith(color: Colors.white)),
         ],
       ),
     );
   }
 
-  Widget _getStandingRow(StandingModel standing) {
-    return Column(
+  List<TableRow> _getStandingRows(List<StandingRowModel> standingRows) {
+    var spaceRow = TableRow(
+      children: StandingRowHeader.getHeaders().map((header) {
+        return const SizedBox(height: 8.0);
+      }).toList(),
+    );
+
+    List<TableRow> rows = [];
+
+    for (var standingRow in standingRows) {
+      int idx = standingRows.indexOf(standingRow);
+
+      rows.add(spaceRow);
+
+      rows.add(TableRow(
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: const Color(0xFF686E76),
+            width: 1.0,
+          ),
+        ),
+        children: [
+          for (var rowHeader in StandingRowHeader.getHeaders())
+            _getStandingCellItem(rowHeader, idx, standingRow),
+        ],
+      ));
+    }
+    return rows;
+  }
+
+  Map<int, TableColumnWidth> _getColumnWidths() {
+    Map<int, TableColumnWidth> map = {};
+    for (var header in StandingRowHeader.getHeaders().asMap().entries) {
+      map[header.key] = FlexColumnWidth(header.value.flex.toDouble());
+    }
+    return map;
+  }
+
+  Widget _getStandingTable(List<StandingRowModel> rows) {
+    return Table(
+      columnWidths: _getColumnWidths(),
+      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
       children: [
-        for (var standingRow in standing.rows.asMap().entries)
-          Column(
-            children: [
-              const SizedBox(
-                height: 8.0,
-              ),
-              Container(
-                decoration: BoxDecoration(
-                    // color: standing['color'],
-                    border:
-                        Border.all(color: const Color(0xFF686E76), width: 1.0)),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 8.0, vertical: 8.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      for (var rowHeader
-                          in StandingInfoRowHeader.getStandingRowHeaders())
-                        _getStandingCellItem(
-                            rowHeader, standingRow.key, standingRow.value),
-                    ],
-                  ),
-                ),
-              )
-            ],
-          )
+        ..._getStandingRows(rows),
       ],
     );
   }
@@ -175,17 +188,91 @@ class StandingsWidgetState extends State<StandingsWidget> {
             child: ValueListenableBuilder(
               valueListenable: dataMockService.filteredStandingsNotifier,
               builder: (context, standings, child) {
-                return ListView.builder(
-                    itemCount: standings.length,
-                    itemBuilder: (context, index) {
-                      var standing = standings[index];
-                      return _getStandingRow(standing);
-                    });
+                List<StandingRowModel> rows = [];
+                for (var standing in standings) {
+                  rows.addAll(standing.rows);
+                }
+                return SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: _getStandingTable(rows));
               },
             ),
-          )
+          ),
+          const SizedBox(height: 8.0),
         ],
       ),
     );
+  }
+}
+
+class StandingRowHeader {
+  final String label;
+  final String? valueName;
+  final int flex;
+  const StandingRowHeader(
+      {required this.label, required this.flex, this.valueName});
+  StandingRowHeader.fromJson(Map<String, dynamic> json)
+      : this(
+            label: json['label'],
+            flex: json['flex'],
+            valueName: json['valueName']);
+  static List<StandingRowHeader> getHeaders() {
+    return [
+      const StandingRowHeader(
+        label: '#',
+        valueName: 'id',
+        flex: 1,
+      ),
+      const StandingRowHeader(
+        label: 'Teams',
+        valueName: 'teamDisplayName',
+        flex: 3,
+      ),
+      const StandingRowHeader(
+        label: 'MP',
+        valueName: 'matchesPlayed',
+        flex: 1,
+      ),
+      const StandingRowHeader(
+        label: 'W',
+        valueName: 'wins',
+        flex: 1,
+      ),
+      const StandingRowHeader(
+        label: 'D',
+        valueName: 'draws',
+        flex: 1,
+      ),
+      const StandingRowHeader(
+        label: 'L',
+        valueName: 'losses',
+        flex: 1,
+      ),
+      const StandingRowHeader(
+        label: 'GF',
+        valueName: 'goalsFor',
+        flex: 1,
+      ),
+      const StandingRowHeader(
+        label: 'GA',
+        valueName: 'goalsAgainst',
+        flex: 1,
+      ),
+      const StandingRowHeader(
+        label: 'GD',
+        valueName: 'goalsAgainst',
+        flex: 1,
+      ),
+      const StandingRowHeader(
+        label: 'Pts',
+        valueName: 'points',
+        flex: 1,
+      ),
+      const StandingRowHeader(
+        label: 'FORM',
+        valueName: 'form',
+        flex: 2,
+      ),
+    ];
   }
 }
