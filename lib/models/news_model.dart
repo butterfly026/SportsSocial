@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:sport_social_mobile_mock/firebase/firestore_base_model.dart';
 
 @immutable
-class NewsModel {
+class NewsModel implements FireStoreBaseModel {
   final String title;
   final String providerDisplayName;
   final String url;
@@ -28,6 +29,7 @@ class NewsModel {
           readTime: json['readTime'],
         );
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'title': title,

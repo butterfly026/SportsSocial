@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:sport_social_mobile_mock/services/data_mock_service.dart';
+import 'package:sport_social_mobile_mock/services/example_firebase_service.dart';
 import 'package:sport_social_mobile_mock/services/live_game_service.dart';
 
 class ServiceLocator {
@@ -16,6 +17,10 @@ class ServiceLocator {
 
     getIt.registerSingletonAsync<LiveGameService>(
       () async => LiveGameService().initialize(),
+    );
+
+    getIt.registerSingletonAsync<ExampleFirebaseService>(
+      () async => ExampleFirebaseService().initialize(),
     );
   }
 }

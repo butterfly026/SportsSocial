@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sport_social_mobile_mock/firebase/firestore_base_model.dart';
 
 enum MatchIncidentStageType { firstHalf, secondHalf, extraTime, penalty }
 
@@ -20,7 +21,7 @@ enum MatchIncidentSideType {
 }
 
 @immutable
-class MatchIncidentModel {
+class MatchIncidentModel implements FireStoreBaseModel {
   final String incidentTime;
   final String participant;
   final MatchIncidentStageType stage;
@@ -47,6 +48,7 @@ class MatchIncidentModel {
           order: json['order'],
         );
 
+  @override
   Map<String, dynamic> toJson() => {
         'incidentTime': incidentTime,
         'participant': participant,

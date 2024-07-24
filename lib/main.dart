@@ -1,12 +1,19 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:sport_social_mobile_mock/firebase_options.dart';
 import 'package:sport_social_mobile_mock/services/routes.dart';
 import 'package:sport_social_mobile_mock/services/service_locator.dart';
 
-void main() {
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   ServiceLocator.setup();
+
   runApp(const MyApp());
 }
 

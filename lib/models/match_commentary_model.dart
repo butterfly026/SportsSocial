@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sport_social_mobile_mock/firebase/firestore_base_model.dart';
 
 enum MatchgCommentaryType {
   defaultType,
@@ -21,7 +22,7 @@ enum MatchgCommentaryType {
 }
 
 @immutable
-class MatchgCommentaryModel {
+class MatchgCommentaryModel implements FireStoreBaseModel {
   final int level;
   final String message;
   final String time;
@@ -48,6 +49,7 @@ class MatchgCommentaryModel {
           order: json['order'],
         );
 
+  @override
   Map<String, dynamic> toJson() => {
         'level': level,
         'message': message,
