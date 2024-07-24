@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:sport_social_mobile_mock/services/data_mock_service.dart';
 import 'package:sport_social_mobile_mock/services/service_locator.dart';
-import 'package:sport_social_mobile_mock/views/components/matches_component.dart';
-import 'package:sport_social_mobile_mock/views/components/news_component.dart';
-import 'package:sport_social_mobile_mock/views/components/standings_component.dart';
+import 'package:sport_social_mobile_mock/views/team_info/components/matches_component.dart';
+import 'package:sport_social_mobile_mock/views/team_info/components/news_component.dart';
+import 'package:sport_social_mobile_mock/views/team_info/components/standings_component.dart';
 
-class DataMockPage extends StatefulWidget {
-  const DataMockPage({super.key});
+class TeamInfoPage extends StatefulWidget {
+  const TeamInfoPage({super.key});
 
   @override
   DataMockPageState createState() => DataMockPageState();
 }
 
-class DataMockPageState extends State<DataMockPage>
+class DataMockPageState extends State<TeamInfoPage>
     with TickerProviderStateMixin {
   final dataMockService = ServiceLocator.get<DataMockService>();
   late TabController _tabController;
@@ -56,7 +56,7 @@ class DataMockPageState extends State<DataMockPage>
       splashFactory: NoSplash.splashFactory, // No splash effect
 
       tabs: [
-        for(var tabTitle in ['News', 'Matches', 'Standings'])
+        for (var tabTitle in ['News', 'Matches', 'Standings'])
           _getTabItem(tabTitle)
       ],
     );

@@ -4,7 +4,7 @@ import 'package:sport_social_mobile_mock/models/match_model.dart';
 import 'package:sport_social_mobile_mock/services/data_mock_service.dart';
 import 'package:sport_social_mobile_mock/services/service_locator.dart';
 import 'package:sport_social_mobile_mock/utils/date_utils.dart' as date_utils;
-import 'package:sport_social_mobile_mock/views/components/circle_painter.dart';
+import 'package:sport_social_mobile_mock/views/team_info/components/circle_painter.dart';
 
 class MatchesWidget extends StatelessWidget {
   MatchesWidget({super.key});

@@ -1,0 +1,98 @@
+[
+  {
+    "type": "ballPossession",
+    "valueHome": "61%",
+    "valueAway": "39%",
+    "displayName": "Ball Possession"
+  },
+  {
+    "type": "goalAttempts",
+    "valueHome": "20",
+    "valueAway": "6",
+    "displayName": "Goal Attempts"
+  },
+  {
+    "type": "shotsOnGoal",
+    "valueHome": "6",
+    "valueAway": "1",
+    "displayName": "Shots on Goal"
+  },
+  {
+    "type": "shotsOffGoal",
+    "valueHome": "9",
+    "valueAway": "4",
+    "displayName": "Shots off Goal"
+  },
+  {
+    "type": "blockedShots",
+    "valueHome": "5",
+    "valueAway": "1",
+    "displayName": "Blocked Shots"
+  },
+  {
+    "type": "freeKicks",
+    "valueHome": "13",
+    "valueAway": "26",
+    "displayName": "Free Kicks"
+  },
+  {
+    "type": "cornerKicks",
+    "valueHome": "3",
+    "valueAway": "5",
+    "displayName": "Corner Kicks"
+  },
+  {
+    "type": "offsides",
+    "valueHome": "5",
+    "valueAway": "1",
+    "displayName": "Offsides"
+  },
+  {
+    "type": "throwIns",
+    "valueHome": "33",
+    "valueAway": "31",
+    "displayName": "Throw-ins"
+  },
+  {
+    "type": "goalkeeperSaves",
+    "valueHome": "0",
+    "valueAway": "5",
+    "displayName": "Goalkeeper Saves"
+  },
+  {
+    "type": "fouls",
+    "valueHome": "21",
+    "valueAway": "13",
+    "displayName": "Fouls"
+  },
+  {
+    "type": "yellowCards",
+    "valueHome": "5",
+    "valueAway": "1",
+    "displayName": "Yellow Cards"
+  },
+  {
+    "type": "totalPasses",
+    "valueHome": "836",
+    "valueAway": "436",
+    "displayName": "Total Passes"
+  },
+  {
+    "type": "completedPasses",
+    "valueHome": "758",
+    "valueAway": "340",
+    "displayName": "Completed Passes"
+  },
+  {
+    "type": "attacks",
+    "valueHome": "129",
+    "valueAway": "84",
+    "displayName": "Attacks"
+  },
+  {
+    "type": "dangerousAttacks",
+    "valueHome": "52",
+    "valueAway": "33",
+    "displayName": "Dangerous Attacks"
+  }
+]

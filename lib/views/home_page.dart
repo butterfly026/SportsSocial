@@ -13,9 +13,15 @@ class HomePage extends StatelessWidget {
           const Center(child: Text("HOME")),
           ElevatedButton(
             onPressed: () {
-              context.go('/data_mock');
+              context.go('/team_info');
             },
-            child: const Text('Open Data Mock Page'),
+            child: const Text('Open Team Info Page'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              context.go('/banner_work');
+            },
+            child: const Text('Open Banner Page'),
           ),
         ],
       ),

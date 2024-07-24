@@ -1,0 +1,59 @@
+import 'package:flutter/material.dart';
+
+enum MatchgCommentaryType {
+  defaultType,
+  whistle,
+  time,
+  corner,
+  substitution,
+  goal,
+  goalAgainst,
+  yellowCard,
+  yellowRedCard,
+  redCard,
+  funfact,
+  lineup,
+  injury,
+  penaltyOut,
+  penalty,
+  varType,
+  attendance,
+}
+
+@immutable
+class MatchgCommentaryModel {
+  final int level;
+  final String message;
+  final String time;
+  final MatchgCommentaryType type;
+  final String hash;
+  final int order;
+
+  const MatchgCommentaryModel({
+    required this.level,
+    required this.message,
+    required this.time,
+    required this.type,
+    required this.hash,
+    required this.order,
+  });
+
+  MatchgCommentaryModel.fromJson(Map<String, dynamic> json)
+      : this(
+          level: json['level'],
+          message: json['message'],
+          time: json['time'],
+          type: MatchgCommentaryType.values.byName(json['type'].toLowerCase()),
+          hash: json['hash'],
+          order: json['order'],
+        );
+
+  Map<String, dynamic> toJson() => {
+        'level': level,
+        'message': message,
+        'time': time,
+        'type': type.toString().split('.').last,
+        'hash': hash,
+        'order': order,
+      };
+}

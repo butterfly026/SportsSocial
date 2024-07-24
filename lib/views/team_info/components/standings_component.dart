@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sport_social_mobile_mock/models/standings_model.dart';
 import 'package:sport_social_mobile_mock/services/data_mock_service.dart';
 import 'package:sport_social_mobile_mock/services/service_locator.dart';
-import 'package:sport_social_mobile_mock/views/components/dropdown.dart';
+import 'package:sport_social_mobile_mock/views/team_info/components/dropdown.dart';
 
 class StandingsWidget extends StatefulWidget {
   const StandingsWidget({super.key});

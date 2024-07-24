@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
-import 'package:sport_social_mobile_mock/views/data_mock_page.dart';
+import 'package:sport_social_mobile_mock/views/banner_work/banner_work_page.dart';
+import 'package:sport_social_mobile_mock/views/team_info/team_info_page.dart';
 import 'package:sport_social_mobile_mock/views/home_page.dart';
 
 GoRouter appRouter() {
@@ -13,9 +14,14 @@ GoRouter appRouter() {
         builder: (context, state) => const HomePage(),
       ),
       GoRoute(
-        name: 'data_mock',
-        path: '/data_mock',
-        builder: (context, state) => const DataMockPage(),
+        name: 'team_info',
+        path: '/team_info',
+        builder: (context, state) => const TeamInfoPage(),
+      ),
+      GoRoute(
+        name: 'banner_work',
+        path: '/banner_work',
+        builder: (context, state) => const BannerWorkPage(),
       ),
     ],
   );

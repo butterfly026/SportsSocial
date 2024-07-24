@@ -1,0 +1,380 @@
+[
+  {
+    "apiIncidentId": "WhEWHeq7",
+    "incidentTime": "2'",
+    "participant": "Shaw L.",
+    "stage": "firstHalf",
+    "type": "goal",
+    "side": "away",
+    "order": 0
+  },
+  {
+    "apiIncidentId": "WhEWHeq7",
+    "incidentTime": "2'",
+    "participant": "Trippier K.",
+    "stage": "firstHalf",
+    "type": "assistance",
+    "side": "away",
+    "order": 1
+  },
+  {
+    "apiIncidentId": "lhwgEus1",
+    "incidentTime": "47'",
+    "participant": "Barella N.",
+    "stage": "secondHalf",
+    "type": "yellowCard",
+    "side": "home",
+    "order": 2
+  },
+  {
+    "apiIncidentId": "EgwZ3DuF",
+    "incidentTime": "54'",
+    "participant": "Barella N.",
+    "stage": "secondHalf",
+    "type": "substitutionOut",
+    "side": "home",
+    "order": 3
+  },
+  {
+    "apiIncidentId": "EgwZ3DuF",
+    "incidentTime": "54'",
+    "participant": "Cristante B.",
+    "stage": "secondHalf",
+    "type": "substitutionIn",
+    "side": "home",
+    "order": 4
+  },
+  {
+    "apiIncidentId": "MTHCdVXl",
+    "incidentTime": "54'",
+    "participant": "Immobile C.",
+    "stage": "secondHalf",
+    "type": "substitutionOut",
+    "side": "home",
+    "order": 5
+  },
+  {
+    "apiIncidentId": "MTHCdVXl",
+    "incidentTime": "54'",
+    "participant": "Berardi D.",
+    "stage": "secondHalf",
+    "type": "substitutionIn",
+    "side": "home",
+    "order": 6
+  },
+  {
+    "apiIncidentId": "QR1AHW9E",
+    "incidentTime": "55'",
+    "participant": "Bonucci L.",
+    "stage": "secondHalf",
+    "type": "yellowCard",
+    "side": "home",
+    "order": 7
+  },
+  {
+    "apiIncidentId": "vZwgdydd",
+    "incidentTime": "67'",
+    "participant": "Bonucci L.",
+    "stage": "secondHalf",
+    "type": "goal",
+    "side": "home",
+    "order": 8
+  },
+  {
+    "apiIncidentId": "vZwgdydd",
+    "incidentTime": "67'",
+    "participant": "Verratti M.",
+    "stage": "secondHalf",
+    "type": "assistance",
+    "side": "home",
+    "order": 9
+  },
+  {
+    "apiIncidentId": "rmfoziv1",
+    "incidentTime": "70'",
+    "participant": "Trippier K.",
+    "stage": "secondHalf",
+    "type": "substitutionOut",
+    "side": "away",
+    "order": 10
+  },
+  {
+    "apiIncidentId": "rmfoziv1",
+    "incidentTime": "70'",
+    "participant": "Saka B.",
+    "stage": "secondHalf",
+    "type": "substitutionIn",
+    "side": "away",
+    "order": 11
+  },
+  {
+    "apiIncidentId": "445b2Uvi",
+    "incidentTime": "74'",
+    "participant": "Rice D.",
+    "stage": "secondHalf",
+    "type": "substitutionOut",
+    "side": "away",
+    "order": 12
+  },
+  {
+    "apiIncidentId": "445b2Uvi",
+    "incidentTime": "74'",
+    "participant": "Henderson J.",
+    "stage": "secondHalf",
+    "type": "substitutionIn",
+    "side": "away",
+    "order": 13
+  },
+  {
+    "apiIncidentId": "INRlBJOE",
+    "incidentTime": "84'",
+    "participant": "Insigne L.",
+    "stage": "secondHalf",
+    "type": "yellowCard",
+    "side": "home",
+    "order": 14
+  },
+  {
+    "apiIncidentId": "pSjQOxgE",
+    "incidentTime": "86'",
+    "participant": "Chiesa F.",
+    "stage": "secondHalf",
+    "type": "substitutionOut",
+    "side": "home",
+    "order": 15
+  },
+  {
+    "apiIncidentId": "pSjQOxgE",
+    "incidentTime": "86'",
+    "participant": "Bernardeschi F.",
+    "stage": "secondHalf",
+    "type": "substitutionIn",
+    "side": "home",
+    "order": 16
+  },
+  {
+    "apiIncidentId": "QVH8beca",
+    "incidentTime": "90+6'",
+    "participant": "Chiellini G.",
+    "stage": "secondHalf",
+    "type": "yellowCard",
+    "side": "home",
+    "order": 17
+  },
+  {
+    "apiIncidentId": "OIi7GTIp",
+    "incidentTime": "91'",
+    "participant": "Insigne L.",
+    "stage": "extraTime",
+    "type": "substitutionOut",
+    "side": "home",
+    "order": 18
+  },
+  {
+    "apiIncidentId": "OIi7GTIp",
+    "incidentTime": "91'",
+    "participant": "Belotti A.",
+    "stage": "extraTime",
+    "type": "substitutionIn",
+    "side": "home",
+    "order": 19
+  },
+  {
+    "apiIncidentId": "Qg2OsRYt",
+    "incidentTime": "96'",
+    "participant": "Verratti M.",
+    "stage": "extraTime",
+    "type": "substitutionOut",
+    "side": "home",
+    "order": 20
+  },
+  {
+    "apiIncidentId": "Qg2OsRYt",
+    "incidentTime": "96'",
+    "participant": "Locatelli M.",
+    "stage": "extraTime",
+    "type": "substitutionIn",
+    "side": "home",
+    "order": 21
+  },
+  {
+    "apiIncidentId": "2ZNBhrma",
+    "incidentTime": "99'",
+    "participant": "Mount M.",
+    "stage": "extraTime",
+    "type": "substitutionOut",
+    "side": "away",
+    "order": 22
+  },
+  {
+    "apiIncidentId": "2ZNBhrma",
+    "incidentTime": "99'",
+    "participant": "Grealish J.",
+    "stage": "extraTime",
+    "type": "substitutionIn",
+    "side": "away",
+    "order": 23
+  },
+  {
+    "apiIncidentId": "CIrsXULE",
+    "incidentTime": "106'",
+    "participant": "Maguire H.",
+    "stage": "extraTime",
+    "type": "yellowCard",
+    "side": "away",
+    "order": 24
+  },
+  {
+    "apiIncidentId": "OvPCVddo",
+    "incidentTime": "114'",
+    "participant": "Jorginho",
+    "stage": "extraTime",
+    "type": "yellowCard",
+    "side": "home",
+    "order": 25
+  },
+  {
+    "apiIncidentId": "zNEEf4VD",
+    "incidentTime": "118'",
+    "participant": "Emerson",
+    "stage": "extraTime",
+    "type": "substitutionOut",
+    "side": "home",
+    "order": 26
+  },
+  {
+    "apiIncidentId": "zNEEf4VD",
+    "incidentTime": "118'",
+    "participant": "Florenzi A.",
+    "stage": "extraTime",
+    "type": "substitutionIn",
+    "side": "home",
+    "order": 27
+  },
+  {
+    "apiIncidentId": "zid0o0h0",
+    "incidentTime": "120'",
+    "participant": "Henderson J.",
+    "stage": "extraTime",
+    "type": "substitutionOut",
+    "side": "away",
+    "order": 28
+  },
+  {
+    "apiIncidentId": "zid0o0h0",
+    "incidentTime": "120'",
+    "participant": "Rashford M.",
+    "stage": "extraTime",
+    "type": "substitutionIn",
+    "side": "away",
+    "order": 29
+  },
+  {
+    "apiIncidentId": "vkxf7sFJ",
+    "incidentTime": "120'",
+    "participant": "Walker K.",
+    "stage": "extraTime",
+    "type": "substitutionOut",
+    "side": "away",
+    "order": 30
+  },
+  {
+    "apiIncidentId": "vkxf7sFJ",
+    "incidentTime": "120'",
+    "participant": "Sancho J.",
+    "stage": "extraTime",
+    "type": "substitutionIn",
+    "side": "away",
+    "order": 31
+  },
+  {
+    "apiIncidentId": "ERAQq2Zo",
+    "incidentTime": "1",
+    "participant": "Berardi D.",
+    "stage": "penalty",
+    "type": "penaltyScored",
+    "side": "home",
+    "order": 32
+  },
+  {
+    "apiIncidentId": "QJahwIIT",
+    "incidentTime": "1",
+    "participant": "Kane H.",
+    "stage": "penalty",
+    "type": "penaltyScored",
+    "side": "away",
+    "order": 33
+  },
+  {
+    "apiIncidentId": "pbcsAbmi",
+    "incidentTime": "2",
+    "participant": "Belotti A.",
+    "stage": "penalty",
+    "type": "penaltyMissed",
+    "side": "home",
+    "order": 34
+  },
+  {
+    "apiIncidentId": "Oxh54fHS",
+    "incidentTime": "2",
+    "participant": "Maguire H.",
+    "stage": "penalty",
+    "type": "penaltyScored",
+    "side": "away",
+    "order": 35
+  },
+  {
+    "apiIncidentId": "MwNYJZGF",
+    "incidentTime": "3",
+    "participant": "Bonucci L.",
+    "stage": "penalty",
+    "type": "penaltyScored",
+    "side": "home",
+    "order": 36
+  },
+  {
+    "apiIncidentId": "hr7kDOa0",
+    "incidentTime": "3",
+    "participant": "Rashford M.",
+    "stage": "penalty",
+    "type": "penaltyMissed",
+    "side": "away",
+    "order": 37
+  },
+  {
+    "apiIncidentId": "p6yNRNEg",
+    "incidentTime": "4",
+    "participant": "Bernardeschi F.",
+    "stage": "penalty",
+    "type": "penaltyScored",
+    "side": "home",
+    "order": 38
+  },
+  {
+    "apiIncidentId": "OQ1js3Et",
+    "incidentTime": "4",
+    "participant": "Sancho J.",
+    "stage": "penalty",
+    "type": "penaltyMissed",
+    "side": "away",
+    "order": 39
+  },
+  {
+    "apiIncidentId": "StLkkICH",
+    "incidentTime": "5",
+    "participant": "Jorginho",
+    "stage": "penalty",
+    "type": "penaltyMissed",
+    "side": "home",
+    "order": 40
+  },
+  {
+    "apiIncidentId": "UsBbpTQk",
+    "incidentTime": "5",
+    "participant": "Saka B.",
+    "stage": "penalty",
+    "type": "penaltyMissed",
+    "side": "away",
+    "order": 41
+  }
+]
