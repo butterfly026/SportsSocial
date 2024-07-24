@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sport_social_mobile_mock/firebase/firestore_base_model.dart';
 
 enum MatchStatus {
   scheduled,
@@ -13,7 +14,7 @@ enum Winner {
 }
 
 @immutable
-class MatchModel {
+class MatchModel implements FireStoreBaseModel {
   final String id;
   final String tournamentCode;
   final MatchStatus status;
@@ -60,6 +61,7 @@ class MatchModel {
               : null,
         );
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'id': id,

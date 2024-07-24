@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:sport_social_mobile_mock/firebase/firestore_base_model.dart';
 
 @immutable
-class StandingSeasonInfoModel {
+class StandingSeasonInfoModel implements FireStoreBaseModel {
   final String id;
   final String yearTitle;
   final int year;
@@ -20,6 +21,7 @@ class StandingSeasonInfoModel {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -30,7 +32,7 @@ class StandingSeasonInfoModel {
 }
 
 @immutable
-class StandingInfoModel {
+class StandingInfoModel implements FireStoreBaseModel {
   final String name;
   final List<StandingSeasonInfoModel> seasons;
 
@@ -48,6 +50,7 @@ class StandingInfoModel {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'name': name,
