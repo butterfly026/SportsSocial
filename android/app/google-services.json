@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "83960599503",
+    "project_id": "sport-social-live-sandbox",
+    "storage_bucket": "sport-social-live-sandbox.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:83960599503:android:d909ce5ba54d2522e078ba",
+        "android_client_info": {
+          "package_name": "com.example.sport_social_mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpLPIqDyCemMCbm6qWs6wp8qTlC3cUrfg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:83960599503:android:c725b0520d267db2e078ba",
+        "android_client_info": {
+          "package_name": "com.example.sport_social_mobile_mock"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpLPIqDyCemMCbm6qWs6wp8qTlC3cUrfg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:83960599503:android:975df8fbcc127aafe078ba",
+        "android_client_info": {
+          "package_name": "live.sandbox.sportsocial"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpLPIqDyCemMCbm6qWs6wp8qTlC3cUrfg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
