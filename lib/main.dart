@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:sport_social_mobile_mock/services/routes.dart';
 import 'package:sport_social_mobile_mock/services/service_locator.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
   ServiceLocator.setup();
   runApp(const MyApp());
 }
