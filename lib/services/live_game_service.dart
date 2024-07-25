@@ -23,9 +23,18 @@ class LiveGameService {
           await rootBundle.loadString('lib/assets/commentary.json');
       final jsonResponse = jsonDecode(jsonString);
 
-      final List<MatchgCommentaryModel> dataList = List<MatchgCommentaryModel>.from(
-          jsonResponse.map((newsJson) => MatchgCommentaryModel.fromJson(newsJson)));
-
+      final List<MatchgCommentaryModel> dataList =
+          List<MatchgCommentaryModel>.from(jsonResponse
+              .map((jsonData) => MatchgCommentaryModel.fromJson(jsonData)));
+      dataList.sort((a, b) {
+        if (a.time.isEmpty && b.time.isEmpty) return 0;
+        if (a.time.isEmpty) return 1;
+        if (b.time.isEmpty) return -1;
+        int n1 = int.tryParse(b.time) ?? 0;
+        int n2 = int.tryParse(a.time) ?? 0;
+        if (n1 == 0 && n2 == 0) return 0;
+        return n1 > n2 ? 1 : -1;
+      });
       commentaryNotifier.value = dataList;
     } catch (e) {
       if (kDebugMode) {
@@ -41,7 +50,8 @@ class LiveGameService {
       final jsonResponse = jsonDecode(jsonString);
 
       final List<MatchIncidentModel> dataList = List<MatchIncidentModel>.from(
-          jsonResponse.map((newsJson) => MatchIncidentModel.fromJson(newsJson)));
+          jsonResponse
+              .map((jsonData) => MatchIncidentModel.fromJson(jsonData)));
 
       incidentNotifier.value = dataList;
     } catch (e) {
@@ -57,8 +67,9 @@ class LiveGameService {
           await rootBundle.loadString('lib/assets/statistics.json');
       final jsonResponse = jsonDecode(jsonString);
 
-      final List<MatchgStatisticsModel> dataList = List<MatchgStatisticsModel>.from(
-          jsonResponse.map((newsJson) => MatchgStatisticsModel.fromJson(newsJson)));
+      final List<MatchgStatisticsModel> dataList =
+          List<MatchgStatisticsModel>.from(jsonResponse
+              .map((jsonData) => MatchgStatisticsModel.fromJson(jsonData)));
 
       statisticNotifier.value = dataList;
     } catch (e) {
@@ -67,5 +78,4 @@ class LiveGameService {
       }
     }
   }
-
 }

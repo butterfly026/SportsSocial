@@ -39,7 +39,7 @@ class MatchgStatisticsModel implements FireStoreBaseModel {
           valueHome: json['valueHome'],
           valueAway: json['valueAway'],
           displayName: json['displayName'],
-          type: MatchgStatisticsType.values.byName(json['type'].toLowerCase()),
+          type: MatchgStatisticsType.values.byName(json['type']),
         );
 
   @override

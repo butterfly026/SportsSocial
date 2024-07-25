@@ -44,7 +44,9 @@ class MatchgCommentaryModel implements FireStoreBaseModel {
           level: json['level'],
           message: json['message'],
           time: json['time'],
-          type: MatchgCommentaryType.values.byName(json['type'].toLowerCase()),
+          type: MatchgCommentaryType.values.byName(json['type']              
+              .toString()
+              .replaceAll('default', 'defaultType')),
           hash: json['hash'],
           order: json['order'],
         );

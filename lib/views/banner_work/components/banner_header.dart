@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sport_social_mobile_mock/views/banner_work/components/commentary_widget.dart';
 
 class BannerHeader extends StatefulWidget {
   const BannerHeader({super.key});
@@ -77,7 +78,7 @@ class _BannerHeaderState extends State<BannerHeader>
   Widget _getContentByIdx(int index) {
     switch (index) {
       case 0:
-        return const Text("Hello", style: TextStyle(color: Colors.white));
+        return const CommentaryWidget(displayMode: 0);
       case 1:
         return Column(
           children: const [
@@ -95,7 +96,11 @@ class _BannerHeaderState extends State<BannerHeader>
 
   Widget _getTabContent(int index) {
     return Visibility(
-        visible: _tabController.index == index, child: _getContentByIdx(index));
+        visible: _tabController.index == index,
+        child: SizedBox(
+          height: 100,
+          child: _getContentByIdx(index),
+        ));
   }
 
   Widget _getBannerWidget() {
