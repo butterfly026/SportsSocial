@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sport_social_mobile_mock/views/banner_work/components/commentary_widget.dart';
+import 'package:sport_social_mobile_mock/views/banner_work/components/game_summary_widget.dart';
+import 'package:sport_social_mobile_mock/views/banner_work/components/statistics_widget.dart';
 
 class BannerHeader extends StatefulWidget {
   const BannerHeader({super.key});
@@ -11,10 +13,12 @@ class BannerHeader extends StatefulWidget {
 class _BannerHeaderState extends State<BannerHeader>
     with TickerProviderStateMixin {
   late TabController _tabController;
+  late int banDispMode;
 
   @override
   void initState() {
     _tabController = TabController(length: 3, vsync: this);
+    banDispMode = 0;
     super.initState();
   }
 
@@ -78,16 +82,11 @@ class _BannerHeaderState extends State<BannerHeader>
   Widget _getContentByIdx(int index) {
     switch (index) {
       case 0:
-        return const CommentaryWidget(displayMode: 0);
+        return CommentaryWidget(displayMode: banDispMode);
       case 1:
-        return Column(
-          children: const [
-            Text('2222', style: TextStyle(color: Colors.white)),
-            Text('2222', style: TextStyle(color: Colors.white)),
-          ],
-        );
+        return GameSummaryWidget(displayMode: banDispMode);
       case 2:
-        return const Text('33333', style: TextStyle(color: Colors.white));
+        return StatisticsWidget(displayMode: banDispMode);
       default:
         return const Text('Default page',
             style: TextStyle(color: Colors.white));
@@ -117,6 +116,21 @@ class _BannerHeaderState extends State<BannerHeader>
     );
   }
 
+  Decoration _getGradientBannerBackground() {
+    return const BoxDecoration(
+      borderRadius: BorderRadius.all(Radius.circular(5)),
+      gradient: LinearGradient(
+          colors: [
+            Color(0xFF4968DA),
+            Color(0xFFB36AB0),
+          ],
+          begin: FractionalOffset(0.0, 0.0),
+          end: FractionalOffset(1.0, 0.0),
+          stops: [0.0, 1.0],
+          tileMode: TileMode.clamp),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -124,17 +138,7 @@ class _BannerHeaderState extends State<BannerHeader>
         Expanded(
           child: Container(
             padding: const EdgeInsets.only(bottom: 10.0),
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [
-                    Color(0xFF4968DA),
-                    Color(0xFFB36AB0),
-                  ],
-                  begin: FractionalOffset(0.0, 0.0),
-                  end: FractionalOffset(1.0, 0.0),
-                  stops: [0.0, 1.0],
-                  tileMode: TileMode.clamp),
-            ),
+            decoration: _getGradientBannerBackground(),
             child: _getBannerWidget(),
           ),
         )

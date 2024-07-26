@@ -9,7 +9,7 @@ import 'package:sport_social_mobile_mock/models/match_statistics.dart';
 class LiveGameService {
   final commentaryNotifier = ValueNotifier<List<MatchgCommentaryModel>>([]);
   final incidentNotifier = ValueNotifier<List<MatchIncidentModel>>([]);
-  final statisticNotifier = ValueNotifier<List<MatchgStatisticsModel>>([]);
+  final statisticsNotifier = ValueNotifier<List<MatchgStatisticsModel>>([]);
   Future<LiveGameService> initialize() async {
     await _loadCommentary();
     await _loadIncident();
@@ -71,7 +71,7 @@ class LiveGameService {
           List<MatchgStatisticsModel>.from(jsonResponse
               .map((jsonData) => MatchgStatisticsModel.fromJson(jsonData)));
 
-      statisticNotifier.value = dataList;
+      statisticsNotifier.value = dataList;
     } catch (e) {
       if (kDebugMode) {
         print(e);
