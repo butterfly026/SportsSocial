@@ -80,14 +80,9 @@ class _BannerHeaderState extends State<BannerHeader>
       case 0:
         return const CommentaryWidget(displayMode: 0);
       case 1:
-        return Column(
-          children: const [
-            Text('2222', style: TextStyle(color: Colors.white)),
-            Text('2222', style: TextStyle(color: Colors.white)),
-          ],
-        );
+        return Container();
       case 2:
-        return const Text('33333', style: TextStyle(color: Colors.white));
+        return Container();
       default:
         return const Text('Default page',
             style: TextStyle(color: Colors.white));
