@@ -5,7 +5,7 @@ class ChannelModel implements FireStoreBaseModel {
   final String name;
   final String displayName;
   final String icon;
-  final List<String> colors;
+  final List<String> colors; // hex colors
 
   const ChannelModel({
     required this.id,

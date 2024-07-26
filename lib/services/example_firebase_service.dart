@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sport_social_mobile_mock/firebase/firebase_utils.dart';
 import 'package:sport_social_mobile_mock/models/channel_model.dart';
 import 'package:sport_social_mobile_mock/models/match_commentary_model.dart';
+import 'package:sport_social_mobile_mock/models/match_game_summary.dart';
 import 'package:sport_social_mobile_mock/models/match_incident_model.dart';
 import 'package:sport_social_mobile_mock/models/match_model.dart';
 import 'package:sport_social_mobile_mock/models/match_statistics.dart';
@@ -16,6 +17,7 @@ class ExampleFirebaseService {
   final String _matchCollection = 'matches';
   final String _commentsSubCollection = 'commentaries';
   final String _incidentsSubCollection = 'incidents';
+  final String _gameSummarySubCollection = 'summaries';
 
   final String _channelId = 'Nqm7dwogKL7VhSBBhphw';
   final String _matchId = 'team_1_fc_team_2_fc_1111';
@@ -50,6 +52,12 @@ class ExampleFirebaseService {
         MatchIncidentModel.fromJson,
       );
 
+  CollectionReference<MatchGameSummary> _summariessRef(String matchId) =>
+      subCollectionRefWithConverter<MatchGameSummary>(
+        '$_matchCollection/$matchId/$_gameSummarySubCollection',
+        MatchGameSummary.fromJson,
+      );
+
   Future<ExampleFirebaseService> initialize() async {
     return this;
   }
@@ -61,6 +69,7 @@ class ExampleFirebaseService {
   final Random _random = Random();
   int commentaryOrder = 0;
   int incidentOrder = 0;
+  int gameSummaryOrder = 0;
   final List<String> _possibleCommentaries = [
     "Great goal by the home team!",
     "What a save by the goalkeeper!",
@@ -109,6 +118,7 @@ class ExampleFirebaseService {
       await updateMatchCommentary();
       await updateMatchStatistics();
       await updateMatchIncidents();
+      await updateMatchGameSummary();
       print('Match info updated');
     });
   }
@@ -188,6 +198,18 @@ class ExampleFirebaseService {
     );
 
     await _incidentsRef(_matchId).add(incident);
+  }
+
+  Future<void> updateMatchGameSummary() async {
+    final gameSummary = MatchGameSummary(
+      order: gameSummaryOrder,
+      summaryTime: 'Time Summary $gameSummaryOrder',
+      content: 'Game Summary Content $gameSummaryOrder',
+    );
+
+    gameSummaryOrder++;
+
+    await _summariessRef(_matchId).add(gameSummary);
   }
 
   Future<void> cleanUpMatch() async {
