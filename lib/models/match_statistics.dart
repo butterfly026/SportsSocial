@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sport_social_mobile_mock/firebase/firestore_base_model.dart';
 
-enum MatchgStatisticsType {
+enum MatchStatisticsType {
   ballPossession,
   goalAttempts,
   shotsOnGoal,
@@ -25,7 +25,7 @@ class MatchgStatisticsModel implements FireStoreBaseModel {
   final String valueHome;
   final String valueAway;
   final String displayName;
-  final MatchgStatisticsType type;
+  final MatchStatisticsType type;
 
   const MatchgStatisticsModel({
     required this.valueHome,
@@ -39,7 +39,7 @@ class MatchgStatisticsModel implements FireStoreBaseModel {
           valueHome: json['valueHome'],
           valueAway: json['valueAway'],
           displayName: json['displayName'],
-          type: MatchgStatisticsType.values.byName(json['type']),
+          type: MatchStatisticsType.values.byName(json['type']),
         );
 
   @override

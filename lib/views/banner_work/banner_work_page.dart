@@ -9,7 +9,6 @@ class BannerWorkPage extends StatefulWidget {
 }
 
 class DataMockPageState extends State<BannerWorkPage> {
-
   @override
   void initState() {
     super.initState();
@@ -30,7 +29,6 @@ class DataMockPageState extends State<BannerWorkPage> {
       ],
     );
   }
-
 
   @override
   Widget build(BuildContext context) {

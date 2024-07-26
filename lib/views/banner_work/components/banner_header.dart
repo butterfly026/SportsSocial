@@ -26,9 +26,9 @@ class _BannerHeaderState extends State<BannerHeader>
 
   Widget _getTabItem(String tabTitle) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 1.0, horizontal: 3.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: ConstrainedBox(
-        constraints: const BoxConstraints(minWidth: 50),
+        constraints: const BoxConstraints(minHeight: 35),
         child: Tab(
           text: tabTitle,
           height: 16,
@@ -52,11 +52,11 @@ class _BannerHeaderState extends State<BannerHeader>
         },
         indicator: BoxDecoration(
           color: const Color(0xFF535457),
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(10),
         ),
         unselectedLabelColor: Colors.white,
-        labelStyle: const TextStyle(fontSize: 10.0),
-        labelPadding: const EdgeInsets.symmetric(horizontal: 8.0),
+        // labelStyle: const TextStyle(fontSize: 10.0),
+        labelPadding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 0),
         labelColor: Colors.white,
         dividerColor: Colors.transparent,
         splashBorderRadius: const BorderRadius.all(Radius.circular(8.0)),
