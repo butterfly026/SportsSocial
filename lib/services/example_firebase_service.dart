@@ -15,7 +15,6 @@ class ExampleFirebaseService {
 
   final String _matchCollection = 'matches';
   final String _commentsSubCollection = 'commentaries';
-  final String _statsSubCollection = 'statistics';
   final String _incidentsSubCollection = 'incidents';
 
   final String _channelId = 'Nqm7dwogKL7VhSBBhphw';
@@ -33,22 +32,16 @@ class ExampleFirebaseService {
         MatchModel.fromJson,
       );
 
-  CollectionReference<MatchModel> get _matchesRef =>
-      collectionRefWithConverter<MatchModel>(
+  CollectionReference<MatchDetailModel> get _matchesRef =>
+      collectionRefWithConverter<MatchDetailModel>(
         _matchCollection,
-        MatchModel.fromJson,
+        MatchDetailModel.fromJson,
       );
 
   CollectionReference<MatchCommentaryModel> _commentariesRef(String matchId) =>
       subCollectionRefWithConverter<MatchCommentaryModel>(
         '$_matchCollection/$matchId/$_commentsSubCollection',
         MatchCommentaryModel.fromJson,
-      );
-
-  CollectionReference<MatchStatisticsModel> _statisticsRef(String matchId) =>
-      subCollectionRefWithConverter<MatchStatisticsModel>(
-        '$_matchCollection/$matchId/$_statsSubCollection',
-        MatchStatisticsModel.fromJson,
       );
 
   CollectionReference<MatchIncidentModel> _incidentsRef(String matchId) =>
@@ -62,8 +55,12 @@ class ExampleFirebaseService {
   }
 
   Timer? _timer;
+  int updateInterval = 5; // interval to update match data
+  final maxRuntime = const Duration(minutes: 5); // safeguard
+
   final Random _random = Random();
   int commentaryOrder = 0;
+  int incidentOrder = 0;
   final List<String> _possibleCommentaries = [
     "Great goal by the home team!",
     "What a save by the goalkeeper!",
@@ -77,25 +74,14 @@ class ExampleFirebaseService {
     "The defense is holding strong."
   ];
 
-  final List<MatchCommentaryType> _possibleCommentariesTypes = [
-    MatchCommentaryType.defaultType,
-    MatchCommentaryType.whistle,
-    MatchCommentaryType.time,
-    MatchCommentaryType.corner,
-    MatchCommentaryType.substitution,
-    MatchCommentaryType.goal,
-    MatchCommentaryType.goalAgainst,
-    MatchCommentaryType.yellowCard,
-    MatchCommentaryType.yellowRedCard,
-    MatchCommentaryType.redCard,
-    MatchCommentaryType.funfact,
-    MatchCommentaryType.lineup,
-    MatchCommentaryType.injury,
-    MatchCommentaryType.penaltyOut,
-    MatchCommentaryType.penalty,
-    MatchCommentaryType.varType,
-    MatchCommentaryType.attendance,
-  ];
+  final List<MatchCommentaryType> _possibleCommentariesTypes =
+      MatchCommentaryType.values;
+  final List<MatchIncidentType> _possibleIncidentsTypes =
+      MatchIncidentType.values;
+  final List<MatchIncidentStageType> _possibleIncidentsStageTypes =
+      MatchIncidentStageType.values;
+  final List<MatchIncidentSideType> _possibleIncidentsSideTypes =
+      MatchIncidentSideType.values;
 
   Future<ChannelModel?> getChannel() async {
     final DocumentSnapshot<ChannelModel> snapshot =
@@ -104,15 +90,26 @@ class ExampleFirebaseService {
   }
 
   Future<void> startMatch() async {
+    print('Starting match...');
+
     // clean up
     await cleanUpMatch();
 
-    // random update every 10 seconds:
-    _timer = Timer.periodic(const Duration(seconds: 10), (timer) async {
+    final startTime = DateTime.now();
+    // random update every $updateInterval seconds:
+    _timer = Timer.periodic(Duration(seconds: updateInterval), (timer) async {
+      final elapsedTime = DateTime.now().difference(startTime);
+      if (elapsedTime > maxRuntime) {
+        timer.cancel();
+        print('Timer canceled after exceeding maximum runtime.');
+        return;
+      }
+      print('Updating match info...');
       await updateMatchScore();
       await updateMatchCommentary();
-      // await updateMatchStatistics();
-      // await updateMatchIncidents();
+      await updateMatchStatistics();
+      await updateMatchIncidents();
+      print('Match info updated');
     });
   }
 
@@ -150,37 +147,51 @@ class ExampleFirebaseService {
     await _commentariesRef(_matchId).add(randomCommentary);
   }
 
-  // Future<void> updateMatchStatistics() async {
-  //   final int possessionAway = _random.nextInt(101);
-  //   final int possessionHome = 100 - possessionAway;
+  Future<void> updateMatchStatistics() async {
+    final statistics = [];
 
-  //   final int shotsAway = _random.nextInt(21);
-  //   final int shotsHome = _random.nextInt(21);
+    for (var type in MatchStatisticsType.values) {
+      final valueHome = _random.nextInt(100).toString();
+      final valueAway = _random.nextInt(100).toString();
+      final displayName = type.toString();
 
-  //   final int shotsOnTargetAway = _random.nextInt(shotsAway + 1);
-  //   final int shotsOnTargetHome = _random.nextInt(shotsHome + 1);
+      statistics.add(
+        MatchStatisticsModel(
+          valueHome: valueHome,
+          valueAway: valueAway,
+          displayName: displayName,
+          type: type,
+        ).toJson(),
+      );
+    }
 
-  //   final int foulsAway = _random.nextInt(21);
-  //   final int foulsHome = _random.nextInt(21);
+    await _matchesRef.doc(_matchId).update({'statistics': statistics});
+  }
 
-  //   final int cornersAway = _random.nextInt(11);
-  //   final int cornersHome = _random.nextInt(11);
+  Future<void> updateMatchIncidents() async {
+    final MatchIncidentStageType stage = _possibleIncidentsStageTypes[
+        _random.nextInt(_possibleIncidentsStageTypes.length)];
 
-  //   final int offsidesAway = _random.nextInt(6);
-  //   final int offsidesHome = _random.nextInt(6);
+    final MatchIncidentType type = _possibleIncidentsTypes[
+        _random.nextInt(_possibleIncidentsTypes.length)];
 
-  //   final int yellowCardsAway = _random.nextInt(6);
-  //   final int yellowCardsHome = _random.nextInt(6);
+    final MatchIncidentSideType side = _possibleIncidentsSideTypes[
+        _random.nextInt(_possibleIncidentsSideTypes.length)];
 
-  //   final int redCardsAway = _random.nextInt(3);
-  //   final int redCardsHome = _random.nextInt(3);
+    final incident = MatchIncidentModel(
+      incidentTime: incidentOrder.toString(),
+      participant: 'participant $incidentOrder',
+      stage: stage,
+      type: type,
+      side: side,
+      order: incidentOrder++,
+    );
 
-  //   final int savesAway = _random.nextInt(6);
-  //   final int savesHome = _random.nextInt(6);
-
-  // }
+    await _incidentsRef(_matchId).add(incident);
+  }
 
   Future<void> cleanUpMatch() async {
+    print('Cleaning up match...');
     _timer?.cancel();
 
     commentaryOrder = 0;
@@ -193,15 +204,9 @@ class ExampleFirebaseService {
     };
 
     await _channelMatchRef(_channelId).doc(_matchId).update(matchCleanUp);
-    await _matchesRef.doc(_matchId).update(matchCleanUp);
+    await _matchesRef.doc(_matchId).update({...matchCleanUp, 'statistics': []});
 
     await _commentariesRef(_matchId).get().then((snapshot) {
-      for (DocumentSnapshot doc in snapshot.docs) {
-        doc.reference.delete();
-      }
-    });
-
-    await _statisticsRef(_matchId).get().then((snapshot) {
       for (DocumentSnapshot doc in snapshot.docs) {
         doc.reference.delete();
       }
@@ -212,5 +217,6 @@ class ExampleFirebaseService {
         doc.reference.delete();
       }
     });
+    print('Match cleaned up');
   }
 }

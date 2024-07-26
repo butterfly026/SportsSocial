@@ -11,7 +11,7 @@ GoRouter appRouter() {
       GoRoute(
         name: 'home',
         path: '/home',
-        builder: (context, state) => const HomePage(),
+        builder: (context, state) => HomePage(),
       ),
       GoRoute(
         name: 'team_info',
