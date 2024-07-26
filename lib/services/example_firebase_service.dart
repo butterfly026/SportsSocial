@@ -55,7 +55,7 @@ class ExampleFirebaseService {
   }
 
   Timer? _timer;
-  int updateInterval = 5; // interval to update match data
+  int updateInterval = 10; // interval to update match data
   final maxRuntime = const Duration(minutes: 5); // safeguard
 
   final Random _random = Random();
