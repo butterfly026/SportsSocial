@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sport_social_mobile_mock/views/banner_work/components/commentary_widget.dart';
+import 'package:sport_social_mobile_mock/views/banner_work/components/game_summary_widget.dart';
 
 class BannerHeader extends StatefulWidget {
   const BannerHeader({super.key});
@@ -80,7 +81,7 @@ class _BannerHeaderState extends State<BannerHeader>
       case 0:
         return const CommentaryWidget(displayMode: 0);
       case 1:
-        return Container();
+        return const GameSummaryWidget(displayMode: 0);
       case 2:
         return Container();
       default:
