@@ -26,14 +26,8 @@ class LiveGameService {
       final List<MatchgCommentaryModel> dataList =
           List<MatchgCommentaryModel>.from(jsonResponse
               .map((jsonData) => MatchgCommentaryModel.fromJson(jsonData)));
-      dataList.sort((a, b) {
-        if (a.time.isEmpty && b.time.isEmpty) return 0;
-        if (a.time.isEmpty) return 1;
-        if (b.time.isEmpty) return -1;
-        int n1 = int.tryParse(b.time) ?? 0;
-        int n2 = int.tryParse(a.time) ?? 0;
-        if (n1 == 0 && n2 == 0) return 0;
-        return n1 > n2 ? 1 : -1;
+      dataList.sort((a, b) {                
+        return b.order > a.order ? 1 : b.order == a.order ? 0 :-1;
       });
       commentaryNotifier.value = dataList;
     } catch (e) {
