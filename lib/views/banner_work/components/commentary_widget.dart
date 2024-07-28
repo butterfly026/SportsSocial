@@ -19,7 +19,7 @@ class CommentaryWidgetState extends State<CommentaryWidget> {
     super.initState();
   }
 
-  Widget _getCommentaryItem(MatchgCommentaryModel commentary) {
+  Widget _getCommentaryItem(MatchCommentaryModel commentary) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 3.0),
       padding: const EdgeInsets.all(3.0),
@@ -47,7 +47,7 @@ class CommentaryWidgetState extends State<CommentaryWidget> {
     );
   }
 
-  Widget _getCommentaryList(List<MatchgCommentaryModel> lstData) {
+  Widget _getCommentaryList(List<MatchCommentaryModel> lstData) {
     return Expanded(
         child: ListView.builder(
             itemCount: lstData.length,
@@ -72,7 +72,7 @@ class CommentaryWidgetState extends State<CommentaryWidget> {
     return ValueListenableBuilder(
         valueListenable: dataMockService.commentaryNotifier,
         builder: (context, commentaries, child) {
-          List<MatchgCommentaryModel> lstData = [];
+          List<MatchCommentaryModel> lstData = [];
           int len = commentaries.length;
           if (widget.displayMode == 0) {
             lstData = commentaries.sublist(0, len > 5 ? 5 : len);

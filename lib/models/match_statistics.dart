@@ -21,20 +21,20 @@ enum MatchStatisticsType {
 }
 
 @immutable
-class MatchgStatisticsModel implements FireStoreBaseModel {
+class MatchStatisticsModel implements FireStoreBaseModel {
   final String valueHome;
   final String valueAway;
   final String displayName;
   final MatchStatisticsType type;
 
-  const MatchgStatisticsModel({
+  const MatchStatisticsModel({
     required this.valueHome,
     required this.valueAway,
     required this.displayName,
     required this.type,
   });
 
-  MatchgStatisticsModel.fromJson(Map<String, dynamic> json)
+  MatchStatisticsModel.fromJson(Map<String, dynamic> json)
       : this(
           valueHome: json['valueHome'],
           valueAway: json['valueAway'],
