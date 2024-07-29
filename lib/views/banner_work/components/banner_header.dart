@@ -11,6 +11,11 @@ class BannerHeader extends StatefulWidget {
 class _BannerHeaderState extends State<BannerHeader>
     with TickerProviderStateMixin {
   late TabController _tabController;
+  final List<String> tabContentNames = [
+    'commentary',
+    'gameSummary',
+    'statistics'
+  ];
 
   @override
   void initState() {
@@ -75,13 +80,13 @@ class _BannerHeaderState extends State<BannerHeader>
     );
   }
 
-  Widget _getContentByIdx(int index) {
-    switch (index) {
-      case 0:
+  Widget _getContentByName(String contentName) {
+    switch (contentName) {
+      case 'commentary':
         return const CommentaryWidget(displayMode: 0);
-      case 1:
+      case 'gameSummary':
         return Container();
-      case 2:
+      case 'statistics':
         return Container();
       default:
         return const Text('Default page',
@@ -89,23 +94,42 @@ class _BannerHeaderState extends State<BannerHeader>
     }
   }
 
-  Widget _getTabContent(int index) {
+  Widget _getTabContent(String contentName) {
     return Visibility(
-        visible: _tabController.index == index,
+        visible: _tabController.index == tabContentNames.indexOf(contentName),
         child: SizedBox(
           height: 100,
-          child: _getContentByIdx(index),
+          child: _getContentByName(contentName),
         ));
+  }
+
+  Widget _getExpandIcon() {
+    return GestureDetector(
+      onTap: () {},
+      child: const Padding(
+        padding: EdgeInsets.only(right: 2),
+        child: Icon(
+          Icons.open_in_full,
+          color: Colors.black,
+          size: 18,
+        ),
+      ),
+    );
   }
 
   Widget _getBannerWidget() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _getTabBar(),
+        Row(
+          children: [
+            Expanded(child: _getTabBar()),
+            _getExpandIcon(),
+          ],
+        ),
         Column(
           children: [
-            for (int i = 0; i < 3; i++) _getTabContent(i),
+            _getTabContent('commentary'),
           ],
         ),
       ],
