@@ -82,7 +82,7 @@ class DataMockPageState extends State<BannerWorkPage>
     });
   }
 
-  static Widget _teamBadge(String? badgeUrl) {
+  static Widget getTeamBadge(String? badgeUrl) {
     return CachedNetworkImage(
         imageUrl: badgeUrl ?? '',
         width: 20.0,
@@ -111,7 +111,7 @@ class DataMockPageState extends State<BannerWorkPage>
       offset: const Offset(-40, 0.0), // Adjust this offset as needed
       child: Row(
         children: [
-          _teamBadge(
+          getTeamBadge(
               'https://d1bvoel1nv172p.cloudfront.net/competitors/images/normal/medium/36534.png'),
           const SizedBox(width: 6.0),
           const Column(
@@ -127,7 +127,7 @@ class DataMockPageState extends State<BannerWorkPage>
             ],
           ),
           const SizedBox(width: 6.0),
-          _teamBadge(
+          getTeamBadge(
               'https://d1bvoel1nv172p.cloudfront.net/competitors/images/normal/medium/22007.png'),
         ],
       ),
