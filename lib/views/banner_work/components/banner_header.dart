@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:sport_social_mobile_mock/views/banner_work/components/commentary_widget.dart';
 
 class BannerHeader extends StatefulWidget {
-  const BannerHeader({super.key});
+  const BannerHeader(
+      {super.key,
+      required this.expandMode,
+      required this.bannerHeight,
+      this.onExpand});
+  final int expandMode;
+  final double bannerHeight;
+  final Function(int expanded)? onExpand;
 
   @override
   State<BannerHeader> createState() => _BannerHeaderState();
@@ -11,6 +18,7 @@ class BannerHeader extends StatefulWidget {
 class _BannerHeaderState extends State<BannerHeader>
     with TickerProviderStateMixin {
   late TabController _tabController;
+  Function(int expanded)? onExpand;
   final List<String> tabContentNames = [
     'commentary',
     'gameSummary',
@@ -18,11 +26,30 @@ class _BannerHeaderState extends State<BannerHeader>
   ];
 
   int expandMode = 0;
+  double bannerHeight = 0;
 
   @override
   void initState() {
     _tabController = TabController(length: 3, vsync: this);
+    expandMode = widget.expandMode;
+    bannerHeight = widget.bannerHeight;
+    onExpand = widget.onExpand;
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(covariant BannerHeader oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (expandMode != widget.expandMode) {
+      setState(() {
+        expandMode = widget.expandMode;
+      });
+    }
+    if (bannerHeight != widget.bannerHeight) {
+      setState(() {
+        bannerHeight = widget.bannerHeight;
+      });
+    }
   }
 
   @override
@@ -101,7 +128,7 @@ class _BannerHeaderState extends State<BannerHeader>
     return Visibility(
         visible: _tabController.index == tabContentNames.indexOf(contentName),
         child: SizedBox(
-          height: 100,
+          height: bannerHeight,
           child: _getContentByName(contentName),
         ));
   }
@@ -111,6 +138,9 @@ class _BannerHeaderState extends State<BannerHeader>
       onTap: () {
         setState(() {
           expandMode = (expandMode + 1) % 2;
+          if(onExpand != null) {
+            onExpand!(expandMode);
+          }
         });
       },
       child: const Padding(
