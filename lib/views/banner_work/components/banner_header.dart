@@ -138,9 +138,8 @@ class _BannerHeaderState extends State<BannerHeader>
     return GestureDetector(
       onTap: () {
         setState(() {
-          expandMode = (expandMode + 1) % 2;
           if(onExpand != null) {
-            onExpand!(expandMode);
+            onExpand!((expandMode + 1) % 2);
           }
         });
       },

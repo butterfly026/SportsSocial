@@ -12,7 +12,7 @@ class BannerWorkPage extends StatefulWidget {
 
 class DataMockPageState extends State<BannerWorkPage>
     with SingleTickerProviderStateMixin {
-  double defaultBannerHeight = 160;
+  double defaultBannerHeight = 170;
   double bannerHeight = 160;
   double dragYStart = 0;
   double dragYEnd = 0;
@@ -43,6 +43,8 @@ class DataMockPageState extends State<BannerWorkPage>
     _expandController.addListener(() {
       setState(() {
         bannerHeight = _expandAnimation.value;
+        double screenHeight = MediaQuery.of(context).size.height;
+        expanded = bannerHeight < screenHeight - 300 ? 0 : 1;
       });
     });
   }
@@ -72,21 +74,19 @@ class DataMockPageState extends State<BannerWorkPage>
   void onExpanded(int expanded) {
     setState(() {
       if (expanded == 1) {
+        bannerHeight = MediaQuery.of(context).size.height - 100;
         _expandController.forward();
-        this.expanded = expanded;
       } else {
         _expandController.reverse();
-        expanded = 0;
-        this.expanded = expanded;
       }
     });
   }
 
-  static Widget getTeamBadge(String? badgeUrl) {
+  static Widget getTeamBadge(String? badgeUrl, double size) {
     return CachedNetworkImage(
         imageUrl: badgeUrl ?? '',
-        width: 20.0,
-        height: 20.0,
+        width: size,
+        height: size,
         placeholder: (context, url) => const SizedBox(
               width: 20.0,
               height: 20.0,
@@ -112,7 +112,8 @@ class DataMockPageState extends State<BannerWorkPage>
       child: Row(
         children: [
           getTeamBadge(
-              'https://d1bvoel1nv172p.cloudfront.net/competitors/images/normal/medium/36534.png'),
+              'https://d1bvoel1nv172p.cloudfront.net/competitors/images/normal/medium/36534.png',
+              20.0),
           const SizedBox(width: 6.0),
           const Column(
             children: [
@@ -128,7 +129,8 @@ class DataMockPageState extends State<BannerWorkPage>
           ),
           const SizedBox(width: 6.0),
           getTeamBadge(
-              'https://d1bvoel1nv172p.cloudfront.net/competitors/images/normal/medium/22007.png'),
+              'https://d1bvoel1nv172p.cloudfront.net/competitors/images/normal/medium/22007.png',
+              20.0),
         ],
       ),
     );
@@ -182,6 +184,11 @@ class DataMockPageState extends State<BannerWorkPage>
             } else if (positionY <= maxHeight) {
               bannerHeight = positionY - 40;
             }
+            if (bannerHeight < maxHeight - 300) {
+              expanded = 0;
+            } else {
+              expanded = 1;
+            }
           });
         },
         onVerticalDragEnd: (details) {
@@ -206,8 +213,8 @@ class DataMockPageState extends State<BannerWorkPage>
               }
             } else if (offset < -defaultOffset) {
               bannerHeight = defaultBannerHeight;
-            }
-            if (bannerHeight == defaultBannerHeight) {
+            }            
+            if (bannerHeight < maxHeight - 300) {
               expanded = 0;
             } else {
               expanded = 1;

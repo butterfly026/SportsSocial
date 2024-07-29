@@ -29,8 +29,12 @@ class LiveGameService {
       final List<MatchCommentaryModel> dataList =
           List<MatchCommentaryModel>.from(jsonResponse
               .map((jsonData) => MatchCommentaryModel.fromJson(jsonData)));
-      dataList.sort((a, b) {                
-        return b.order > a.order ? 1 : b.order == a.order ? 0 :-1;
+      dataList.sort((a, b) {
+        return b.order > a.order
+            ? 1
+            : b.order == a.order
+                ? 0
+                : -1;
       });
       commentaryNotifier.value = dataList;
     } catch (e) {
@@ -43,8 +47,23 @@ class LiveGameService {
   Future<void> _loadSummaries() async {
     try {
       final List<MatchGameSummary> dataList = [
-        const MatchGameSummary(order: 0, summaryTime: 'Ends of 60 min', content: 'A cagey opening at Old Trafford. Both teams cautious in the early stages. ')
+        const MatchGameSummary(
+            order: 0,
+            summaryTime: 'Ends of 60 min',
+            content:
+                'A cagey opening at Old Trafford. Both teams cautious in the early stages. '),
+        const MatchGameSummary(
+            order: 1,
+            summaryTime: 'Ends of 90 min',
+            content: 'Both teams cautious in the early stages. ')
       ];
+      dataList.sort((a, b) {
+        return b.order > a.order
+            ? 1
+            : b.order == a.order
+                ? 0
+                : -1;
+      });
       summaryNotifier.value = dataList;
     } catch (e) {
       if (kDebugMode) {
@@ -63,6 +82,13 @@ class LiveGameService {
           jsonResponse
               .map((jsonData) => MatchIncidentModel.fromJson(jsonData)));
 
+      dataList.sort((a, b) {
+        return a.order > b.order
+            ? 1
+            : b.order == a.order
+                ? 0
+                : -1;
+      });
       incidentNotifier.value = dataList;
     } catch (e) {
       if (kDebugMode) {
