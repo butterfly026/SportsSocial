@@ -3,15 +3,18 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:sport_social_mobile_mock/models/match_commentary_model.dart';
+import 'package:sport_social_mobile_mock/models/match_game_summary.dart';
 import 'package:sport_social_mobile_mock/models/match_incident_model.dart';
 import 'package:sport_social_mobile_mock/models/match_statistics.dart';
 
 class LiveGameService {
   final commentaryNotifier = ValueNotifier<List<MatchCommentaryModel>>([]);
   final incidentNotifier = ValueNotifier<List<MatchIncidentModel>>([]);
+  final summaryNotifier = ValueNotifier<List<MatchGameSummary>>([]);
   final statisticNotifier = ValueNotifier<List<MatchStatisticsModel>>([]);
   Future<LiveGameService> initialize() async {
     await _loadCommentary();
+    await _loadSummaries();
     await _loadIncident();
     await _loadStatistic();
     return this;
@@ -30,6 +33,19 @@ class LiveGameService {
         return b.order > a.order ? 1 : b.order == a.order ? 0 :-1;
       });
       commentaryNotifier.value = dataList;
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+    }
+  }
+
+  Future<void> _loadSummaries() async {
+    try {
+      final List<MatchGameSummary> dataList = [
+        const MatchGameSummary(order: 0, summaryTime: 'Ends of 60 min', content: 'A cagey opening at Old Trafford. Both teams cautious in the early stages. ')
+      ];
+      summaryNotifier.value = dataList;
     } catch (e) {
       if (kDebugMode) {
         print(e);

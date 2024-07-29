@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sport_social_mobile_mock/models/match_game_summary.dart';
 import 'package:sport_social_mobile_mock/services/live_game_service.dart';
 import 'package:sport_social_mobile_mock/services/service_locator.dart';
 
@@ -18,58 +19,46 @@ class GameSummaryWidgetState extends State<GameSummaryWidget> {
     super.initState();
   }
 
-  Widget _getGameSummaryItem() {
-    return RichText(
-      text: const TextSpan(
-        style: TextStyle(fontSize: 16.0, color: Colors.white, height: 1.5),
-        children: <TextSpan>[
-          TextSpan(
-              text: 'End of 60 mins',
-              style: TextStyle(fontWeight: FontWeight.bold)),
-          TextSpan(
-              text:
-                  'A cagey opening at Old Trafford. Both teams cautious in the early stages. '),
-        ],
-      ),
-    );
-  }
-
-  Widget _getGameSummaryList() {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 3.0),
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: _getGameSummaryItem(),
-              ),
-            )
+  Widget _getCommentaryItem(MatchGameSummary summary) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      child: RichText(
+        text: TextSpan(
+          style:
+              const TextStyle(fontSize: 16.0, color: Colors.white, height: 1.5),
+          children: <TextSpan>[
+            TextSpan(
+                text: summary.summaryTime,
+                style: const TextStyle(fontWeight: FontWeight.bold)),
+            TextSpan(text: summary.content),
           ],
         ),
       ),
     );
   }
 
-  Widget _getExpandIcon() {
-    return GestureDetector(
-      onTap: () {},
-      child: const Icon(
-        Icons.open_in_full,
-        color: Colors.white,
-        size: 18,
-      ),
-    );
+  Widget _getSummaryList(List<MatchGameSummary> lstData) {
+    return ListView.builder(
+        itemCount: lstData.length,
+        padding: EdgeInsets.zero,
+        itemBuilder: (context, index) {
+          return _getCommentaryItem(lstData[index]);
+        });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _getGameSummaryList(),
-        _getExpandIcon(),
-      ],
-    );
+    return ValueListenableBuilder(
+        valueListenable: dataMockService.summaryNotifier,
+        builder: (context, commentaries, child) {
+          List<MatchGameSummary> lstData = [];
+          int len = commentaries.length;
+          if (widget.displayMode == 0) {
+            lstData = commentaries.sublist(0, len > 4 ? 4 : len);
+          } else {
+            lstData = commentaries;
+          }
+          return _getSummaryList(lstData);
+        });
   }
 }

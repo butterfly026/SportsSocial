@@ -89,7 +89,7 @@ class _BannerHeaderState extends State<BannerHeader>
       case 'commentary':
         return CommentaryWidget(displayMode: expandMode);
       case 'gameSummary':
-        return Container();
+        return GameSummaryWidget(displayMode: expandMode);
       case 'statistics':
         return Container();
       default:
@@ -138,6 +138,7 @@ class _BannerHeaderState extends State<BannerHeader>
         Column(
           children: [
             _getTabContent('commentary'),
+            _getTabContent('gameSummary'),
           ],
         ),
       ],
