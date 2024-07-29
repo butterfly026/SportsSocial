@@ -70,7 +70,6 @@ class DataMockPageState extends State<BannerWorkPage>
   }
 
   void onExpanded(int expanded) {
-    double maxHeight = MediaQuery.of(context).size.height - 100;
     setState(() {
       if (expanded == 1) {
         _expandController.forward();
