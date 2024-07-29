@@ -58,6 +58,7 @@ class _BannerHeaderState extends State<BannerHeader>
         indicator: BoxDecoration(
           color: const Color(0xFF535457),
           borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Colors.white, width: 1.0),
         ),
         unselectedLabelColor: Colors.white,
         // labelStyle: const TextStyle(fontSize: 10.0),
