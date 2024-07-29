@@ -116,7 +116,7 @@ class _BannerHeaderState extends State<BannerHeader>
       case 'commentary':
         return CommentaryWidget(expandMode: expandMode);
       case 'gameSummary':
-        return GameSummaryWidget(displayMode: expandMode);
+        return GameSummaryWidget(expandMode: expandMode);
       case 'statistics':
         return Container();
       default:

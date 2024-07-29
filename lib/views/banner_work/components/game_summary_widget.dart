@@ -4,8 +4,8 @@ import 'package:sport_social_mobile_mock/services/live_game_service.dart';
 import 'package:sport_social_mobile_mock/services/service_locator.dart';
 
 class GameSummaryWidget extends StatefulWidget {
-  final int displayMode;
-  const GameSummaryWidget({super.key, required this.displayMode});
+  final int expandMode;
+  const GameSummaryWidget({super.key, required this.expandMode});
 
   @override
   GameSummaryWidgetState createState() => GameSummaryWidgetState();
@@ -30,6 +30,7 @@ class GameSummaryWidgetState extends State<GameSummaryWidget> {
             TextSpan(
                 text: summary.summaryTime,
                 style: const TextStyle(fontWeight: FontWeight.bold)),
+            const TextSpan(text: ' '),
             TextSpan(text: summary.content),
           ],
         ),
@@ -46,19 +47,38 @@ class GameSummaryWidgetState extends State<GameSummaryWidget> {
         });
   }
 
+  Widget _getIncidents() {
+    return Text('Text');
+  }
+
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
         valueListenable: dataMockService.summaryNotifier,
         builder: (context, commentaries, child) {
-          List<MatchGameSummary> lstData = [];
-          int len = commentaries.length;
-          if (widget.displayMode == 0) {
-            lstData = commentaries.sublist(0, len > 4 ? 4 : len);
-          } else {
-            lstData = commentaries;
-          }
-          return _getSummaryList(lstData);
+          return ValueListenableBuilder(
+              valueListenable: dataMockService.incidentNotifier,
+              builder: (context, incidents, child) {
+                List<MatchGameSummary> lstData = [];
+                int len = commentaries.length;
+                if (widget.expandMode == 0) {
+                  lstData = commentaries.sublist(0, len > 4 ? 4 : len);
+                } else {
+                  lstData = commentaries;
+                }
+                if (widget.expandMode == 0) {
+                  return _getSummaryList(lstData);
+                } else {
+                  return Column(
+                    children: [
+                      _getIncidents(),
+                      Expanded(
+                        child: _getSummaryList(lstData),
+                      )
+                    ],
+                  );
+                }
+              });
         });
   }
 }
