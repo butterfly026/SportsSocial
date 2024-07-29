@@ -113,7 +113,7 @@ class _BannerHeaderState extends State<BannerHeader>
   Widget _getContentByName(String contentName) {
     switch (contentName) {
       case 'commentary':
-        return CommentaryWidget(displayMode: expandMode);
+        return CommentaryWidget(expandMode: expandMode);
       case 'gameSummary':
         return Container();
       case 'statistics':
