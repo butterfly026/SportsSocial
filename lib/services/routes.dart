@@ -5,13 +5,13 @@ import 'package:sport_social_mobile_mock/views/home_page.dart';
 
 GoRouter appRouter() {
   return GoRouter(
-    initialLocation: '/home',
+    initialLocation: '/banner_work',
     debugLogDiagnostics: true,
     routes: [
       GoRoute(
         name: 'home',
         path: '/home',
-        builder: (context, state) => const HomePage(),
+        builder: (context, state) => HomePage(),
       ),
       GoRoute(
         name: 'team_info',

@@ -12,6 +12,13 @@ class BannerHeader extends StatefulWidget {
 class _BannerHeaderState extends State<BannerHeader>
     with TickerProviderStateMixin {
   late TabController _tabController;
+  final List<String> tabContentNames = [
+    'commentary',
+    'gameSummary',
+    'statistics'
+  ];
+
+  int expandMode = 0;
 
   @override
   void initState() {
@@ -27,9 +34,9 @@ class _BannerHeaderState extends State<BannerHeader>
 
   Widget _getTabItem(String tabTitle) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 1.0, horizontal: 3.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: ConstrainedBox(
-        constraints: const BoxConstraints(minWidth: 50),
+        constraints: const BoxConstraints(minHeight: 35),
         child: Tab(
           text: tabTitle,
           height: 16,
@@ -53,11 +60,12 @@ class _BannerHeaderState extends State<BannerHeader>
         },
         indicator: BoxDecoration(
           color: const Color(0xFF535457),
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Colors.white, width: 1.0),
         ),
         unselectedLabelColor: Colors.white,
-        labelStyle: const TextStyle(fontSize: 10.0),
-        labelPadding: const EdgeInsets.symmetric(horizontal: 8.0),
+        // labelStyle: const TextStyle(fontSize: 10.0),
+        labelPadding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 0),
         labelColor: Colors.white,
         dividerColor: Colors.transparent,
         splashBorderRadius: const BorderRadius.all(Radius.circular(8.0)),
@@ -76,13 +84,13 @@ class _BannerHeaderState extends State<BannerHeader>
     );
   }
 
-  Widget _getContentByIdx(int index) {
-    switch (index) {
-      case 0:
-        return const CommentaryWidget(displayMode: 0);
-      case 1:
-        return const GameSummaryWidget(displayMode: 0);
-      case 2:
+  Widget _getContentByName(String contentName) {
+    switch (contentName) {
+      case 'commentary':
+        return CommentaryWidget(displayMode: expandMode);
+      case 'gameSummary':
+        return Container();
+      case 'statistics':
         return Container();
       default:
         return const Text('Default page',
@@ -90,23 +98,46 @@ class _BannerHeaderState extends State<BannerHeader>
     }
   }
 
-  Widget _getTabContent(int index) {
+  Widget _getTabContent(String contentName) {
     return Visibility(
-        visible: _tabController.index == index,
+        visible: _tabController.index == tabContentNames.indexOf(contentName),
         child: SizedBox(
           height: 100,
-          child: _getContentByIdx(index),
+          child: _getContentByName(contentName),
         ));
+  }
+
+  Widget _getExpandIcon() {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          expandMode = (expandMode + 1) % 2;
+        });
+      },
+      child: const Padding(
+        padding: EdgeInsets.only(right: 2),
+        child: Icon(
+          Icons.open_in_full,
+          color: Colors.black,
+          size: 18,
+        ),
+      ),
+    );
   }
 
   Widget _getBannerWidget() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _getTabBar(),
+        Row(
+          children: [
+            Expanded(child: _getTabBar()),
+            _getExpandIcon(),
+          ],
+        ),
         Column(
           children: [
-            for (int i = 0; i < 3; i++) _getTabContent(i),
+            _getTabContent('commentary'),
           ],
         ),
       ],
@@ -119,7 +150,7 @@ class _BannerHeaderState extends State<BannerHeader>
       children: [
         Expanded(
           child: Container(
-            padding: const EdgeInsets.only(bottom: 10.0),
+            padding: const EdgeInsets.only(bottom: 10.0, top: 5.0),
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                   colors: [

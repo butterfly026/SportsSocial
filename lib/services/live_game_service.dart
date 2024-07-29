@@ -7,9 +7,9 @@ import 'package:sport_social_mobile_mock/models/match_incident_model.dart';
 import 'package:sport_social_mobile_mock/models/match_statistics.dart';
 
 class LiveGameService {
-  final commentaryNotifier = ValueNotifier<List<MatchgCommentaryModel>>([]);
+  final commentaryNotifier = ValueNotifier<List<MatchCommentaryModel>>([]);
   final incidentNotifier = ValueNotifier<List<MatchIncidentModel>>([]);
-  final statisticNotifier = ValueNotifier<List<MatchgStatisticsModel>>([]);
+  final statisticNotifier = ValueNotifier<List<MatchStatisticsModel>>([]);
   Future<LiveGameService> initialize() async {
     await _loadCommentary();
     await _loadIncident();
@@ -23,17 +23,11 @@ class LiveGameService {
           await rootBundle.loadString('lib/assets/commentary.json');
       final jsonResponse = jsonDecode(jsonString);
 
-      final List<MatchgCommentaryModel> dataList =
-          List<MatchgCommentaryModel>.from(jsonResponse
-              .map((jsonData) => MatchgCommentaryModel.fromJson(jsonData)));
-      dataList.sort((a, b) {
-        if (a.time.isEmpty && b.time.isEmpty) return 0;
-        if (a.time.isEmpty) return 1;
-        if (b.time.isEmpty) return -1;
-        int n1 = int.tryParse(b.time) ?? 0;
-        int n2 = int.tryParse(a.time) ?? 0;
-        if (n1 == 0 && n2 == 0) return 0;
-        return n1 > n2 ? 1 : -1;
+      final List<MatchCommentaryModel> dataList =
+          List<MatchCommentaryModel>.from(jsonResponse
+              .map((jsonData) => MatchCommentaryModel.fromJson(jsonData)));
+      dataList.sort((a, b) {                
+        return b.order > a.order ? 1 : b.order == a.order ? 0 :-1;
       });
       commentaryNotifier.value = dataList;
     } catch (e) {
@@ -67,9 +61,9 @@ class LiveGameService {
           await rootBundle.loadString('lib/assets/statistics.json');
       final jsonResponse = jsonDecode(jsonString);
 
-      final List<MatchgStatisticsModel> dataList =
-          List<MatchgStatisticsModel>.from(jsonResponse
-              .map((jsonData) => MatchgStatisticsModel.fromJson(jsonData)));
+      final List<MatchStatisticsModel> dataList =
+          List<MatchStatisticsModel>.from(jsonResponse
+              .map((jsonData) => MatchStatisticsModel.fromJson(jsonData)));
 
       statisticNotifier.value = dataList;
     } catch (e) {
