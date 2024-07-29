@@ -17,6 +17,8 @@ class _BannerHeaderState extends State<BannerHeader>
     'statistics'
   ];
 
+  int expandMode = 0;
+
   @override
   void initState() {
     _tabController = TabController(length: 3, vsync: this);
@@ -84,7 +86,7 @@ class _BannerHeaderState extends State<BannerHeader>
   Widget _getContentByName(String contentName) {
     switch (contentName) {
       case 'commentary':
-        return const CommentaryWidget(displayMode: 0);
+        return CommentaryWidget(displayMode: expandMode);
       case 'gameSummary':
         return Container();
       case 'statistics':
@@ -106,7 +108,11 @@ class _BannerHeaderState extends State<BannerHeader>
 
   Widget _getExpandIcon() {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        setState(() {
+          expandMode = (expandMode + 1) % 2;
+        });
+      },
       child: const Padding(
         padding: EdgeInsets.only(right: 2),
         child: Icon(
