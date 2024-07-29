@@ -4,8 +4,8 @@ import 'package:sport_social_mobile_mock/services/live_game_service.dart';
 import 'package:sport_social_mobile_mock/services/service_locator.dart';
 
 class CommentaryWidget extends StatefulWidget {
-  final int displayMode;
-  const CommentaryWidget({super.key, required this.displayMode});
+  final int expandMode;
+  const CommentaryWidget({super.key, required this.expandMode});
 
   @override
   CommentaryWidgetState createState() => CommentaryWidgetState();
@@ -63,7 +63,7 @@ class CommentaryWidgetState extends State<CommentaryWidget> {
         builder: (context, commentaries, child) {
           List<MatchCommentaryModel> lstData = [];
           int len = commentaries.length;
-          if (widget.displayMode == 0) {
+          if (widget.expandMode == 0) {
             lstData = commentaries.sublist(0, len > 5 ? 5 : len);
           } else {
             lstData = commentaries;
