@@ -143,7 +143,7 @@ class _BannerHeaderState extends State<BannerHeader>
       children: [
         Expanded(
           child: Container(
-            padding: const EdgeInsets.only(bottom: 10.0),
+            padding: const EdgeInsets.only(bottom: 10.0, top: 5.0),
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                   colors: [
