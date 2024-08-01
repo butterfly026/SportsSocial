@@ -24,7 +24,6 @@ class _BannerHeaderState extends State<BannerHeader>
   double dragYEnd = 0;
   int expanded = 0;
   bool isDragging = false;
-  double maxHeight = 0;
 
   @override
   void initState() {
@@ -117,6 +116,7 @@ class _BannerHeaderState extends State<BannerHeader>
   }
 
   Widget _getExpandIcon() {
+    final maxHeight = MediaQuery.of(context).size.height - 150;
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -168,6 +168,7 @@ class _BannerHeaderState extends State<BannerHeader>
   }
 
   Widget _getExpandDragArea() {
+    final maxHeight = MediaQuery.of(context).size.height - 150;
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onVerticalDragStart: (details) {
@@ -228,7 +229,6 @@ class _BannerHeaderState extends State<BannerHeader>
 
   @override
   Widget build(BuildContext context) {
-    maxHeight = MediaQuery.of(context).size.height - 150;
     return AnimatedContainer(
       padding: const EdgeInsets.only(top: 5.0),
       decoration: const BoxDecoration(
