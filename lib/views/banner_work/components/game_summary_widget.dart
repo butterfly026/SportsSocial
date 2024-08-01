@@ -7,8 +7,7 @@ import 'package:sport_social_mobile_mock/views/banner_work/banner_work_page.dart
 
 class GameSummaryWidget extends StatefulWidget {
   final int expandMode;
-  const GameSummaryWidget(
-      {super.key, required this.expandMode});
+  const GameSummaryWidget({super.key, required this.expandMode});
 
   @override
   GameSummaryWidgetState createState() => GameSummaryWidgetState();
@@ -22,12 +21,12 @@ class GameSummaryWidgetState extends State<GameSummaryWidget> {
       height: 1.5,
       fontWeight: FontWeight.bold);
   double defaultWidthPerIncident = 60;
-  
+
   @override
   void initState() {
     super.initState();
   }
-  
+
   Widget _getCommentaryItem(MatchGameSummary summary) {
     if (widget.expandMode == 1) {
       return Container(
@@ -195,46 +194,210 @@ class GameSummaryWidgetState extends State<GameSummaryWidget> {
     );
   }
 
-  Widget _getIncidentItemWidget(
-      MatchIncidentModel? incident, MatchIncidentSideType side) {
-    if (incident == null) return Container();
-    switch (incident.type) {
-      case MatchIncidentType.goal:
-      case MatchIncidentType.penaltyScored:
-        return _getIncidentImage(
-            incident.participant, 'lib/assets/ball.png', side);
-      case MatchIncidentType.ownGoal:
-        return _getIncidentImage(
-            incident.participant, 'lib/assets/own_ball.png', side);
-      case MatchIncidentType.yellowCard:
-        return _getIncidentCard(incident.participant, Colors.yellow, side);
-      case MatchIncidentType.redCard:
-        return _getIncidentCard(incident.participant, Colors.red, side);
-      case MatchIncidentType.penaltyMissed:
-        return _getIncidentImage(
-            incident.participant, 'lib/assets/missed_ball.png', side);
-      case MatchIncidentType.assistance:
-        print('assistance');
-        return _getIncidentImage(
-            incident.participant, 'lib/assets/assitance_ball.png', side);
-      default:
-        return Container();
+  Widget _getSubstitation(List<MatchIncidentModel> incidentsIn,
+      List<MatchIncidentModel> incidentsOut, MatchIncidentSideType side) {
+    if (side == MatchIncidentSideType.away) {
+      return Column(
+        children: [
+          if (incidentsIn.isNotEmpty)
+            for (var incident in incidentsIn)
+              Text(
+                incidentsIn.indexOf(incident) == 0
+                    ? incident.participant
+                    : '/ ${incident.participant}',
+                textAlign: TextAlign.center,
+                style: textStyle.copyWith(
+                    color: Colors.green,
+                    fontWeight: FontWeight.normal,
+                    fontSize: 10.0),
+              ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (incidentsIn.isNotEmpty)
+                const Icon(Icons.arrow_downward, color: Colors.red, size: 15),
+              if (incidentsOut.isNotEmpty)
+                const Icon(Icons.arrow_upward, color: Colors.green, size: 15),
+            ],
+          ),
+          if (incidentsOut.isNotEmpty)
+            for (var incident in incidentsOut)
+              Text(
+                incidentsOut.indexOf(incident) == 0
+                    ? incident.participant
+                    : '/ ${incident.participant}',
+                textAlign: TextAlign.center,
+                style: textStyle.copyWith(
+                    color: Colors.red,
+                    fontWeight: FontWeight.normal,
+                    fontSize: 10.0),
+              ),
+        ],
+      );
     }
+
+    return Column(
+      children: [
+        if (incidentsOut.isNotEmpty)
+          for (var incident in incidentsOut)
+            Text(
+              incidentsOut.indexOf(incident) == 0
+                  ? incident.participant
+                  : '/ ${incident.participant}',
+              textAlign: TextAlign.center,
+              style: textStyle.copyWith(
+                  color: Colors.red,
+                  fontWeight: FontWeight.normal,
+                  fontSize: 10.0),
+            ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (incidentsOut.isNotEmpty)
+              const Icon(Icons.arrow_upward, color: Colors.green, size: 15),
+            if (incidentsIn.isNotEmpty)
+              const Icon(Icons.arrow_downward, color: Colors.red, size: 15),
+          ],
+        ),
+        if (incidentsIn.isNotEmpty)
+          for (var incident in incidentsIn)
+            Text(
+              incidentsIn.indexOf(incident) == 0
+                  ? incident.participant
+                  : '/ ${incident.participant}',
+              textAlign: TextAlign.center,
+              style: textStyle.copyWith(
+                  color: Colors.green,
+                  fontWeight: FontWeight.normal,
+                  fontSize: 10.0),
+            ),
+      ],
+    );
   }
 
-  MatchIncidentModel? getIncident(
+  Widget _getGoalAssistance(MatchIncidentModel incAssistance,
+      MatchIncidentModel incGoal, MatchIncidentSideType side) {
+    if (side == MatchIncidentSideType.away) {
+      return Column(
+        children: [
+          Image.asset(
+            'lib/assets/ball.png',
+            width: 16,
+            height: 16,
+          ),
+          Text(
+            incGoal.participant,
+            textAlign: TextAlign.center,
+            style: textStyle.copyWith(
+                fontWeight: FontWeight.normal, fontSize: 10.0),
+          ),
+          Image.asset(
+            'lib/assets/assitance_ball.png',
+            width: 16,
+            height: 16,
+          ),
+          Text(
+            incAssistance.participant,
+            textAlign: TextAlign.center,
+            style: textStyle.copyWith(
+                fontWeight: FontWeight.normal, fontSize: 10.0),
+          ),
+        ],
+      );
+    }
+
+    return Column(
+      children: [
+        Text(
+          incAssistance.participant,
+          textAlign: TextAlign.center,
+          style:
+              textStyle.copyWith(fontWeight: FontWeight.normal, fontSize: 10.0),
+        ),
+        Image.asset(
+          'lib/assets/assitance_ball.png',
+          width: 16,
+          height: 16,
+        ),
+        Text(
+          incGoal.participant,
+          textAlign: TextAlign.center,
+          style:
+              textStyle.copyWith(fontWeight: FontWeight.normal, fontSize: 10.0),
+        ),
+        Image.asset(
+          'lib/assets/ball.png',
+          width: 16,
+          height: 16,
+        ),
+      ],
+    );
+  }
+
+  Widget _getIncidentItemWidget(
+      List<MatchIncidentModel> incidents, MatchIncidentSideType side) {
+    if (incidents.isEmpty) return Container();
+    if (incidents.length == 1) {
+      MatchIncidentModel incident = incidents[0];
+      switch (incident.type) {
+        case MatchIncidentType.goal:
+        case MatchIncidentType.penaltyScored:
+          return _getIncidentImage(
+              incident.participant, 'lib/assets/ball.png', side);
+        case MatchIncidentType.ownGoal:
+          return _getIncidentImage(
+              incident.participant, 'lib/assets/own_ball.png', side);
+        case MatchIncidentType.yellowCard:
+          return _getIncidentCard(incident.participant, Colors.yellow, side);
+        case MatchIncidentType.redCard:
+          return _getIncidentCard(incident.participant, Colors.red, side);
+        case MatchIncidentType.penaltyMissed:
+          return _getIncidentImage(
+              incident.participant, 'lib/assets/missed_ball.png', side);
+        case MatchIncidentType.assistance:
+          return _getIncidentImage(
+              incident.participant, 'lib/assets/assitance_ball.png', side);
+        default:
+          return Container();
+      }
+    } else if (incidents.length == 2 &&
+        (incidents[0].type == MatchIncidentType.assistance ||
+            incidents[0].type == MatchIncidentType.goal)) {
+      try {
+        MatchIncidentModel incAssistance = incidents
+            .firstWhere((item) => item.type == MatchIncidentType.assistance);
+        MatchIncidentModel incGoal =
+            incidents.firstWhere((item) => item.type == MatchIncidentType.goal);
+        return _getGoalAssistance(incAssistance, incGoal, side);
+      } catch (e) {
+        return Container();
+      }
+    } else {
+      if (incidents[0].type == MatchIncidentType.substitutionIn ||
+          incidents[0].type == MatchIncidentType.substitutionOut) {
+        List<MatchIncidentModel> incidentsIn = incidents
+            .where((item) => item.type == MatchIncidentType.substitutionIn)
+            .toList();
+        List<MatchIncidentModel> incidentsOut = incidents
+            .where((item) => item.type == MatchIncidentType.substitutionOut)
+            .toList();
+        return _getSubstitation(incidentsIn, incidentsOut, side);
+      }
+    }
+    return Container();
+  }
+
+  List<MatchIncidentModel> getIncident(
     List<MatchIncidentModel> lstIncidents,
     String incidentTime,
     MatchIncidentSideType side,
   ) {
-    try {
-      return lstIncidents.firstWhere(
-        (incident) =>
-            incident.incidentTime == incidentTime && incident.side == side,
-      );
-    } catch (e) {
-      return null;
-    }
+    return lstIncidents
+        .where(
+          (incident) =>
+              incident.incidentTime == incidentTime && incident.side == side,
+        )
+        .toList();
   }
 
   Widget getTeamIncidents(
@@ -251,7 +414,9 @@ class GameSummaryWidgetState extends State<GameSummaryWidget> {
               'https://d1bvoel1nv172p.cloudfront.net/competitors/images/normal/medium/22007.png',
               20.0),
         Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
+          crossAxisAlignment: side == MatchIncidentSideType.home
+              ? CrossAxisAlignment.end
+              : CrossAxisAlignment.start,
           children: [
             for (var incidentTime in incidentTimes)
               SizedBox(
