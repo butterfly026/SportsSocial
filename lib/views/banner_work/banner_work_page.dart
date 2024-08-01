@@ -7,10 +7,10 @@ class BannerWorkPage extends StatefulWidget {
   const BannerWorkPage({super.key});
 
   @override
-  DataMockPageState createState() => DataMockPageState();
+  BannerWorkPageState createState() => BannerWorkPageState();
 }
 
-class DataMockPageState extends State<BannerWorkPage>
+class BannerWorkPageState extends State<BannerWorkPage>
     with SingleTickerProviderStateMixin {
   @override
   void initState() {

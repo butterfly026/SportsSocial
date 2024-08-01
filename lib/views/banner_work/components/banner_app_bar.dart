@@ -10,7 +10,7 @@ class BannerAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => const Size(double.infinity, 40.0);
 
-  static Widget getTeamBadge(String? badgeUrl) {
+  Widget _getTeamBadge(String? badgeUrl) {
     return CachedNetworkImage(
         imageUrl: badgeUrl ?? '',
         width: 20.0,
@@ -34,12 +34,12 @@ class BannerAppBar extends StatelessWidget implements PreferredSizeWidget {
         });
   }
 
-  static Widget _getTitleWidget() {
+  Widget _getTitleWidget() {
     return Transform.translate(
       offset: const Offset(-40, 0.0), // Adjust this offset as needed
       child: Row(
         children: [
-          getTeamBadge(
+          _getTeamBadge(
               'https://d1bvoel1nv172p.cloudfront.net/competitors/images/normal/medium/36534.png'),
           const SizedBox(width: 6.0),
           const Column(
@@ -55,7 +55,7 @@ class BannerAppBar extends StatelessWidget implements PreferredSizeWidget {
             ],
           ),
           const SizedBox(width: 6.0),
-          getTeamBadge(
+          _getTeamBadge(
               'https://d1bvoel1nv172p.cloudfront.net/competitors/images/normal/medium/22007.png'),
         ],
       ),
