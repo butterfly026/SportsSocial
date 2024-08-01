@@ -25,7 +25,6 @@ class CommentaryWidgetState extends State<CommentaryWidget> {
   @override
   void didUpdateWidget(covariant CommentaryWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
-    print('${widget.isDragging} : ${oldWidget.isDragging} -> $isDragging');
     if(isDragging != widget.isDragging) {
       setState(() {
         isDragging = widget.isDragging;
