@@ -62,7 +62,7 @@ class BannerAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  static Widget _getLeadingWidget() {
+  Widget _getLeadingWidget() {
     return Transform.translate(
       offset: const Offset(-8, 0.0),
       child: Row(
@@ -83,7 +83,7 @@ class BannerAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  static Widget _getGradientAppBarBackground() {
+  Widget _getGradientAppBarBackground() {
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
