@@ -1,36 +1,18 @@
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class SubPageAppBar extends AppBar {
-  SubPageAppBar({
+class BannerAppBar extends AppBar {
+  BannerAppBar({
     super.key,
-    super.automaticallyImplyLeading,
-    String? titleText,
-    super.toolbarHeight,
-    List<Widget>? actions,
-    super.titleSpacing,
-    Widget? leading,
     Widget? titleWidget,
-    super.bottom,
   }) : super(
-            title: titleWidget ?? _getTitleTextWidget(titleText),
+            title: titleWidget,
             leading: _getLeadingWidget(),
             flexibleSpace:_getGradientAppBarBackground(),
-            backgroundColor: const Color(0xFF15182C),
             centerTitle: false);
 
   @override
   Size get preferredSize => const Size(double.infinity, 40.0);
-
-  static Widget _getTitleTextWidget(String? titleText) {
-    return Transform.translate(
-      offset: const Offset(-30, 0.0), // Adjust this offset as needed
-      child: Text(
-        titleText ?? '',
-        style: const TextStyle(color: Colors.white, fontSize: 12.0),
-      ),
-    );
-  }
 
   static Widget _getLeadingWidget() {
     return Transform.translate(

@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:sport_social_mobile_mock/views/banner_work/components/app_bar.dart';
+import 'package:sport_social_mobile_mock/views/banner_work/components/banner_app_bar.dart';
 import 'package:sport_social_mobile_mock/views/banner_work/components/banner_header.dart';
 
 class BannerWorkPage extends StatefulWidget {
@@ -12,74 +12,9 @@ class BannerWorkPage extends StatefulWidget {
 
 class DataMockPageState extends State<BannerWorkPage>
     with SingleTickerProviderStateMixin {
-  double defaultBannerHeight = 160;
-  double bannerHeight = 160;
-  double dragYStart = 0;
-  double dragYEnd = 0;
-  int expanded = 0;
-  double maxHeight = 0;
-
-  late AnimationController _expandController;
-  late Animation<double> _expandAnimation;
-
   @override
   void initState() {
     super.initState();
-    prepareAnimations();
-  }
-
-  void prepareAnimations() {
-    _expandController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 500));
-    _expandAnimation = Tween<double>(
-      begin: defaultBannerHeight,
-      end: maxHeight,
-    ).animate(
-      CurvedAnimation(
-        parent: _expandController,
-        curve: Curves.fastOutSlowIn,
-      ),
-    );
-    _expandController.addListener(() {
-      setState(() {
-        bannerHeight = _expandAnimation.value;
-      });
-    });
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final screenHeight = MediaQuery.of(context).size.height;
-    maxHeight = screenHeight - 100;
-    _expandAnimation = Tween<double>(
-      begin: defaultBannerHeight,
-      end: maxHeight,
-    ).animate(
-      CurvedAnimation(
-        parent: _expandController,
-        curve: Curves.fastOutSlowIn,
-      ),
-    );
-  }
-
-  @override
-  void dispose() {
-    _expandController.dispose();
-    super.dispose();
-  }
-
-  void onExpanded(int expanded) {
-    setState(() {
-      if (expanded == 1) {
-        _expandController.forward();
-        this.expanded = expanded;
-      } else {
-        _expandController.reverse();
-        expanded = 0;
-        this.expanded = expanded;
-      }
-    });
   }
 
   static Widget getTeamBadge(String? badgeUrl) {
@@ -134,121 +69,24 @@ class DataMockPageState extends State<BannerWorkPage>
     );
   }
 
-  PreferredSizeWidget _getAppBar() {
-    return PreferredSize(
-      preferredSize: const Size.fromHeight(40),
-      child: Container(
-        decoration: const BoxDecoration(boxShadow: [
-          BoxShadow(
-            color: Color(0x44000000),
-            offset: Offset(0, 2.0),
-            blurRadius: 4.0,
-          )
-        ]),
-        child: SubPageAppBar(
-          titleWidget: _getTitleWidget(),
-        ),
-      ),
-    );
-  }
-
-  Widget _getExpandDragIcon() {
-    return Container(
-      height: 5,
-      width: 30,
-      margin: const EdgeInsets.only(top: 20),
-      decoration: const BoxDecoration(
-          color: Colors.grey,
-          borderRadius: BorderRadius.all(Radius.circular(6))),
-    );
-  }
-
-  Widget _getExpandDragArea() {
-    return Transform.translate(
-      offset: const Offset(0, 3),
-      child: GestureDetector(
-        behavior: HitTestBehavior.translucent,
-        onVerticalDragStart: (details) {
-          setState(() {
-            dragYStart = details.globalPosition.dy;
-          });
-        },
-        onVerticalDragUpdate: (DragUpdateDetails details) {
-          setState(() {
-            double positionY = details.globalPosition.dy;
-            double maxHeight = MediaQuery.of(context).size.height - 70;
-            if (positionY < 200) {
-              bannerHeight = defaultBannerHeight;
-            } else if (positionY <= maxHeight) {
-              bannerHeight = positionY - 40;
-            }
-          });
-        },
-        onVerticalDragEnd: (details) {
-          setState(() {
-            dragYEnd = details.globalPosition.dy;
-            double maxHeight = MediaQuery.of(context).size.height - 100;
-            double offset = dragYEnd - dragYStart;
-            double defaultOffset = 150;
-            if (offset > defaultOffset) {
-              bannerHeight = maxHeight;
-            } else if (offset > 0 && offset <= defaultOffset) {
-              if (expanded == 1) {
-                bannerHeight = maxHeight;
-              } else if (expanded == 0) {
-                bannerHeight = defaultBannerHeight;
-              }
-            } else if (offset >= -defaultOffset && offset < 0) {
-              if (expanded == 1) {
-                bannerHeight = maxHeight;
-              } else if (expanded == 0) {
-                bannerHeight = 190;
-              }
-            } else if (offset < -defaultOffset) {
-              bannerHeight = defaultBannerHeight;
-            }
-            if (bannerHeight == defaultBannerHeight) {
-              expanded = 0;
-            } else {
-              expanded = 1;
-            }
-          });
-        },
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(
-              height: 10,
-            ),
-            _getExpandDragIcon()
-          ],
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF15182C),
-      appBar: _getAppBar(),
+      appBar: BannerAppBar(
+        titleWidget: _getTitleWidget(),
+      ),
       body: Container(
-        height: bannerHeight,
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(15.0),
             bottomRight: Radius.circular(15.0),
           ),
         ),
-        child: Stack(
+        child: const Stack(
           alignment: Alignment.bottomCenter,
           children: [
-            BannerHeader(
-              expandMode: expanded,
-              bannerHeight: bannerHeight - 60,
-              onExpand: onExpanded,
-            ),
-            _getExpandDragArea(),
+            BannerHeader(),
           ],
         ),
       ),
