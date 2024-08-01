@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:sport_social_mobile_mock/views/banner_work/components/commentary_widget.dart';
 import 'package:sport_social_mobile_mock/views/banner_work/components/game_summary_widget.dart';
 
 class BannerHeader extends StatefulWidget {
-  const BannerHeader(
-      {super.key,
-      required this.expandMode,
-      required this.bannerHeight,
-      this.onExpand});
-  final int expandMode;
-  final double bannerHeight;
-  final Function(int expanded)? onExpand;
+  const BannerHeader({super.key});
 
   @override
   State<BannerHeader> createState() => _BannerHeaderState();
@@ -19,38 +13,25 @@ class BannerHeader extends StatefulWidget {
 class _BannerHeaderState extends State<BannerHeader>
     with TickerProviderStateMixin {
   late TabController _tabController;
-  Function(int expanded)? onExpand;
   final List<String> tabContentNames = [
     'commentary',
     'gameSummary',
     'statistics'
   ];
 
-  int expandMode = 0;
   double bannerHeight = 0;
+  double defaultBannerHeight = 140;
+  double dragYStart = 0;
+  double dragYEnd = 0;
+  int expanded = 0;
+  bool isDragging = false;
+  double maxHeight = 0;
 
   @override
   void initState() {
-    _tabController = TabController(length: 3, vsync: this);
-    expandMode = widget.expandMode;
-    bannerHeight = widget.bannerHeight;
-    onExpand = widget.onExpand;
     super.initState();
-  }
-
-  @override
-  void didUpdateWidget(covariant BannerHeader oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (expandMode != widget.expandMode) {
-      setState(() {
-        expandMode = widget.expandMode;
-      });
-    }
-    if (bannerHeight != widget.bannerHeight) {
-      setState(() {
-        bannerHeight = widget.bannerHeight;
-      });
-    }
+    _tabController = TabController(length: 3, vsync: this);
+    bannerHeight = defaultBannerHeight;
   }
 
   @override
@@ -114,9 +95,9 @@ class _BannerHeaderState extends State<BannerHeader>
   Widget _getContentByName(String contentName) {
     switch (contentName) {
       case 'commentary':
-        return CommentaryWidget(expandMode: expandMode);
+        return CommentaryWidget(expandMode: expanded, isDragging: isDragging);
       case 'gameSummary':
-        return GameSummaryWidget(expandMode: expandMode);
+        return GameSummaryWidget(expandMode: expanded);
       case 'statistics':
         return Container();
       default:
@@ -128,8 +109,10 @@ class _BannerHeaderState extends State<BannerHeader>
   Widget _getTabContent(String contentName) {
     return Visibility(
         visible: _tabController.index == tabContentNames.indexOf(contentName),
-        child: SizedBox(
+        child: AnimatedContainer(
           height: bannerHeight,
+          duration: isDragging ? Duration.zero : const Duration(milliseconds: 300),
+          curve: Curves.easeInOut,
           child: _getContentByName(contentName),
         ));
   }
@@ -138,9 +121,8 @@ class _BannerHeaderState extends State<BannerHeader>
     return GestureDetector(
       onTap: () {
         setState(() {
-          if(onExpand != null) {
-            onExpand!((expandMode + 1) % 2);
-          }
+          expanded = (expanded + 1) % 2;
+          bannerHeight = expanded == 1 ? maxHeight : defaultBannerHeight;
         });
       },
       child: const Padding(
@@ -174,28 +156,104 @@ class _BannerHeaderState extends State<BannerHeader>
     );
   }
 
+  Widget _getExpandDragIcon() {
+    return Transform.translate(
+      offset: const Offset(0, 2.0),
+      child: Container(
+        height: 5,
+        width: 30,
+        decoration: const BoxDecoration(
+            color: Colors.grey,
+            borderRadius: BorderRadius.all(Radius.circular(6))),
+      ),
+    );
+  }
+
+  Widget _getExpandDragArea() {
+    return GestureDetector(
+      behavior: HitTestBehavior.translucent,
+      onVerticalDragStart: (details) {
+        setState(() {
+          isDragging = true;
+          dragYStart = details.globalPosition.dy;
+        });
+      },
+      onVerticalDragUpdate: (DragUpdateDetails details) {
+        setState(() {
+          double positionY = details.globalPosition.dy;
+          if (positionY < 270) {
+            bannerHeight = defaultBannerHeight;
+          } else if (positionY <= maxHeight + 110) {
+            bannerHeight = positionY - 110;
+          }
+        });
+      },
+      onVerticalDragEnd: (details) {
+        setState(() {
+          dragYEnd = details.globalPosition.dy;
+          double offset = dragYEnd - dragYStart;
+          double defaultOffset = 150;
+          if (offset > defaultOffset) {
+            bannerHeight = maxHeight;
+          } else if (offset > 0 && offset <= defaultOffset) {
+            if (expanded == 1) {
+              bannerHeight = maxHeight;
+            } else if (expanded == 0) {
+              bannerHeight = defaultBannerHeight;
+            }
+          } else if (offset >= -defaultOffset && offset < 0) {
+            if (expanded == 1) {
+              bannerHeight = maxHeight;
+            } else if (expanded == 0) {
+              bannerHeight = defaultBannerHeight;
+            }
+          } else if (offset < -defaultOffset) {
+            bannerHeight = defaultBannerHeight;
+          }
+          if (bannerHeight == defaultBannerHeight) {
+            expanded = 0;
+          } else {
+            expanded = 1;
+          }
+          isDragging = false;
+        });
+      },
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const SizedBox(height: 5.0),
+          _getExpandDragIcon(),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: Container(
-            padding: const EdgeInsets.only(bottom: 10.0, top: 5.0),
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [
-                    Color(0xFF4968DA),
-                    Color(0xFFB36AB0),
-                  ],
-                  begin: FractionalOffset(0.0, 0.0),
-                  end: FractionalOffset(1.0, 0.0),
-                  stops: [0.0, 1.0],
-                  tileMode: TileMode.clamp),
-            ),
-            child: _getBannerWidget(),
-          ),
-        )
-      ],
-    );
+    maxHeight = MediaQuery.of(context).size.height - 150;
+    return AnimatedContainer(
+      padding: const EdgeInsets.only(top: 5.0),
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+            colors: [
+              Color(0xFF4968DA),
+              Color(0xFFB36AB0),
+            ],
+            begin: FractionalOffset(0.0, 0.0),
+            end: FractionalOffset(1.0, 0.0),
+            stops: [0.0, 1.0],
+            tileMode: TileMode.clamp),
+      ),
+      duration: isDragging ? Duration.zero : const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+      height: bannerHeight + 55,
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          _getBannerWidget(),
+          _getExpandDragArea(),
+        ],
+      ),
+    ).animate();
   }
 }
