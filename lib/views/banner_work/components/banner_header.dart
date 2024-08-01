@@ -97,7 +97,7 @@ class _BannerHeaderState extends State<BannerHeader>
       case 'commentary':
         return CommentaryWidget(expandMode: expanded, isDragging: isDragging);
       case 'gameSummary':
-        return GameSummaryWidget(expandMode: expanded, isDragging: isDragging);
+        return GameSummaryWidget(expandMode: expanded);
       case 'statistics':
         return Container();
       default:
@@ -111,7 +111,8 @@ class _BannerHeaderState extends State<BannerHeader>
         visible: _tabController.index == tabContentNames.indexOf(contentName),
         child: AnimatedContainer(
           height: bannerHeight,
-          duration: isDragging ? Duration.zero : const Duration(milliseconds: 300),
+          duration:
+              isDragging ? Duration.zero : const Duration(milliseconds: 300),
           curve: Curves.easeInOut,
           child: _getContentByName(contentName),
         ));
@@ -120,10 +121,22 @@ class _BannerHeaderState extends State<BannerHeader>
   Widget _getExpandIcon() {
     return GestureDetector(
       onTap: () {
-        setState(() {
-          expanded = (expanded + 1) % 2;
-          bannerHeight = expanded == 1 ? maxHeight : defaultBannerHeight;
-        });
+        int tmpExpanded = (expanded + 1) % 2;
+        if (_tabController.index == 1 && tmpExpanded == 1) {
+          Future.delayed(const Duration(milliseconds: 150), () {
+            setState(() {
+              expanded = tmpExpanded;
+            });
+          });
+          setState(() {
+            bannerHeight = tmpExpanded == 1 ? maxHeight : defaultBannerHeight;
+          });
+        } else {
+          setState(() {
+            expanded = tmpExpanded;
+            bannerHeight = expanded == 1 ? maxHeight : defaultBannerHeight;
+          });
+        }
       },
       child: const Padding(
         padding: EdgeInsets.only(right: 2),
@@ -150,6 +163,7 @@ class _BannerHeaderState extends State<BannerHeader>
           children: [
             _getTabContent('commentary'),
             _getTabContent('gameSummary'),
+            _getTabContent('statistics'),
           ],
         ),
       ],
@@ -181,10 +195,18 @@ class _BannerHeaderState extends State<BannerHeader>
       onVerticalDragUpdate: (DragUpdateDetails details) {
         setState(() {
           double positionY = details.globalPosition.dy;
-          if (positionY < 270) {
+          double minY = 270;
+          if (positionY < minY) {
             bannerHeight = defaultBannerHeight;
           } else if (positionY <= maxHeight + 110) {
             bannerHeight = positionY - 110;
+          }
+          if (_tabController.index == 1) {
+            if (bannerHeight > 300 && expanded == 0) {
+              expanded = 1;
+            } else if (bannerHeight < 300 && expanded == 1) {
+              expanded = 0;
+            }
           }
         });
       },

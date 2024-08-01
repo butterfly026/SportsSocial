@@ -7,9 +7,8 @@ import 'package:sport_social_mobile_mock/views/banner_work/banner_work_page.dart
 
 class GameSummaryWidget extends StatefulWidget {
   final int expandMode;
-  final bool isDragging;
   const GameSummaryWidget(
-      {super.key, required this.expandMode, this.isDragging = false});
+      {super.key, required this.expandMode});
 
   @override
   GameSummaryWidgetState createState() => GameSummaryWidgetState();
@@ -23,24 +22,12 @@ class GameSummaryWidgetState extends State<GameSummaryWidget> {
       height: 1.5,
       fontWeight: FontWeight.bold);
   double defaultWidthPerIncident = 60;
-  bool isDragging = false;
   
   @override
   void initState() {
     super.initState();
-    isDragging = widget.isDragging;
   }
-
-  @override
-  void didUpdateWidget(covariant GameSummaryWidget oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (isDragging != widget.isDragging) {
-      setState(() {
-        isDragging = widget.isDragging;
-      });
-    }
-  }
-
+  
   Widget _getCommentaryItem(MatchGameSummary summary) {
     if (widget.expandMode == 1) {
       return Container(
