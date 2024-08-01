@@ -22,7 +22,7 @@ class _BannerHeaderState extends State<BannerHeader>
   double defaultBannerHeight = 100;
   double dragYStart = 0;
   double dragYEnd = 0;
-  int expanded = 0;
+  bool expanded = false;
   bool isDragging = false;
 
   @override
@@ -93,7 +93,7 @@ class _BannerHeaderState extends State<BannerHeader>
   Widget _getContentByName(String contentName) {
     switch (contentName) {
       case 'commentary':
-        return CommentaryWidget(expandMode: expanded, isDragging: isDragging);
+        return CommentaryWidget(isDragging: isDragging);
       case 'gameSummary':
         return Container();
       case 'statistics':
@@ -109,7 +109,8 @@ class _BannerHeaderState extends State<BannerHeader>
         visible: _tabController.index == tabContentNames.indexOf(contentName),
         child: AnimatedContainer(
           height: bannerHeight,
-          duration: isDragging ? Duration.zero : const Duration(milliseconds: 300),
+          duration:
+              isDragging ? Duration.zero : const Duration(milliseconds: 300),
           curve: Curves.easeInOut,
           child: _getContentByName(contentName),
         ));
@@ -120,8 +121,8 @@ class _BannerHeaderState extends State<BannerHeader>
     return GestureDetector(
       onTap: () {
         setState(() {
-          expanded = (expanded + 1) % 2;
-          bannerHeight = expanded == 1 ? maxHeight : defaultBannerHeight;
+          expanded = !expanded;
+          bannerHeight = expanded ? maxHeight : defaultBannerHeight;
         });
       },
       child: const Padding(
@@ -194,25 +195,16 @@ class _BannerHeaderState extends State<BannerHeader>
           double defaultOffset = 150;
           if (offset > defaultOffset) {
             bannerHeight = maxHeight;
-          } else if (offset > 0 && offset <= defaultOffset) {
-            if (expanded == 1) {
-              bannerHeight = maxHeight;
-            } else if (expanded == 0) {
-              bannerHeight = defaultBannerHeight;
-            }
-          } else if (offset >= -defaultOffset && offset < 0) {
-            if (expanded == 1) {
-              bannerHeight = maxHeight;
-            } else if (expanded == 0) {
-              bannerHeight = defaultBannerHeight;
-            }
+          } else if ((offset > 0 && offset <= defaultOffset) ||
+              (offset >= -defaultOffset && offset < 0)) {
+            bannerHeight = expanded ? maxHeight : defaultBannerHeight;
           } else if (offset < -defaultOffset) {
             bannerHeight = defaultBannerHeight;
           }
           if (bannerHeight == defaultBannerHeight) {
-            expanded = 0;
+            expanded = false;
           } else {
-            expanded = 1;
+            expanded = true;
           }
           isDragging = false;
         });

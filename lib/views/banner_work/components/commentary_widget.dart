@@ -4,9 +4,8 @@ import 'package:sport_social_mobile_mock/services/live_game_service.dart';
 import 'package:sport_social_mobile_mock/services/service_locator.dart';
 
 class CommentaryWidget extends StatefulWidget {
-  final int expandMode;
   final bool isDragging;
-  const CommentaryWidget({super.key, required this.expandMode, this.isDragging = false});
+  const CommentaryWidget({super.key, this.isDragging = false});
 
   @override
   CommentaryWidgetState createState() => CommentaryWidgetState();
@@ -75,18 +74,7 @@ class CommentaryWidgetState extends State<CommentaryWidget> {
     return ValueListenableBuilder(
         valueListenable: dataMockService.commentaryNotifier,
         builder: (context, commentaries, child) {
-          List<MatchCommentaryModel> lstData = [];
-          int len = commentaries.length;
-          if(isDragging) {
-            lstData = commentaries;
-          } else {
-            if(widget.expandMode == 0) {
-              lstData = commentaries.sublist(0, len > 5 ? 5 : len);
-            } else {
-              lstData = commentaries;
-            }
-          }
-          return _getCommentaryList(lstData);
+          return _getCommentaryList(commentaries);
         });
   }
 }
