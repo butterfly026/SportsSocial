@@ -19,16 +19,13 @@ class DataMockPageState extends State<BannerWorkPage>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF15182C),
+    return const Scaffold(
+      backgroundColor: Color(0xFF15182C),
       appBar: BannerAppBar(),
       body: Stack(
         children: [
-          Container(
-            margin: const EdgeInsets.only(top: 165.0),
-            child: const ChatWidget(),
-          ),
-          const BannerHeader(),
+          ChatWidget(),
+          BannerHeader(),
         ],
       ),
     );
