@@ -107,18 +107,29 @@ class GameSummaryWidgetState extends State<GameSummaryWidget> {
     List<String> incidentTimes = [];
     for (var incident in lstIncidents) {
       if (!incidentTimes.contains(incident.incidentTime)) {
-        if (incident.stage == MatchIncidentStageType.firstHalf &&
-            !incidentTimes.contains('KO')) {
-          incidentTimes.add('KO');
-        } else if (incident.stage == MatchIncidentStageType.secondHalf &&
-            !incidentTimes.contains('HT')) {
-          incidentTimes.add('HT');
-        } else if (incident.stage == MatchIncidentStageType.extraTime &&
-            !incidentTimes.contains('ET')) {
-          incidentTimes.add('ET');
-        } else if (incident.stage == MatchIncidentStageType.penalty &&
-            !incidentTimes.contains('PT')) {
-          incidentTimes.add('PT');
+        switch (incident.stage) {
+          case MatchIncidentStageType.firstHalf:
+            if (!incidentTimes.contains('KO')) {
+              incidentTimes.add('KO');
+            }
+            break;
+          case MatchIncidentStageType.secondHalf:
+            if (!incidentTimes.contains('HT')) {
+              incidentTimes.add('HT');
+            }
+            break;
+          case MatchIncidentStageType.extraTime:
+            if (!incidentTimes.contains('ET')) {
+              incidentTimes.add('ET');
+            }
+            break;
+          case MatchIncidentStageType.penalty:
+            if (!incidentTimes.contains('PT')) {
+              incidentTimes.add('PT');
+            }
+            break;
+          default:
+            break;
         }
         incidentTimes.add(incident.incidentTime);
       }
