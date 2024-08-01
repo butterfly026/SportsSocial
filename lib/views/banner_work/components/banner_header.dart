@@ -20,7 +20,7 @@ class _BannerHeaderState extends State<BannerHeader>
   ];
 
   double bannerHeight = 0;
-  double defaultBannerHeight = 140;
+  double defaultBannerHeight = 100;
   double dragYStart = 0;
   double dragYEnd = 0;
   int expanded = 0;
