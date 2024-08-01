@@ -18,8 +18,9 @@ class _BannerHeaderState extends State<BannerHeader>
     'statistics'
   ];
 
-  double bannerHeight = 0;
+  late double currentBannerHeight;
   double defaultBannerHeight = 100;
+  double offsetBannerHeight = 55;
   double dragYStart = 0;
   double dragYEnd = 0;
   bool expanded = false;
@@ -29,7 +30,7 @@ class _BannerHeaderState extends State<BannerHeader>
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
-    bannerHeight = defaultBannerHeight;
+    currentBannerHeight = defaultBannerHeight;
   }
 
   @override
@@ -108,7 +109,7 @@ class _BannerHeaderState extends State<BannerHeader>
     return Visibility(
         visible: _tabController.index == tabContentNames.indexOf(contentName),
         child: AnimatedContainer(
-          height: bannerHeight,
+          height: currentBannerHeight,
           duration:
               isDragging ? Duration.zero : const Duration(milliseconds: 300),
           curve: Curves.easeInOut,
@@ -122,7 +123,7 @@ class _BannerHeaderState extends State<BannerHeader>
       onTap: () {
         setState(() {
           expanded = !expanded;
-          bannerHeight = expanded ? maxHeight : defaultBannerHeight;
+          currentBannerHeight = expanded ? maxHeight : defaultBannerHeight;
         });
       },
       child: const Padding(
@@ -182,9 +183,9 @@ class _BannerHeaderState extends State<BannerHeader>
         setState(() {
           double positionY = details.globalPosition.dy;
           if (positionY < 270) {
-            bannerHeight = defaultBannerHeight;
+            currentBannerHeight = defaultBannerHeight;
           } else if (positionY <= maxHeight + 110) {
-            bannerHeight = positionY - 110;
+            currentBannerHeight = positionY - 110;
           }
         });
       },
@@ -194,14 +195,14 @@ class _BannerHeaderState extends State<BannerHeader>
           double offset = dragYEnd - dragYStart;
           double defaultOffset = 150;
           if (offset > defaultOffset) {
-            bannerHeight = maxHeight;
+            currentBannerHeight = maxHeight;
           } else if ((offset > 0 && offset <= defaultOffset) ||
               (offset >= -defaultOffset && offset < 0)) {
-            bannerHeight = expanded ? maxHeight : defaultBannerHeight;
+            currentBannerHeight = expanded ? maxHeight : defaultBannerHeight;
           } else if (offset < -defaultOffset) {
-            bannerHeight = defaultBannerHeight;
+            currentBannerHeight = defaultBannerHeight;
           }
-          if (bannerHeight == defaultBannerHeight) {
+          if (currentBannerHeight == defaultBannerHeight) {
             expanded = false;
           } else {
             expanded = true;
@@ -236,7 +237,7 @@ class _BannerHeaderState extends State<BannerHeader>
       ),
       duration: isDragging ? Duration.zero : const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
-      height: bannerHeight + 55,
+      height: currentBannerHeight + offsetBannerHeight,
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
