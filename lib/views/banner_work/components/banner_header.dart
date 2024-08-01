@@ -97,7 +97,7 @@ class _BannerHeaderState extends State<BannerHeader>
       case 'commentary':
         return CommentaryWidget(isDragging: isDragging);
       case 'gameSummary':
-        return GameSummaryWidget(expandMode: expanded);
+        return GameSummaryWidget(expanded: expanded);
       case 'statistics':
         return Container();
       default:

@@ -1,13 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:sport_social_mobile_mock/models/match_game_summary.dart';
 import 'package:sport_social_mobile_mock/models/match_incident_model.dart';
 import 'package:sport_social_mobile_mock/services/live_game_service.dart';
 import 'package:sport_social_mobile_mock/services/service_locator.dart';
-import 'package:sport_social_mobile_mock/views/banner_work/banner_work_page.dart';
 
 class GameSummaryWidget extends StatefulWidget {
-  final int expandMode;
-  const GameSummaryWidget({super.key, required this.expandMode});
+  final bool expanded;
+  const GameSummaryWidget({super.key, required this.expanded});
 
   @override
   GameSummaryWidgetState createState() => GameSummaryWidgetState();
@@ -27,8 +27,32 @@ class GameSummaryWidgetState extends State<GameSummaryWidget> {
     super.initState();
   }
 
+  Widget _getTeamBadge(String? badgeUrl) {
+    return CachedNetworkImage(
+        imageUrl: badgeUrl ?? '',
+        width: 20.0,
+        height: 20.0,
+        placeholder: (context, url) => const SizedBox(
+              width: 20.0,
+              height: 20.0,
+              child: Center(
+                child: CircularProgressIndicator(
+                  strokeWidth: 1.0,
+                ),
+              ),
+            ),
+        errorWidget: (context, url, error) {
+          return const SizedBox(
+              width: 20.0,
+              height: 20.0,
+              child: Center(
+                child: Icon(Icons.error, color: Colors.grey, size: 14.0),
+              ));
+        });
+  }
+
   Widget _getCommentaryItem(MatchGameSummary summary) {
-    if (widget.expandMode == 1) {
+    if (widget.expanded) {
       return Container(
           padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 3.0),
           decoration: BoxDecoration(
@@ -79,7 +103,7 @@ class GameSummaryWidgetState extends State<GameSummaryWidget> {
         });
   }
 
-  List<String> getIncidentTimes(List<MatchIncidentModel> lstIncidents) {
+  List<String> _getIncidentTimes(List<MatchIncidentModel> lstIncidents) {
     List<String> incidentTimes = [];
     for (var incident in lstIncidents) {
       if (!incidentTimes.contains(incident.incidentTime)) {
@@ -102,13 +126,8 @@ class GameSummaryWidgetState extends State<GameSummaryWidget> {
     return incidentTimes;
   }
 
-  List<MatchIncidentModel> getSideIncidents(
-      List<MatchIncidentModel> lstIncidents, MatchIncidentSideType side) {
-    return lstIncidents.where((incident) => incident.side == side).toList();
-  }
-
-  double getIncidentTimeLine(List<MatchIncidentModel> lstIncidents) {
-    List<String> incidentTimes = getIncidentTimes(lstIncidents);
+  double _getIncidentTimeLine(List<MatchIncidentModel> lstIncidents) {
+    List<String> incidentTimes = _getIncidentTimes(lstIncidents);
     double widthTimeline = defaultWidthPerIncident * incidentTimes.length;
     double screenWidth = MediaQuery.of(context).size.width - 70;
     if (widthTimeline < screenWidth) {
@@ -387,7 +406,7 @@ class GameSummaryWidgetState extends State<GameSummaryWidget> {
     return Container();
   }
 
-  List<MatchIncidentModel> getIncident(
+  List<MatchIncidentModel> _getIncident(
     List<MatchIncidentModel> lstIncidents,
     String incidentTime,
     MatchIncidentSideType side,
@@ -400,19 +419,17 @@ class GameSummaryWidgetState extends State<GameSummaryWidget> {
         .toList();
   }
 
-  Widget getTeamIncidents(
+  Widget _getTeamIncidents(
       List<MatchIncidentModel> lstIncidents, MatchIncidentSideType side) {
-    List<String> incidentTimes = getIncidentTimes(lstIncidents);
+    List<String> incidentTimes = _getIncidentTimes(lstIncidents);
     return Row(
       children: [
         if (side == MatchIncidentSideType.home)
-          DataMockPageState.getTeamBadge(
-              'https://d1bvoel1nv172p.cloudfront.net/competitors/images/normal/medium/36534.png',
-              20.0),
+          _getTeamBadge(
+              'https://d1bvoel1nv172p.cloudfront.net/competitors/images/normal/medium/36534.png'),
         if (side == MatchIncidentSideType.away)
-          DataMockPageState.getTeamBadge(
-              'https://d1bvoel1nv172p.cloudfront.net/competitors/images/normal/medium/22007.png',
-              20.0),
+          _getTeamBadge(
+              'https://d1bvoel1nv172p.cloudfront.net/competitors/images/normal/medium/22007.png'),
         Row(
           crossAxisAlignment: side == MatchIncidentSideType.home
               ? CrossAxisAlignment.end
@@ -428,7 +445,7 @@ class GameSummaryWidgetState extends State<GameSummaryWidget> {
                       bottom: side == MatchIncidentSideType.home ? 5.0 : 0,
                       top: side == MatchIncidentSideType.away ? 5.0 : 0),
                   child: _getIncidentItemWidget(
-                      getIncident(lstIncidents, incidentTime, side), side),
+                      _getIncident(lstIncidents, incidentTime, side), side),
                 ),
               )
           ],
@@ -438,8 +455,8 @@ class GameSummaryWidgetState extends State<GameSummaryWidget> {
   }
 
   Widget _getTimelineWidget(List<MatchIncidentModel> lstIncidents) {
-    double widthTimeline = getIncidentTimeLine(lstIncidents);
-    List<String> incidentTimes = getIncidentTimes(lstIncidents);
+    double widthTimeline = _getIncidentTimeLine(lstIncidents);
+    List<String> incidentTimes = _getIncidentTimes(lstIncidents);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 2.0),
       decoration: const BoxDecoration(
@@ -490,9 +507,9 @@ class GameSummaryWidgetState extends State<GameSummaryWidget> {
               scrollDirection: Axis.horizontal,
               child: Column(
                 children: [
-                  getTeamIncidents(lstIncidents, MatchIncidentSideType.home),
+                  _getTeamIncidents(lstIncidents, MatchIncidentSideType.home),
                   _getTimelineWidget(lstIncidents),
-                  getTeamIncidents(lstIncidents, MatchIncidentSideType.away),
+                  _getTeamIncidents(lstIncidents, MatchIncidentSideType.away),
                 ],
               ),
             ),
@@ -502,7 +519,7 @@ class GameSummaryWidgetState extends State<GameSummaryWidget> {
     );
   }
 
-  Widget getCategoryTitle(String title) {
+  Widget _getCategoryTitle(String title) {
     return Padding(
       padding: const EdgeInsets.only(left: 10.0, bottom: 4.0),
       child: Text(
@@ -520,24 +537,17 @@ class GameSummaryWidgetState extends State<GameSummaryWidget> {
           return ValueListenableBuilder(
               valueListenable: dataMockService.incidentNotifier,
               builder: (context, incidents, child) {
-                List<MatchGameSummary> lstData = [];
-                int len = commentaries.length;
-                if (widget.expandMode == 0) {
-                  lstData = commentaries.sublist(0, len > 4 ? 4 : len);
-                } else {
-                  lstData = commentaries;
-                }
-                if (widget.expandMode == 0) {
-                  return _getSummaryList(lstData);
+                if (!widget.expanded) {
+                  return _getSummaryList(commentaries);
                 } else {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      getCategoryTitle('Match Timeline'),
+                      _getCategoryTitle('Match Timeline'),
                       _getIncidents(incidents),
-                      getCategoryTitle('Summary'),
+                      _getCategoryTitle('Summary'),
                       Expanded(
-                        child: _getSummaryList(lstData),
+                        child: _getSummaryList(commentaries),
                       )
                     ],
                   );
