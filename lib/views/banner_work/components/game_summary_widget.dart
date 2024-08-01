@@ -224,7 +224,7 @@ class GameSummaryWidgetState extends State<GameSummaryWidget> {
     );
   }
 
-  Widget _getSubstitation(List<MatchIncidentModel> incidentsIn,
+  Widget _getsubstitution(List<MatchIncidentModel> incidentsIn,
       List<MatchIncidentModel> incidentsOut, MatchIncidentSideType side) {
     if (side == MatchIncidentSideType.away) {
       return Column(
@@ -411,7 +411,7 @@ class GameSummaryWidgetState extends State<GameSummaryWidget> {
         List<MatchIncidentModel> incidentsOut = incidents
             .where((item) => item.type == MatchIncidentType.substitutionOut)
             .toList();
-        return _getSubstitation(incidentsIn, incidentsOut, side);
+        return _getsubstitution(incidentsIn, incidentsOut, side);
       }
     }
     return Container();
