@@ -19,19 +19,19 @@ class _BannerHeaderState extends State<BannerHeader>
     'statistics'
   ];
 
-  double bannerHeight = 0;
+  late double currentBannerHeight;
   double defaultBannerHeight = 100;
+  double offsetBannerHeight = 55;
   double dragYStart = 0;
   double dragYEnd = 0;
-  int expanded = 0;
+  bool expanded = false;
   bool isDragging = false;
-  double maxHeight = 0;
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
-    bannerHeight = defaultBannerHeight;
+    currentBannerHeight = defaultBannerHeight;
   }
 
   @override
@@ -95,7 +95,7 @@ class _BannerHeaderState extends State<BannerHeader>
   Widget _getContentByName(String contentName) {
     switch (contentName) {
       case 'commentary':
-        return CommentaryWidget(expandMode: expanded, isDragging: isDragging);
+        return CommentaryWidget(isDragging: isDragging);
       case 'gameSummary':
         return GameSummaryWidget(expandMode: expanded);
       case 'statistics':
@@ -110,7 +110,7 @@ class _BannerHeaderState extends State<BannerHeader>
     return Visibility(
         visible: _tabController.index == tabContentNames.indexOf(contentName),
         child: AnimatedContainer(
-          height: bannerHeight,
+          height: currentBannerHeight,
           duration:
               isDragging ? Duration.zero : const Duration(milliseconds: 300),
           curve: Curves.easeInOut,
@@ -119,22 +119,23 @@ class _BannerHeaderState extends State<BannerHeader>
   }
 
   Widget _getExpandIcon() {
+    final maxHeight = MediaQuery.of(context).size.height - 150;
     return GestureDetector(
       onTap: () {
-        int tmpExpanded = (expanded + 1) % 2;
-        if (_tabController.index == 1 && tmpExpanded == 1) {
+        bool tmpExpanded = !expanded;
+        if (_tabController.index == 1 && tmpExpanded) {
           Future.delayed(const Duration(milliseconds: 150), () {
             setState(() {
               expanded = tmpExpanded;
             });
           });
           setState(() {
-            bannerHeight = tmpExpanded == 1 ? maxHeight : defaultBannerHeight;
+            currentBannerHeight = tmpExpanded ? maxHeight : defaultBannerHeight;
           });
         } else {
           setState(() {
             expanded = tmpExpanded;
-            bannerHeight = expanded == 1 ? maxHeight : defaultBannerHeight;
+            currentBannerHeight = expanded ? maxHeight : defaultBannerHeight;
           });
         }
       },
@@ -184,6 +185,7 @@ class _BannerHeaderState extends State<BannerHeader>
   }
 
   Widget _getExpandDragArea() {
+    final maxHeight = MediaQuery.of(context).size.height - 150;
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onVerticalDragStart: (details) {
@@ -195,17 +197,16 @@ class _BannerHeaderState extends State<BannerHeader>
       onVerticalDragUpdate: (DragUpdateDetails details) {
         setState(() {
           double positionY = details.globalPosition.dy;
-          double minY = 270;
-          if (positionY < minY) {
-            bannerHeight = defaultBannerHeight;
+          if (positionY < 270) {
+            currentBannerHeight = defaultBannerHeight;
           } else if (positionY <= maxHeight + 110) {
-            bannerHeight = positionY - 110;
+            currentBannerHeight = positionY - 110;
           }
           if (_tabController.index == 1) {
-            if (bannerHeight > 300 && expanded == 0) {
-              expanded = 1;
-            } else if (bannerHeight < 300 && expanded == 1) {
-              expanded = 0;
+            if (currentBannerHeight > 300 && expanded == 0) {
+              expanded = true;
+            } else if (currentBannerHeight < 300 && expanded == 1) {
+              expanded = false;
             }
           }
         });
@@ -216,26 +217,17 @@ class _BannerHeaderState extends State<BannerHeader>
           double offset = dragYEnd - dragYStart;
           double defaultOffset = 150;
           if (offset > defaultOffset) {
-            bannerHeight = maxHeight;
-          } else if (offset > 0 && offset <= defaultOffset) {
-            if (expanded == 1) {
-              bannerHeight = maxHeight;
-            } else if (expanded == 0) {
-              bannerHeight = defaultBannerHeight;
-            }
-          } else if (offset >= -defaultOffset && offset < 0) {
-            if (expanded == 1) {
-              bannerHeight = maxHeight;
-            } else if (expanded == 0) {
-              bannerHeight = defaultBannerHeight;
-            }
+            currentBannerHeight = maxHeight;
+          } else if ((offset > 0 && offset <= defaultOffset) ||
+              (offset >= -defaultOffset && offset < 0)) {
+            currentBannerHeight = expanded ? maxHeight : defaultBannerHeight;
           } else if (offset < -defaultOffset) {
-            bannerHeight = defaultBannerHeight;
+            currentBannerHeight = defaultBannerHeight;
           }
-          if (bannerHeight == defaultBannerHeight) {
-            expanded = 0;
+          if (currentBannerHeight == defaultBannerHeight) {
+            expanded = false;
           } else {
-            expanded = 1;
+            expanded = true;
           }
           isDragging = false;
         });
@@ -252,7 +244,6 @@ class _BannerHeaderState extends State<BannerHeader>
 
   @override
   Widget build(BuildContext context) {
-    maxHeight = MediaQuery.of(context).size.height - 150;
     return AnimatedContainer(
       padding: const EdgeInsets.only(top: 5.0),
       decoration: const BoxDecoration(
@@ -268,7 +259,7 @@ class _BannerHeaderState extends State<BannerHeader>
       ),
       duration: isDragging ? Duration.zero : const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
-      height: bannerHeight + 55,
+      height: currentBannerHeight + offsetBannerHeight,
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [

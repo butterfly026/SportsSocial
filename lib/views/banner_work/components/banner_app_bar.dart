@@ -1,20 +1,68 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class BannerAppBar extends AppBar {
-  BannerAppBar({
+class BannerAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const BannerAppBar({
     super.key,
-    Widget? titleWidget,
-  }) : super(
-            title: titleWidget,
-            leading: _getLeadingWidget(),
-            flexibleSpace:_getGradientAppBarBackground(),
-            centerTitle: false);
+  });
 
   @override
   Size get preferredSize => const Size(double.infinity, 40.0);
 
-  static Widget _getLeadingWidget() {
+  Widget _getTeamBadge(String? badgeUrl) {
+    return CachedNetworkImage(
+        imageUrl: badgeUrl ?? '',
+        width: 20.0,
+        height: 20.0,
+        placeholder: (context, url) => const SizedBox(
+              width: 20.0,
+              height: 20.0,
+              child: Center(
+                child: CircularProgressIndicator(
+                  strokeWidth: 1.0,
+                ),
+              ),
+            ),
+        errorWidget: (context, url, error) {
+          return const SizedBox(
+              width: 20.0,
+              height: 20.0,
+              child: Center(
+                child: Icon(Icons.error, color: Colors.grey, size: 14.0),
+              ));
+        });
+  }
+
+  Widget _getTitleWidget() {
+    return Transform.translate(
+      offset: const Offset(-40, 0.0), // Adjust this offset as needed
+      child: Row(
+        children: [
+          _getTeamBadge(
+              'https://d1bvoel1nv172p.cloudfront.net/competitors/images/normal/medium/36534.png'),
+          const SizedBox(width: 6.0),
+          const Column(
+            children: [
+              Text(
+                '60:22',
+                style: TextStyle(fontSize: 8.0, color: Colors.white),
+              ),
+              Text(
+                '2-2',
+                style: TextStyle(fontSize: 13.0, color: Colors.white),
+              )
+            ],
+          ),
+          const SizedBox(width: 6.0),
+          _getTeamBadge(
+              'https://d1bvoel1nv172p.cloudfront.net/competitors/images/normal/medium/22007.png'),
+        ],
+      ),
+    );
+  }
+
+  Widget _getLeadingWidget() {
     return Transform.translate(
       offset: const Offset(-8, 0.0),
       child: Row(
@@ -35,7 +83,7 @@ class BannerAppBar extends AppBar {
     );
   }
 
-  static Widget _getGradientAppBarBackground() {
+  Widget _getGradientAppBarBackground() {
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -49,5 +97,14 @@ class BannerAppBar extends AppBar {
             tileMode: TileMode.clamp),
       ),
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+        title: _getTitleWidget(),
+        leading: _getLeadingWidget(),
+        flexibleSpace: _getGradientAppBarBackground(),
+        centerTitle: false);
   }
 }
