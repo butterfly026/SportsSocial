@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:sport_social_mobile_mock/views/banner_work/components/banner_app_bar.dart';
 import 'package:sport_social_mobile_mock/views/banner_work/components/banner_header.dart';
+import 'package:sport_social_mobile_mock/views/banner_work/components/chat_widget.dart';
 
 class BannerWorkPage extends StatefulWidget {
   const BannerWorkPage({super.key});
@@ -76,19 +77,14 @@ class DataMockPageState extends State<BannerWorkPage>
       appBar: BannerAppBar(
         titleWidget: _getTitleWidget(),
       ),
-      body: Container(
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(15.0),
-            bottomRight: Radius.circular(15.0),
+      body: Stack(
+        children: [
+          Container(
+            margin: const EdgeInsets.only(top: 165.0),
+            child: const ChatWidget(),
           ),
-        ),
-        child: const Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            BannerHeader(),
-          ],
-        ),
+          const BannerHeader(),
+        ],
       ),
     );
   }
