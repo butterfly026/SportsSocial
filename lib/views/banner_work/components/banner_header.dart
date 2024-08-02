@@ -17,7 +17,7 @@ class _BannerHeaderState extends State<BannerHeader>
   late double _currentBannerHeight;
   final double _defaultBannerHeight = 100;
   final double _offsetBannerHeight = 55;
-  final double _summaryFullHeight = 300;
+  final double _summaryFullHeight = 330;
   double _dragYStart = 0;
   double _dragYEnd = 0;
   bool _expanded = false;
@@ -91,23 +91,10 @@ class _BannerHeaderState extends State<BannerHeader>
     final maxHeight = MediaQuery.of(context).size.height - 150;
     return GestureDetector(
       onTap: () {
-        bool tmpExpanded = !_expanded;
-        if (_tabController.index == 1 && tmpExpanded) {
-          Future.delayed(const Duration(milliseconds: 150), () {
-            setState(() {
-              _expanded = tmpExpanded;
-            });
-          });
-          setState(() {
-            _currentBannerHeight =
-                tmpExpanded ? maxHeight : _defaultBannerHeight;
-          });
-        } else {
-          setState(() {
-            _expanded = tmpExpanded;
-            _currentBannerHeight = _expanded ? maxHeight : _defaultBannerHeight;
-          });
-        }
+        setState(() {
+          _expanded = !_expanded;
+          _currentBannerHeight = _expanded ? maxHeight : _defaultBannerHeight;
+        });
       },
       child: const Padding(
         padding: EdgeInsets.only(right: 2),
