@@ -11,8 +11,11 @@ class IncidentsTimeline extends StatefulWidget {
 }
 
 class IncidentsTimelineState extends State<IncidentsTimeline> {
+  static const double _defaultWidthPerIncident = 70;
+  static const double _stageTimeWgtWidth = 20;
+  static const double _iconSize = 16;
+  static const List<String> _lstStageTimes = ['KO', 'HT', 'ET', 'PT'];
 
-  double _defaultWidthPerIncident = 60;
   List<MatchIncidentModel> _lstIncidents = [];
   TextStyle textStyle = const TextStyle(
       fontSize: 12.0,
@@ -25,11 +28,11 @@ class IncidentsTimelineState extends State<IncidentsTimeline> {
     super.initState();
     _lstIncidents = widget.incidents;
   }
-  
+
   @override
   void didUpdateWidget(covariant IncidentsTimeline oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if(_lstIncidents != widget.incidents) {
+    if (_lstIncidents != widget.incidents) {
       setState(() {
         _lstIncidents = widget.incidents;
       });
@@ -61,182 +64,141 @@ class IncidentsTimelineState extends State<IncidentsTimeline> {
   }
 
   List<String> _getIncidentTimes(List<MatchIncidentModel> lstIncidents) {
-    List<String> incidentTimes = [];
+    final Set<String> incidentTimes = {};
     for (var incident in lstIncidents) {
-      if (!incidentTimes.contains(incident.incidentTime)) {
-        switch (incident.stage) {
-          case MatchIncidentStageType.firstHalf:
-            if (!incidentTimes.contains('KO')) {
-              incidentTimes.add('KO');
-            }
-            break;
-          case MatchIncidentStageType.secondHalf:
-            if (!incidentTimes.contains('HT')) {
-              incidentTimes.add('HT');
-            }
-            break;
-          case MatchIncidentStageType.extraTime:
-            if (!incidentTimes.contains('ET')) {
-              incidentTimes.add('ET');
-            }
-            break;
-          case MatchIncidentStageType.penalty:
-            if (!incidentTimes.contains('PT')) {
-              incidentTimes.add('PT');
-            }
-            break;
-          default:
-            break;
-        }
-        incidentTimes.add(incident.incidentTime);
+      switch (incident.stage) {
+        case MatchIncidentStageType.firstHalf:
+          incidentTimes.add('KO');
+          break;
+        case MatchIncidentStageType.secondHalf:
+          incidentTimes.add('HT');
+          break;
+        case MatchIncidentStageType.extraTime:
+          incidentTimes.add('ET');
+          break;
+        case MatchIncidentStageType.penalty:
+          incidentTimes.add('PT');
+          break;
+        default:
+          break;
       }
+      incidentTimes.add(incident.incidentTime);
     }
-    return incidentTimes;
+    return incidentTimes.toList();
   }
 
-  double _getIncidentTimeLine(List<MatchIncidentModel> lstIncidents) {
+  double _getIncidentTimeLineWidth(List<MatchIncidentModel> lstIncidents) {
     List<String> incidentTimes = _getIncidentTimes(lstIncidents);
-    double widthTimeline = _defaultWidthPerIncident * incidentTimes.length;
-    double screenWidth = MediaQuery.of(context).size.width - 70;
+    int nStageTimes = incidentTimes
+        .where((incidentTime) => _lstStageTimes.contains(incidentTime))
+        .toList()
+        .length;
+    double widthTimeline =
+        _defaultWidthPerIncident * (incidentTimes.length - nStageTimes) +
+            _stageTimeWgtWidth * nStageTimes;
+    double screenWidth = MediaQuery.of(context).size.width - 80;
     if (widthTimeline < screenWidth) {
-      _defaultWidthPerIncident = screenWidth / (incidentTimes.length + 1);
       widthTimeline = screenWidth;
     }
-    return widthTimeline;
+
+    return widthTimeline / (incidentTimes.length - nStageTimes);
   }
 
   Widget _getIncidentImage(
       String participant, String assetImg, MatchIncidentSideType side) {
-    if (side == MatchIncidentSideType.away) {
-      return Column(
-        children: [
-          Image.asset(
-            assetImg,
-            width: 16,
-            height: 16,
-          ),
-          Text(
-            participant,
-            textAlign: TextAlign.center,
-            style: textStyle.copyWith(
-                fontWeight: FontWeight.normal, fontSize: 10.0),
-          ),
-        ],
-      );
-    }
     return Column(
       children: [
-        Text(
-          participant,
-          textAlign: TextAlign.center,
-          style:
-              textStyle.copyWith(fontWeight: FontWeight.normal, fontSize: 10.0),
-        ),
-        Image.asset(
-          assetImg,
-          width: 16,
-          height: 16,
-        ),
+        if (side == MatchIncidentSideType.home) ...[
+          Text(participant,
+              textAlign: TextAlign.center,
+              style: textStyle.copyWith(fontWeight: FontWeight.normal)),
+          Image.asset(assetImg, width: _iconSize, height: _iconSize),
+        ] else ...[
+          Image.asset(assetImg, width: _iconSize, height: _iconSize),
+          Text(participant,
+              textAlign: TextAlign.center,
+              style: textStyle.copyWith(fontWeight: FontWeight.normal)),
+        ],
       ],
     );
   }
 
   Widget _getIncidentCard(
       String participant, Color color, MatchIncidentSideType side) {
-    if (side == MatchIncidentSideType.away) {
-      return Column(
-        children: [
-          SizedBox(
-            width: 7,
-            height: 10.0,
-            child: Container(
-              decoration: BoxDecoration(color: color),
-            ),
-          ),
-          Text(
-            participant,
-            textAlign: TextAlign.center,
-            style: textStyle.copyWith(
-                fontWeight: FontWeight.normal, fontSize: 10.0),
-          ),
-        ],
-      );
-    }
     return Column(
       children: [
-        Text(
-          participant,
-          textAlign: TextAlign.center,
-          style:
-              textStyle.copyWith(fontWeight: FontWeight.normal, fontSize: 10.0),
-        ),
-        SizedBox(
-          width: 7,
-          height: 10.0,
-          child: Container(
-            decoration: BoxDecoration(color: color),
-          ),
-        ),
+        if (side == MatchIncidentSideType.home) ...[
+          Text(participant,
+              textAlign: TextAlign.center,
+              style: textStyle.copyWith(fontWeight: FontWeight.normal)),
+          SizedBox(
+              width: 7,
+              height: 10.0,
+              child: Container(decoration: BoxDecoration(color: color))),
+        ] else ...[
+          SizedBox(
+              width: 7,
+              height: 10.0,
+              child: Container(decoration: BoxDecoration(color: color))),
+          Text(participant,
+              textAlign: TextAlign.center,
+              style: textStyle.copyWith(fontWeight: FontWeight.normal)),
+        ],
       ],
     );
   }
 
-  Widget _getsubstitution(List<MatchIncidentModel> incidentsIn,
+  Widget _getSubstitution(List<MatchIncidentModel> incidentsIn,
       List<MatchIncidentModel> incidentsOut, MatchIncidentSideType side) {
+    final List<Widget> widgets = [];
     if (side == MatchIncidentSideType.away) {
-      return Column(
-        children: [
-          if (incidentsIn.isNotEmpty)
-            for (var incident in incidentsIn)
-              Text(
-                incidentsIn.indexOf(incident) == 0
-                    ? incident.participant
-                    : '/ ${incident.participant}',
-                textAlign: TextAlign.center,
-                style: textStyle.copyWith(
-                    color: Colors.green,
-                    fontWeight: FontWeight.normal,
-                    fontSize: 10.0),
-              ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              if (incidentsIn.isNotEmpty)
-                const Icon(Icons.arrow_downward, color: Colors.red, size: 15),
-              if (incidentsOut.isNotEmpty)
-                const Icon(Icons.arrow_upward, color: Colors.green, size: 15),
-            ],
+      widgets.addAll(
+        incidentsIn.map(
+          (incident) => Text(
+            '${incidentsIn.indexOf(incident) == 0 ? '' : '/ '}${incident.participant}',
+            textAlign: TextAlign.center,
+            style: textStyle.copyWith(
+                color: Colors.green, fontWeight: FontWeight.normal),
           ),
-          if (incidentsOut.isNotEmpty)
-            for (var incident in incidentsOut)
-              Text(
-                incidentsOut.indexOf(incident) == 0
-                    ? incident.participant
-                    : '/ ${incident.participant}',
-                textAlign: TextAlign.center,
-                style: textStyle.copyWith(
-                    color: Colors.red,
-                    fontWeight: FontWeight.normal,
-                    fontSize: 10.0),
-              ),
-        ],
+        ),
       );
-    }
-
-    return Column(
-      children: [
-        if (incidentsOut.isNotEmpty)
-          for (var incident in incidentsOut)
-            Text(
-              incidentsOut.indexOf(incident) == 0
-                  ? incident.participant
-                  : '/ ${incident.participant}',
-              textAlign: TextAlign.center,
-              style: textStyle.copyWith(
-                  color: Colors.red,
-                  fontWeight: FontWeight.normal,
-                  fontSize: 10.0),
+      widgets.add(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (incidentsIn.isNotEmpty)
+              const Icon(Icons.arrow_downward, color: Colors.red, size: 15),
+            if (incidentsOut.isNotEmpty)
+              const Icon(Icons.arrow_upward, color: Colors.green, size: 15),
+          ],
+        ),
+      );
+      widgets.addAll(
+        incidentsOut.map(
+          (incident) => Text(
+            '${incidentsOut.indexOf(incident) == 0 ? '' : '/ '}${incident.participant}',
+            textAlign: TextAlign.center,
+            style: textStyle.copyWith(
+              color: Colors.red,
+              fontWeight: FontWeight.normal,
             ),
+          ),
+        ),
+      );
+    } else {
+      widgets.addAll(
+        incidentsOut.map(
+          (incident) => Text(
+            '${incidentsOut.indexOf(incident) == 0 ? '' : '/ '}${incident.participant}',
+            textAlign: TextAlign.center,
+            style: textStyle.copyWith(
+              color: Colors.red,
+              fontWeight: FontWeight.normal,
+            ),
+          ),
+        ),
+      );
+      widgets.add(
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -246,77 +208,54 @@ class IncidentsTimelineState extends State<IncidentsTimeline> {
               const Icon(Icons.arrow_downward, color: Colors.red, size: 15),
           ],
         ),
-        if (incidentsIn.isNotEmpty)
-          for (var incident in incidentsIn)
-            Text(
-              incidentsIn.indexOf(incident) == 0
-                  ? incident.participant
-                  : '/ ${incident.participant}',
-              textAlign: TextAlign.center,
-              style: textStyle.copyWith(
-                  color: Colors.green,
-                  fontWeight: FontWeight.normal,
-                  fontSize: 10.0),
+      );
+      widgets.addAll(
+        incidentsIn.map(
+          (incident) => Text(
+            '${incidentsIn.indexOf(incident) == 0 ? '' : '/ '}${incident.participant}',
+            textAlign: TextAlign.center,
+            style: textStyle.copyWith(
+              color: Colors.green,
+              fontWeight: FontWeight.normal,
             ),
-      ],
-    );
+          ),
+        ),
+      );
+    }
+    return Column(children: widgets);
   }
 
   Widget _getGoalAssistance(MatchIncidentModel incAssistance,
       MatchIncidentModel incGoal, MatchIncidentSideType side) {
-    if (side == MatchIncidentSideType.away) {
-      return Column(
-        children: [
-          Image.asset(
-            'lib/assets/ball.png',
-            width: 16,
-            height: 16,
-          ),
-          Text(
-            incGoal.participant,
-            textAlign: TextAlign.center,
-            style: textStyle.copyWith(
-                fontWeight: FontWeight.normal, fontSize: 10.0),
-          ),
-          Image.asset(
-            'lib/assets/assitance_ball.png',
-            width: 16,
-            height: 16,
-          ),
-          Text(
-            incAssistance.participant,
-            textAlign: TextAlign.center,
-            style: textStyle.copyWith(
-                fontWeight: FontWeight.normal, fontSize: 10.0),
-          ),
-        ],
-      );
-    }
-
     return Column(
       children: [
-        Text(
-          incAssistance.participant,
-          textAlign: TextAlign.center,
-          style:
-              textStyle.copyWith(fontWeight: FontWeight.normal, fontSize: 10.0),
-        ),
-        Image.asset(
-          'lib/assets/assitance_ball.png',
-          width: 16,
-          height: 16,
-        ),
-        Text(
-          incGoal.participant,
-          textAlign: TextAlign.center,
-          style:
-              textStyle.copyWith(fontWeight: FontWeight.normal, fontSize: 10.0),
-        ),
-        Image.asset(
-          'lib/assets/ball.png',
-          width: 16,
-          height: 16,
-        ),
+        if (side == MatchIncidentSideType.home) ...[
+          Text(incAssistance.participant,
+              textAlign: TextAlign.center,
+              style: textStyle.copyWith(
+                  fontWeight: FontWeight.normal, fontSize: 10.0)),
+          Image.asset('lib/assets/assitance_ball.png',
+              width: _iconSize, height: _iconSize),
+          Text(incGoal.participant,
+              textAlign: TextAlign.center,
+              style: textStyle.copyWith(
+                  fontWeight: FontWeight.normal, fontSize: 10.0)),
+          Image.asset('lib/assets/ball.png',
+              width: _iconSize, height: _iconSize),
+        ] else ...[
+          Image.asset('lib/assets/ball.png',
+              width: _iconSize, height: _iconSize),
+          Text(incGoal.participant,
+              textAlign: TextAlign.center,
+              style: textStyle.copyWith(
+                  fontWeight: FontWeight.normal, fontSize: 10.0)),
+          Image.asset('lib/assets/assitance_ball.png',
+              width: _iconSize, height: _iconSize),
+          Text(incAssistance.participant,
+              textAlign: TextAlign.center,
+              style: textStyle.copyWith(
+                  fontWeight: FontWeight.normal, fontSize: 10.0)),
+        ],
       ],
     );
   }
@@ -368,7 +307,7 @@ class IncidentsTimelineState extends State<IncidentsTimeline> {
         List<MatchIncidentModel> incidentsOut = incidents
             .where((item) => item.type == MatchIncidentType.substitutionOut)
             .toList();
-        return _getsubstitution(incidentsIn, incidentsOut, side);
+        return _getSubstitution(incidentsIn, incidentsOut, side);
       }
     }
     return Container();
@@ -379,17 +318,15 @@ class IncidentsTimelineState extends State<IncidentsTimeline> {
     String incidentTime,
     MatchIncidentSideType side,
   ) {
-    return lstIncidents
-        .where(
-          (incident) =>
-              incident.incidentTime == incidentTime && incident.side == side,
-        )
-        .toList();
+    return lstIncidents.where((incident) {
+      return incident.incidentTime == incidentTime && incident.side == side;
+    }).toList();
   }
 
   Widget _getTeamIncidents(
       List<MatchIncidentModel> lstIncidents, MatchIncidentSideType side) {
     List<String> incidentTimes = _getIncidentTimes(lstIncidents);
+    double incidentWgtWidth = _getIncidentTimeLineWidth(lstIncidents);
     return Row(
       children: [
         if (side == MatchIncidentSideType.home)
@@ -405,9 +342,9 @@ class IncidentsTimelineState extends State<IncidentsTimeline> {
           children: [
             for (var incidentTime in incidentTimes)
               SizedBox(
-                width: incidentTimes.indexOf(incidentTime) == 0
-                    ? _defaultWidthPerIncident - 20
-                    : _defaultWidthPerIncident,
+                width: _lstStageTimes.contains(incidentTime)
+                    ? _stageTimeWgtWidth
+                    : incidentWgtWidth,
                 child: Padding(
                   padding: EdgeInsets.only(
                       bottom: side == MatchIncidentSideType.home ? 5.0 : 0,
@@ -423,34 +360,34 @@ class IncidentsTimelineState extends State<IncidentsTimeline> {
   }
 
   Widget _getTimelineWidget(List<MatchIncidentModel> lstIncidents) {
-    double widthTimeline = _getIncidentTimeLine(lstIncidents);
+    if (lstIncidents.isEmpty) return Container();
     List<String> incidentTimes = _getIncidentTimes(lstIncidents);
+    double incidentWgtWidth = _getIncidentTimeLineWidth(lstIncidents);
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 2.0),
+      padding: const EdgeInsets.only(left: 20.0, top: 2.0, bottom: 2.0),
       decoration: const BoxDecoration(
         color: Color(0xFF3AC962),
         borderRadius: BorderRadius.all(
           Radius.circular(10.0),
         ),
       ),
-      child: SizedBox(
-        width: widthTimeline,
-        child: Row(
-          children: [
-            for (var incidentTime in incidentTimes)
-              SizedBox(
-                width: _defaultWidthPerIncident,
-                child: Column(
-                  children: [
-                    Text(
-                      incidentTime,
-                      style: textStyle.copyWith(fontSize: 10.0),
-                    )
-                  ],
-                ),
-              )
-          ],
-        ),
+      child: Row(
+        children: [
+          for (var incidentTime in incidentTimes)
+            SizedBox(
+              width: _lstStageTimes.contains(incidentTime)
+                  ? _stageTimeWgtWidth
+                  : incidentWgtWidth,
+              child: Column(
+                children: [
+                  Text(
+                    incidentTime,
+                    style: textStyle.copyWith(fontSize: 10.0),
+                  )
+                ],
+              ),
+            )
+        ],
       ),
     );
   }
@@ -488,5 +425,4 @@ class IncidentsTimelineState extends State<IncidentsTimeline> {
       ),
     );
   }
-
 }
