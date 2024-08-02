@@ -13,26 +13,21 @@ class BannerHeader extends StatefulWidget {
 class _BannerHeaderState extends State<BannerHeader>
     with TickerProviderStateMixin {
   late TabController _tabController;
-  final List<String> tabContentNames = [
-    'commentary',
-    'gameSummary',
-    'statistics'
-  ];
 
-  late double currentBannerHeight;
-  double defaultBannerHeight = 100;
-  double offsetBannerHeight = 55;
-  double summaryFullHeight = 300;
-  double dragYStart = 0;
-  double dragYEnd = 0;
-  bool expanded = false;
-  bool isDragging = false;
+  late double _currentBannerHeight;
+  final double _defaultBannerHeight = 100;
+  final double _offsetBannerHeight = 55;
+  final double _summaryFullHeight = 300;
+  double _dragYStart = 0;
+  double _dragYEnd = 0;
+  bool _expanded = false;
+  bool _isDragging = false;
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
-    currentBannerHeight = defaultBannerHeight;
+    _currentBannerHeight = _defaultBannerHeight;
   }
 
   @override
@@ -54,7 +49,7 @@ class _BannerHeaderState extends State<BannerHeader>
     );
   }
 
-  Widget _getTabBar() {
+  Widget _tabBar() {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5.0),
       child: TabBar(
@@ -73,7 +68,6 @@ class _BannerHeaderState extends State<BannerHeader>
           border: Border.all(color: Colors.white, width: 1.0),
         ),
         unselectedLabelColor: Colors.white,
-        // labelStyle: const TextStyle(fontSize: 10.0),
         labelPadding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 0),
         labelColor: Colors.white,
         dividerColor: Colors.transparent,
@@ -93,40 +87,14 @@ class _BannerHeaderState extends State<BannerHeader>
     );
   }
 
-  Widget _getContentByName(String contentName) {
-    switch (contentName) {
-      case 'commentary':
-        return CommentaryWidget(isDragging: isDragging);
-      case 'gameSummary':
-        return GameSummaryWidget(expanded: expanded);
-      case 'statistics':
-        return Container();
-      default:
-        return const Text('Default page',
-            style: TextStyle(color: Colors.white));
-    }
-  }
-
-  Widget _getTabContent(String contentName) {
-    return Visibility(
-        visible: _tabController.index == tabContentNames.indexOf(contentName),
-        child: AnimatedContainer(
-          height: currentBannerHeight,
-          duration:
-              isDragging ? Duration.zero : const Duration(milliseconds: 300),
-          curve: Curves.easeInOut,
-          child: _getContentByName(contentName),
-        ));
-  }
-
   Widget _getExpandIcon() {
     final maxHeight = MediaQuery.of(context).size.height - 150;
     return GestureDetector(
       onTap: () {
-          setState(() {
-            expanded = !expanded;
-            currentBannerHeight = expanded ? maxHeight : defaultBannerHeight;
-          });
+        setState(() {
+          _expanded = !_expanded;
+          _currentBannerHeight = _expanded ? maxHeight : _defaultBannerHeight;
+        });
       },
       child: const Padding(
         padding: EdgeInsets.only(right: 2),
@@ -139,23 +107,30 @@ class _BannerHeaderState extends State<BannerHeader>
     );
   }
 
+  Widget _tabContent() {
+    return Expanded(
+      child: TabBarView(
+        controller: _tabController,
+        children: [
+          CommentaryWidget(isDragging: _isDragging),
+          GameSummaryWidget(expanded: _expanded),
+          Container(),
+        ],
+      ),
+    );
+  }
+
   Widget _getBannerWidget() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
-            Expanded(child: _getTabBar()),
+            Expanded(child: _tabBar()),
             _getExpandIcon(),
           ],
         ),
-        Column(
-          children: [
-            _getTabContent('commentary'),
-            _getTabContent('gameSummary'),
-            _getTabContent('statistics'),
-          ],
-        ),
+        _tabContent(),
       ],
     );
   }
@@ -179,52 +154,52 @@ class _BannerHeaderState extends State<BannerHeader>
       behavior: HitTestBehavior.translucent,
       onVerticalDragStart: (details) {
         setState(() {
-          isDragging = true;
-          dragYStart = details.globalPosition.dy;
+          _isDragging = true;
+          _dragYStart = details.globalPosition.dy;
         });
       },
       onVerticalDragUpdate: (DragUpdateDetails details) {
         setState(() {
           double positionY = details.globalPosition.dy;
           if (positionY < 270) {
-            currentBannerHeight = defaultBannerHeight;
+            _currentBannerHeight = _defaultBannerHeight;
           } else if (positionY <= maxHeight + 110) {
-            currentBannerHeight = positionY - 110;
+            _currentBannerHeight = positionY - 110;
           }
           if (_tabController.index == 1) {
-            if (currentBannerHeight > summaryFullHeight && !expanded) {
-              expanded = true;
-            } else if (currentBannerHeight < summaryFullHeight && expanded) {
-              expanded = false;
+            if (_currentBannerHeight > _summaryFullHeight && !_expanded) {
+              _expanded = true;
+            } else if (_currentBannerHeight < _summaryFullHeight && _expanded) {
+              _expanded = false;
             }
           }
         });
       },
       onVerticalDragEnd: (details) {
         setState(() {
-          dragYEnd = details.globalPosition.dy;
-          double offset = dragYEnd - dragYStart;
+          _dragYEnd = details.globalPosition.dy;
+          double offset = _dragYEnd - _dragYStart;
           double defaultOffset = 150;
           if (offset > defaultOffset) {
-            currentBannerHeight = maxHeight;
+            _currentBannerHeight = maxHeight;
           } else if ((offset > 0 && offset <= defaultOffset) ||
               (offset >= -defaultOffset && offset < 0)) {
-            currentBannerHeight = expanded ? maxHeight : defaultBannerHeight;
+            _currentBannerHeight = _expanded ? maxHeight : _defaultBannerHeight;
           } else if (offset < -defaultOffset) {
-            currentBannerHeight = defaultBannerHeight;
+            _currentBannerHeight = _defaultBannerHeight;
           }
-          if (currentBannerHeight == defaultBannerHeight) {
-            expanded = false;
+          if (_currentBannerHeight == _defaultBannerHeight) {
+            _expanded = false;
           } else {
-            expanded = true;
+            _expanded = true;
           }
-          isDragging = false;
+          _isDragging = false;
         });
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const SizedBox(height: 5.0),
+          const SizedBox(height: 10.0),
           _getExpandDragIcon(),
         ],
       ),
@@ -246,13 +221,12 @@ class _BannerHeaderState extends State<BannerHeader>
             stops: [0.0, 1.0],
             tileMode: TileMode.clamp),
       ),
-      duration: isDragging ? Duration.zero : const Duration(milliseconds: 300),
+      duration: _isDragging ? Duration.zero : const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
-      height: currentBannerHeight + offsetBannerHeight,
+      height: _currentBannerHeight + _offsetBannerHeight,
       child: Column(
-        mainAxisSize: MainAxisSize.max,
         children: [
-          _getBannerWidget(),
+          Expanded(child: _getBannerWidget()),
           _getExpandDragArea(),
         ],
       ),

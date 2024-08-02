@@ -519,8 +519,8 @@ class GameSummaryWidgetState extends State<GameSummaryWidget> {
               child: Column(
                 children: [
                   _getTeamIncidents(lstIncidents, MatchIncidentSideType.home),
-                  _getTimelineWidget(lstIncidents),
-                  _getTeamIncidents(lstIncidents, MatchIncidentSideType.away),
+                  // _getTimelineWidget(lstIncidents),
+                  // _getTeamIncidents(lstIncidents, MatchIncidentSideType.away),
                 ],
               ),
             ),
@@ -544,25 +544,25 @@ class GameSummaryWidgetState extends State<GameSummaryWidget> {
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
         valueListenable: dataMockService.summaryNotifier,
-        builder: (context, commentaries, child) {
+        builder: (context, summaries, child) {
           return ValueListenableBuilder(
               valueListenable: dataMockService.incidentNotifier,
               builder: (context, incidents, child) {
                 if (!widget.expanded) {
-                  return _getSummaryList(commentaries);
-                } else {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _getCategoryTitle('Match Timeline'),
-                      _getIncidents(incidents),
-                      _getCategoryTitle('Summary'),
-                      Expanded(
-                        child: _getSummaryList(commentaries),
-                      )
-                    ],
-                  );
+                  return _getSummaryList(summaries);
                 }
+
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _getCategoryTitle('Summary'),
+                    Expanded(
+                      child: _getSummaryList(summaries),
+                    ),
+                    _getCategoryTitle('Match Timeline'),
+                    _getIncidents(incidents),
+                  ],
+                );
               });
         });
   }
