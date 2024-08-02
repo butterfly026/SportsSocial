@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sport_social_mobile_mock/views/banner_work/components/banner_app_bar.dart';
 import 'package:sport_social_mobile_mock/views/banner_work/components/banner_header.dart';
-import 'package:sport_social_mobile_mock/views/banner_work/components/chat_widget.dart';
 
 class BannerWorkPage extends StatefulWidget {
   const BannerWorkPage({super.key});
