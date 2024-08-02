@@ -64,11 +64,14 @@ class DataMockPageState extends State<TeamInfoPage>
 
   Widget _showTabWidgets() {
     return Expanded(
-      child: TabBarView(controller: _tabController, children: [
-        NewsWidget(),
-        MatchesWidget(),
-        const StandingsWidget(),
-      ]),
+      child: TabBarView(
+        controller: _tabController,
+        children: [
+          NewsWidget(),
+          MatchesWidget(),
+          const StandingsWidget(),
+        ],
+      ),
     );
   }
 
