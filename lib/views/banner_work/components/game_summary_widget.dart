@@ -519,8 +519,8 @@ class GameSummaryWidgetState extends State<GameSummaryWidget> {
               child: Column(
                 children: [
                   _getTeamIncidents(lstIncidents, MatchIncidentSideType.home),
-                  // _getTimelineWidget(lstIncidents),
-                  // _getTeamIncidents(lstIncidents, MatchIncidentSideType.away),
+                  _getTimelineWidget(lstIncidents),
+                  _getTeamIncidents(lstIncidents, MatchIncidentSideType.away),
                 ],
               ),
             ),
@@ -555,12 +555,12 @@ class GameSummaryWidgetState extends State<GameSummaryWidget> {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    _getCategoryTitle('Match Timeline'),
+                    _getIncidents(incidents),
                     _getCategoryTitle('Summary'),
                     Expanded(
                       child: _getSummaryList(summaries),
-                    ),
-                    _getCategoryTitle('Match Timeline'),
-                    _getIncidents(incidents),
+                    )
                   ],
                 );
               });
