@@ -97,7 +97,7 @@ class GameSummaryWidgetState extends State<GameSummaryWidget> {
               valueListenable: dataMockService.incidentNotifier,
               builder: (context, incidents, child) {
                 if (!widget.expanded) {
-                  return _getSummaryList(summaries.sublist(0, 1));
+                  return Center(child: _getCommentaryItem(summaries[0]));
                 } else {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
