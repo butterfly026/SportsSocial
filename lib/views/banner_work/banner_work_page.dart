@@ -21,13 +21,12 @@ class BannerWorkPageState extends State<BannerWorkPage>
     return const Scaffold(
       backgroundColor: Color(0xFF15182C),
       appBar: BannerAppBar(),
-      body: BannerHeader(),
-      // body: Stack(
-      //   children: [
-      //     // ChatWidget(),
-      //     BannerHeader(),
-      //   ],
-      // ),
+      body: Stack(
+        children: [
+          ChatWidget(),
+          BannerHeader(),
+        ],
+      ),
     );
   }
 }
