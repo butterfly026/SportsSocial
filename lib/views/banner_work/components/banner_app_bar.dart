@@ -1,11 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:sport_social_mobile_mock/services/example_firebase_service.dart';
+import 'package:sport_social_mobile_mock/services/service_locator.dart';
 
 // ignore: must_be_immutable
 class BannerAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const BannerAppBar({
+  BannerAppBar({
     super.key,
   });
+  final exampleFirebaseService = ServiceLocator.get<ExampleFirebaseService>();
 
   @override
   Size get preferredSize => const Size(double.infinity, 40.0);
@@ -105,6 +108,26 @@ class BannerAppBar extends StatelessWidget implements PreferredSizeWidget {
         title: _getTitleWidget(),
         leading: _getLeadingWidget(),
         flexibleSpace: _getGradientAppBarBackground(),
+        actions: [
+          TextButton(
+            onPressed: () {
+              exampleFirebaseService.startMatch();
+            },
+            child: const Text(
+              'Start',
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              exampleFirebaseService.cleanUpMatch();
+            },
+            child: const Text(
+              'End',
+              style: TextStyle(color: Colors.black),
+            ),
+          ),
+        ],
         centerTitle: false);
   }
 }

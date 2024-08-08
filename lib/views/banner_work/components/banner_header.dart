@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:sport_social_mobile_mock/views/banner_work/components/commentary_widget.dart';
 import 'package:sport_social_mobile_mock/views/banner_work/components/game_summary_widget.dart';
+import 'package:sport_social_mobile_mock/views/banner_work/components/statistics_widget.dart';
 
 class BannerHeader extends StatefulWidget {
   const BannerHeader({super.key});
@@ -112,9 +113,9 @@ class _BannerHeaderState extends State<BannerHeader>
       child: TabBarView(
         controller: _tabController,
         children: [
-          CommentaryWidget(isDragging: _isDragging),
+          const CommentaryWidget(),
           GameSummaryWidget(expanded: _expanded),
-          Container(),
+          const StatisticsWidget(),
         ],
       ),
     );

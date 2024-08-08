@@ -11,10 +11,10 @@ class IncidentsTimeline extends StatefulWidget {
 }
 
 class IncidentsTimelineState extends State<IncidentsTimeline> {
-  static const double _defaultWidthPerIncident = 70;
-  static const double _stageTimeWgtWidth = 20;
-  static const double _iconSize = 16;
-  static const List<String> _lstStageTimes = ['KO', 'HT', 'ET', 'PT'];
+  final double _defaultWidthPerIncident = 70;
+  final double _stageTimeWgtWidth = 20;
+  final double _iconSize = 16;
+  final List<String> _lstStageTimes = ['KO', 'HT', 'ET', 'PT'];
 
   List<MatchIncidentModel> _lstIncidents = [];
   TextStyle textStyle = const TextStyle(
@@ -22,6 +22,7 @@ class IncidentsTimelineState extends State<IncidentsTimeline> {
       color: Colors.white,
       height: 1.5,
       fontWeight: FontWeight.bold);
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -35,6 +36,11 @@ class IncidentsTimelineState extends State<IncidentsTimeline> {
     if (_lstIncidents != widget.incidents) {
       setState(() {
         _lstIncidents = widget.incidents;
+        _scrollController.animateTo(
+          _scrollController.position.minScrollExtent,
+          duration: const Duration(milliseconds: 200),
+          curve: Curves.fastOutSlowIn,
+        );
       });
     }
   }
@@ -411,6 +417,7 @@ class IncidentsTimelineState extends State<IncidentsTimeline> {
           Expanded(
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
+              controller: _scrollController,
               reverse: true,
               child: Column(
                 children: [

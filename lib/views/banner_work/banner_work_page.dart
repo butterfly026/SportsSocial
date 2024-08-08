@@ -19,10 +19,10 @@ class BannerWorkPageState extends State<BannerWorkPage>
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Color(0xFF15182C),
+    return Scaffold(
+      backgroundColor: const Color(0xFF15182C),
       appBar: BannerAppBar(),
-      body: Stack(
+      body: const Stack(
         children: [
           ChatWidget(),
           BannerHeader(),

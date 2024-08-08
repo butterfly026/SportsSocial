@@ -1,8 +1,8 @@
 [
   {
     "type": "ballPossession",
-    "valueHome": "61%",
-    "valueAway": "39%",
+    "valueHome": "61",
+    "valueAway": "39",
     "displayName": "Ball Possession"
   },
   {

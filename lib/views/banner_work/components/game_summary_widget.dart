@@ -14,19 +14,18 @@ class GameSummaryWidget extends StatefulWidget {
 
 class GameSummaryWidgetState extends State<GameSummaryWidget> {
   final dataMockService = ServiceLocator.get<LiveGameService>();
-  TextStyle textStyle = const TextStyle(
+  final TextStyle _textStyle = const TextStyle(
       fontSize: 12.0,
       color: Colors.white,
       height: 1.5,
       fontWeight: FontWeight.bold);
-  double defaultWidthPerIncident = 60;
 
   @override
   void initState() {
     super.initState();
   }
 
-  Widget _getCommentaryItem(MatchGameSummary summary) {
+  Widget _summaryItem(MatchGameSummary summary) {
     if (widget.expanded) {
       return Container(
           padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 3.0),
@@ -41,11 +40,11 @@ class GameSummaryWidgetState extends State<GameSummaryWidget> {
                 width: 80,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [Text(summary.summaryTime, style: textStyle)],
+                  children: [Text(summary.summaryTime, style: _textStyle)],
                 ),
               ),
               Expanded(
-                child: Text(summary.content, style: textStyle),
+                child: Text(summary.content, style: _textStyle),
               ),
             ],
           ));
@@ -71,11 +70,10 @@ class GameSummaryWidgetState extends State<GameSummaryWidget> {
 
   Widget _getSummaryList(List<MatchGameSummary> lstData) {
     return ListView.builder(
-        itemCount: lstData.length,
-        padding: EdgeInsets.zero,
-        itemBuilder: (context, index) {
-          return _getCommentaryItem(lstData[index]);
-        });
+      itemCount: lstData.length,
+      padding: EdgeInsets.zero,
+      itemBuilder: (context, index) => _summaryItem(lstData[index]),
+    );
   }
 
   Widget _getCategoryTitle(String title) {
@@ -83,7 +81,16 @@ class GameSummaryWidgetState extends State<GameSummaryWidget> {
       padding: const EdgeInsets.only(left: 10.0, bottom: 4.0),
       child: Text(
         title,
-        style: textStyle,
+        style: _textStyle,
+      ),
+    );
+  }
+
+  Widget _getNotAvailableWidget(String text) {
+    return Center(
+      child: Text(
+        text,
+        style: const TextStyle(color: Colors.black),
       ),
     );
   }
@@ -97,17 +104,22 @@ class GameSummaryWidgetState extends State<GameSummaryWidget> {
               valueListenable: dataMockService.incidentNotifier,
               builder: (context, incidents, child) {
                 if (!widget.expanded) {
-                  return Center(child: _getCommentaryItem(summaries[0]));
+                  if (summaries.isEmpty) {
+                    return _getNotAvailableWidget('Summaries not available');
+                  }
+                  return Center(child: _summaryItem(summaries[0]));
                 } else {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       _getCategoryTitle('Match Timeline'),
-                      IncidentsTimeline(incidents: incidents),
+                      incidents.isNotEmpty
+                          ? IncidentsTimeline(incidents: incidents)
+                          : _getNotAvailableWidget('Timeline not available'),
                       _getCategoryTitle('Summary'),
-                      Expanded(
-                        child: _getSummaryList(summaries),
-                      )
+                      summaries.isNotEmpty
+                          ? Expanded(child: _getSummaryList(summaries))
+                          : _getNotAvailableWidget('Summaries not available')
                     ],
                   );
                 }

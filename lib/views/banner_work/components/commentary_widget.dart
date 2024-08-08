@@ -4,38 +4,24 @@ import 'package:sport_social_mobile_mock/services/live_game_service.dart';
 import 'package:sport_social_mobile_mock/services/service_locator.dart';
 
 class CommentaryWidget extends StatefulWidget {
-  final bool isDragging;
-  const CommentaryWidget({super.key, this.isDragging = false});
+  const CommentaryWidget({super.key});
 
   @override
   CommentaryWidgetState createState() => CommentaryWidgetState();
 }
 
 class CommentaryWidgetState extends State<CommentaryWidget> {
-  bool isDragging = false;
   final dataMockService = ServiceLocator.get<LiveGameService>();
 
   @override
   void initState() {
     super.initState();
-    isDragging = widget.isDragging;
   }
-
-  @override
-  void didUpdateWidget(covariant CommentaryWidget oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if(isDragging != widget.isDragging) {
-      setState(() {
-        isDragging = widget.isDragging;
-      });
-    }
-  }
-
 
   Widget _getCommentaryItem(MatchCommentaryModel commentary) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 3.0),
-      padding: const EdgeInsets.all(3.0),      
+      padding: const EdgeInsets.all(3.0),
       decoration: BoxDecoration(
           border: Border.all(color: const Color(0xFF606580), width: 1.0),
           borderRadius: BorderRadius.circular(3.0)),
@@ -62,11 +48,20 @@ class CommentaryWidgetState extends State<CommentaryWidget> {
 
   Widget _getCommentaryList(List<MatchCommentaryModel> lstData) {
     return ListView.builder(
-            itemCount: lstData.length,          
-            padding: EdgeInsets.zero,  
-            itemBuilder: (context, index) {
-              return _getCommentaryItem(lstData[index]);
-            });
+        itemCount: lstData.length,
+        padding: EdgeInsets.zero,
+        itemBuilder: (context, index) {
+          return _getCommentaryItem(lstData[index]);
+        });
+  }
+
+  Widget _getNotAvailableWidget() {
+    return const Center(
+      child: Text(
+        'Commentary not available',
+        style: TextStyle(color: Colors.black),
+      ),
+    );
   }
 
   @override
@@ -74,6 +69,9 @@ class CommentaryWidgetState extends State<CommentaryWidget> {
     return ValueListenableBuilder(
         valueListenable: dataMockService.commentaryNotifier,
         builder: (context, commentaries, child) {
+          if (commentaries.isEmpty) {
+            return _getNotAvailableWidget();
+          }
           return _getCommentaryList(commentaries);
         });
   }

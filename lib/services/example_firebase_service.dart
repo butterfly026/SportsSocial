@@ -234,6 +234,12 @@ class ExampleFirebaseService {
       }
     });
 
+    await _summariessRef(_matchId).get().then((snapshot) {
+      for (DocumentSnapshot doc in snapshot.docs) {
+        doc.reference.delete();
+      }
+    });
+
     await _incidentsRef(_matchId).get().then((snapshot) {
       for (DocumentSnapshot doc in snapshot.docs) {
         doc.reference.delete();
